@@ -7,7 +7,6 @@ Class: EECS 448
 */
 
 //card constructor
-
 function card(color,value){
     this.color = color;
     this.value = value;
@@ -29,12 +28,15 @@ function card(color,value){
 //deck constructor
 function deck(){
     this.cards = [];
+    this.amtCards = 0;
     this.addCard = function(c){
         this.cards.push(c);
+        this.amtCards = this.cards.length;
     };
     
     this.removeCard = function(c){
         this.cards.splice(c, 1);
+        this.amtCards = this.cards.length;
     };
     
     this.getCard = function(c){
@@ -42,29 +44,30 @@ function deck(){
     };
     
     this.showDeck = function(){     //For Testing
-        for(i = 0; i < this.cards.length; i++){
+        for(i = 0; i < this.amtCards; i++){
             console.log(this.cards[i].color + " " + this.cards[i].value);
         }
+        console.log("There are a total of " + this.amtCards + " in this deck");
     };
 }
 
+// Global Playfield Card
+let playFieldCard;
+
 
 //Testing function, compare object to playfield object
-
-
-/* Commented out because of the use of card.color
 function checkPlayerCardToPlayfield()
 {
     //Get in the value by element ID
     let cardColor = document.getElementById("cardColor").value;
     let cardNumber = document.getElementById("cardNumber").value;
 
-    if (cardColor != card.color)
+    if (cardColor != playFieldCard.color)
     {
         alert("Card color: " + cardColor + ". Card Number: " + cardNumber + "\nCards have different color.");
         return;
     }
-    if (cardNumber != card.value)
+    if (cardNumber != playFieldCard.value)
     {
         alert("Card color: " + cardColor + ". Card Number: " + cardNumber + "\nCards have different value.");
         return;
@@ -74,19 +77,15 @@ function checkPlayerCardToPlayfield()
     return;
 }//end of checkPassword
 
-*/
 
 //Changes the global card object to random color/value assignment
 function SelectPlayfieldCard()
 {
-    //Creates a deck for player
-    myDeck = new deck;
-    
-    //Automatically gives the player 7 cards
-    for(i= 0; i< 7; i++){getCard();}
-    
-    //For Testing
-    myDeck.showDeck();
+    let colorArray = ['Red', 'Green', 'Blue', 'Yellow'];
+    let hexColor = ['#a60000', '#004F19', '#2C0066']
+    let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
+    let randValue = Math.floor((Math.random() * 10));
+    playFieldCard = new card(randColor,randValue);
 }
 
 //Reloads the player hand to have the most recent cards in player hand
@@ -122,11 +121,22 @@ function initializeWindow()
     //Get div elements that will be changed in HTML
     let divColor = document.getElementById('PlayfieldCardColor');
     let divValue = document.getElementById('PlayfieldCardValue');
+    
     //Reassign global card value to random values
     SelectPlayfieldCard();
+    
     //Change innter HTML to match new global card values
-    divColor.innerHTML = card.color;
-    divValue.innerHTML = card.value;
+    divColor.innerHTML = playFieldCard.color;
+    divValue.innerHTML = playFieldCard.value;
+    
+    //Creates a deck for player
+    myDeck = new deck;
+    
+    //Automatically gives the player 7 cards
+    for(i= 0; i< 7; i++){getCard();}
+    
+    //For Testing. console logs the full player hand
+    myDeck.showDeck();
 
 }
 
