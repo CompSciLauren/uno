@@ -92,6 +92,7 @@ function SelectPlayfieldCard()
 function reloadHand(){
     let hand = document.getElementById('playerHand');
     hand.innerHTML = "";
+    let i = 0;
     for( i = 0; i < myDeck.cards.length; i++){
         let cardDiv = document.createElement('div');
         hand.append(cardDiv);
@@ -108,8 +109,13 @@ function getCard(){
         let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
         let randValue = Math.floor((Math.random() * 10));
         let tempCard = new card(randColor,randValue);
-        console.log(randColor + " " + randValue);
         myDeck.addCard(tempCard);
+        reloadHand();
+}
+
+
+function playCard(c){
+        myDeck.removeCard(c);
         reloadHand();
 }
 
@@ -133,7 +139,8 @@ function initializeWindow()
     myDeck = new deck;
     
     //Automatically gives the player 7 cards
-    for(i= 0; i< 7; i++){getCard();}
+    let i = 0;
+    for(i = 0; i< 7; i++){getCard();}
     
     //For Testing. console logs the full player hand
     myDeck.showDeck();
