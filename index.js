@@ -29,21 +29,57 @@ function card(color,value){
 function deck(){
     this.cards = [];
     this.amtCards = 0;
+    
+    // Adds a card to the cards array
     this.addCard = function(c){
         this.cards.push(c);
         this.amtCards = this.cards.length;
     };
     
+    
+    // removes a card from card array
     this.removeCard = function(c){
         this.cards.splice(c, 1);
         this.amtCards = this.cards.length;
     };
     
+    // Gives player a random card
+    this.drawCard = function(){
+        let colorArray = ['Red', 'Green', 'Blue', 'Yellow'];
+        let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
+        let randValue = Math.floor((Math.random() * 10));
+        let tempCard = new card(randColor,randValue);
+        this.addCard(tempCard);
+        this.reloadHand();
+    };
+    
+    //removes card from hand and reloads hand
+    this.playCard = function(c){
+        this.removeCard(c);
+        this.reloadHand();
+    };
+    
+    //Returns card at index c
     this.getCard = function(c){
         return(this.cards[c]);
     };
     
-    this.showDeck = function(){     //For Testing
+    //Reloads the player hand to have the most recent cards in player hand
+    this.reloadHand = function(){
+        let hand = document.getElementById('playerHand');
+        hand.innerHTML = "";
+        let i = 0;
+        for( i = 0; i < this.amtCards; i++){
+            let cardDiv = document.createElement('div');
+            hand.append(cardDiv);
+            cardDiv.innerHTML = this.getCard(i).value;
+            cardDiv.classList.add('card');
+            cardDiv.style.backgroundColor = this.getCard(i).getColorValue();
+        }
+    };
+    
+    //For Testing. logs all cards and card amount
+    this.showDeck = function(){
         for(i = 0; i < this.amtCards; i++){
             console.log(this.cards[i].color + " " + this.cards[i].value);
         }
@@ -78,6 +114,18 @@ function checkPlayerCardToPlayfield()
 }//end of checkPassword
 
 
+
+//Testing function, plays a card
+function useCard()
+{
+    //Get in the value by element ID
+    let cardIndex = document.getElementById("cardIndex").value;
+
+    myDeck.playCard(cardIndex);
+}
+
+
+
 //Changes the global card object to random color/value assignment
 function SelectPlayfieldCard()
 {
@@ -88,36 +136,6 @@ function SelectPlayfieldCard()
     playFieldCard = new card(randColor,randValue);
 }
 
-//Reloads the player hand to have the most recent cards in player hand
-function reloadHand(){
-    let hand = document.getElementById('playerHand');
-    hand.innerHTML = "";
-    let i = 0;
-    for( i = 0; i < myDeck.cards.length; i++){
-        let cardDiv = document.createElement('div');
-        hand.append(cardDiv);
-        cardDiv.innerHTML = myDeck.getCard(i).value;
-        cardDiv.classList.add('card');
-        cardDiv.style.backgroundColor = myDeck.getCard(i).getColorValue();
-    }
-}
-
-// Gives player a random card
-function getCard(){
-        let colorArray = ['Red', 'Green', 'Blue', 'Yellow'];
-        let hexColor = ['#a60000', '#004F19', '#2C0066']
-        let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
-        let randValue = Math.floor((Math.random() * 10));
-        let tempCard = new card(randColor,randValue);
-        myDeck.addCard(tempCard);
-        reloadHand();
-}
-
-
-function playCard(c){
-        myDeck.removeCard(c);
-        reloadHand();
-}
 
 
 
@@ -140,7 +158,7 @@ function initializeWindow()
     
     //Automatically gives the player 7 cards
     let i = 0;
-    for(i = 0; i< 7; i++){getCard();}
+    for(i = 0; i< 7; i++){myDeck.drawCard();}
     
     //For Testing. console logs the full player hand
     myDeck.showDeck();
