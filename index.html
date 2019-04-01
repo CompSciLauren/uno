@@ -16,18 +16,19 @@
             <button type="button" onclick="initializeWindow()">New Playfield Card</button>
 
         </form>
+				<div id="Current Player ID">Current Player: <div id="playerID"></div><br></div>
         <form>
             Enter a card index to play that card:<br>
             <input id="cardIndex" type="number" name="cardIndex"><br>
-            <button type="button" onclick="useCard()">Play Card</button>
+            <button type="button" onclick="useCard(); playerTurn()">Play Card</button>
 
         </form>
     </div>
-      
+
         <div id="playerHand">
         </div>
-        <button onclick="myDeck.drawCard()">Draw Card</button>
-      
+        <button onclick="players[gameTurn].playerDeck.drawCard()">Draw Card</button>
+
     <script type="text/javascript" src="index.js"></script>
 	</body>
 </html>
