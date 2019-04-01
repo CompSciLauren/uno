@@ -6,6 +6,10 @@ Date: Mar 28 2019
 Class: EECS 448
 */
 
+
+// Global Playfield Card
+let playFieldCard;
+
 //card constructor
 function card(color,value){
     this.color = color;
@@ -53,8 +57,12 @@ function deck(){
         this.reloadHand();
     };
     
-    //removes card from hand and reloads hand
+    //removes card from hand and reloads hand (post-validation of good move)
     this.playCard = function(c){
+        //Set playfield card to validated 'played' card
+        playFieldCard.color = this.cards[c].color;
+        playFieldCard.value = this.cards[c].value;
+        //Remove played card from hand
         this.removeCard(c);
         this.reloadHand();
     };
@@ -85,34 +93,29 @@ function deck(){
         }
         console.log("There are a total of " + this.amtCards + " in this deck");
     };
-}
 
-// Global Playfield Card
-let playFieldCard;
-
-
-//Testing function, compare object to playfield object
-function checkPlayerCardToPlayfield()
-{
+    //Compare selected card to playfield card
+    this.checkPlayerCardToPlayfield = function(c){
+    //alert("check card " + c);
     //Get in the value by element ID
-    let cardColor = document.getElementById("cardColor").value;
-    let cardNumber = document.getElementById("cardNumber").value;
-
-    if (cardColor != playFieldCard.color)
+    let cardColor = this.cards[c].color;
+    //alert("Card color: " + cardColor);
+    let cardNumber = this.cards[c].value;
+    //alert("Card number: " + cardNumber);
+    if (cardColor == playFieldCard.color)
     {
-        alert("Card color: " + cardColor + ". Card Number: " + cardNumber + "\nCards have different color.");
-        return;
+        //alert("Card color: " + cardColor + ". Card Number: " + cardNumber + "\nCards have same color.");
+        return(true);
     }
-    if (cardNumber != playFieldCard.value)
+    if (cardNumber == playFieldCard.value)
     {
-        alert("Card color: " + cardColor + ". Card Number: " + cardNumber + "\nCards have different value.");
-        return;
+        //alert("Card color: " + cardColor + ". Card Number: " + cardNumber + "\nCards have same value.");
+        return(true);
     }
-
-    alert("Card color: " + cardColor + ". Card Number: " + cardNumber + "\nCards match");
-    return;
-}//end of checkPassword
-
+    //alert("Card color: " + cardColor + ". Card Number: " + cardNumber + "\nCards do notmatch");
+    return(false);
+    };//end of check card to playfield
+}
 
 
 //Testing function, plays a card
@@ -120,8 +123,16 @@ function useCard()
 {
     //Get in the value by element ID
     let cardIndex = document.getElementById("cardIndex").value;
-
-    myDeck.playCard(cardIndex);
+    //Validates the move is good (matching color/value)
+    let isValidCard = myDeck.checkPlayerCardToPlayfield(cardIndex);
+    //Play card if valid move, otherwise ignore
+    if (isValidCard == true)
+    {
+        alert("Debug: Valid move.");
+        myDeck.playCard(cardIndex);
+        return;
+    }
+    alert("Debug: Invalid move.");
 }
 
 
@@ -135,8 +146,6 @@ function SelectPlayfieldCard()
     let randValue = Math.floor((Math.random() * 10));
     playFieldCard = new card(randColor,randValue);
 }
-
-
 
 
 //Changes the displayed text and calls function to randomize playfield card
