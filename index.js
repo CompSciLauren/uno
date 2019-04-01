@@ -62,6 +62,14 @@ function deck(){
         //Set playfield card to validated 'played' card
         playFieldCard.color = this.cards[c].color;
         playFieldCard.value = this.cards[c].value;
+        
+        //Get div elements that will be changed in HTML
+        let divColor = document.getElementById('PlayfieldCardColor');
+        let divValue = document.getElementById('PlayfieldCardValue');
+        //Change innter HTML to match new global card values
+        divColor.innerHTML = playFieldCard.color;
+        divValue.innerHTML = playFieldCard.value;
+
         //Remove played card from hand
         this.removeCard(c);
         this.reloadHand();
