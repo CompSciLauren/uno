@@ -110,23 +110,18 @@ function deck(){
 
     //Compare selected card to playfield card
     this.checkPlayerCardToPlayfield = function(c){
-    //alert("check card " + c);
     //Get in the value by element ID
     let cardColor = this.cards[c].color;
-    //alert("Card color: " + cardColor);
     let cardNumber = this.cards[c].value;
-    //alert("Card number: " + cardNumber);
     if (cardColor == playFieldCard.color)
     {
-        //alert("Card color: " + cardColor + ". Card Number: " + cardNumber + "\nCards have same color.");
         return(true);
     }
     if (cardNumber == playFieldCard.value)
     {
-        //alert("Card color: " + cardColor + ". Card Number: " + cardNumber + "\nCards have same value.");
         return(true);
     }
-    //alert("Card color: " + cardColor + ". Card Number: " + cardNumber + "\nCards do notmatch");
+
     return(false);
     };//end of check card to playfield
 }
@@ -138,12 +133,12 @@ function useCard()
     //Get in the value by element ID
     let cardIndex = document.getElementById("cardIndex").value;
     //Validates the move is good (matching color/value)
-    let isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(cardIndex);//Replaced myDeck with call to current players deck -- TRAVIS
+    let isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(cardIndex);
     //Play card if valid move, otherwise ignore
     if (isValidCard == true)
     {
         alert("Debug: Valid move.");
-        players[gameTurn].playerDeck.playCard(cardIndex);//Replaced myDeck with call to current players deck -- TRAVIS
+        players[gameTurn].playerDeck.playCard(cardIndex);
         gameTurn++;
         return;
     }
@@ -176,18 +171,6 @@ function initializeWindow()
     //Change innter HTML to match new global card values
     divColor.innerHTML = playFieldCard.color;
     divValue.innerHTML = playFieldCard.value;
-
-//Commented out, code functionality moved to initializePlayers() -- TRAVIS
-    //Creates a deck for player
-//    myDeck = new deck;
-
-    //Automatically gives the player 7 cards
-//    let i = 0;
-//    for(i = 0; i< 7; i++){myDeck.drawCard();}
-
-    //For Testing. console logs the full player hand
-//    myDeck.showDeck();
-
 }
 
 //Tracks and displays the current player  -- TRAVIS
