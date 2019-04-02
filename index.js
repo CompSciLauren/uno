@@ -48,7 +48,6 @@ function deck(divId, hidden){
         this.amtCards = this.cards.length;
     };
 
-
     // removes a card from card array
     this.removeCard = function(c){
         this.cards.splice(c, 1);
