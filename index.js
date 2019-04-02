@@ -138,12 +138,10 @@ function useCard()
     //Play card if valid move, otherwise ignore
     if (isValidCard == true)
     {
-        alert("Debug: Valid move.");
         players[gameTurn].playerDeck.playCard(cardIndex);
         gameTurn++;
         return;
     }
-    alert("Debug: Invalid move.");
 }
 
 
