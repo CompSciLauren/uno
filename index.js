@@ -152,6 +152,7 @@ function useCard()
     {
         let cardBeingPlayed = players[gameTurn].playerDeck.getCard(cardIndex);
         alert("Debug: Valid move.");
+        players[gameTurn].playerDeck.playCard(cardIndex);
         if(cardBeingPlayed.color == 'Special'){
             if(cardBeingPlayed.value == 0){
                 cardWild();
@@ -165,7 +166,7 @@ function useCard()
         }else if(cardBeingPlayed.value == 12){
             cardSkip();
         }
-        players[gameTurn].playerDeck.playCard(cardIndex);
+        
         rotatePlayers();
         return;
     }
@@ -264,7 +265,11 @@ window.onlad = testInitializePlayers();
 
 //Reverses the direction of player rotation
 function cardReverse(){
-    gameDirection = (-1) * gameDirection;
+    if(players.length == 2){
+        rotatePlayers();
+    }else{
+        gameDirection = (-1) * gameDirection;
+    }  
 }
 
 //Skips the next player in rotation
