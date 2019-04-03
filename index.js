@@ -55,9 +55,12 @@ function deck(){
 
     // Gives player a random card
     this.drawCard = function(){
-        let colorArray = ['Red', 'Green', 'Blue', 'Yellow'];
+        let colorArray = ['Red', 'Green', 'Blue', 'Yellow', 'Special'];
         let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
         let randValue = Math.floor((Math.random() * 10));
+        if (randColor == 'Special'){
+            randValue = randValue % 2;
+        }
         let tempCard = new card(randColor,randValue);
         this.addCard(tempCard);
         this.reloadHand();
@@ -151,7 +154,6 @@ function useCard()
 function SelectPlayfieldCard()
 {
     let colorArray = ['Red', 'Green', 'Blue', 'Yellow'];
-    let hexColor = ['#a60000', '#004F19', '#2C0066']
     let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
     let randValue = Math.floor((Math.random() * 10));
     playFieldCard = new card(randColor,randValue);
@@ -225,4 +227,31 @@ function player(deck, id, index)
 }
 
 window.onload = initializeWindow();
-window.onload = initializePlayers();
+//window.onload = initializePlayers();
+window.onlad = testInitializePlayers();
+
+
+
+//Delete, Only here to automatically add players to save time with testing.
+function testInitializePlayers()
+{
+  //Fills the players array with 2-4 people or bots (future, currently only allows two players)
+    let customPlayers = ["earving", "bot"];
+  while (players.length < 2)
+  {
+    let tempDeck = new deck();
+    let tempID = customPlayers[players.length];
+    let tempIndex = players.length - 1;
+    let tempPlayer = new player(tempDeck, tempID, tempIndex);
+
+    //Automatically gives the player 7 cards
+    let i = 0;
+    for(i = 0; i< 7; i++){tempDeck.drawCard();}
+
+    //adds the player to the game
+    players.push(tempPlayer);
+  }
+
+  //Begins the first turn of the game
+  playerTurn();
+}
