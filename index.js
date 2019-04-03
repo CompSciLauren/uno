@@ -192,6 +192,24 @@ function useCard()
     alert("Debug: Invalid move.");
 }
 
+//Function draws cards and adds them to playerhand
+function drawACard(){
+    if(drawStack.stackAmt != 0){
+        let drawTimes = drawStack.cardType * drawStack.stackAmt;
+        let i = 0;
+        for(i = 0; i < drawTimes; i++){
+            players[gameTurn].playerDeck.drawCard();
+        } 
+        rotatePlayers();
+        playerTurn();
+        drawStack.stackAmt = 0;
+    }else{
+        players[gameTurn].playerDeck.drawCard();
+    }
+    
+     
+}
+
 
 
 //Changes the global card object to random color/value assignment
@@ -262,8 +280,6 @@ function player(deck, id, index)
   this.playerDeck = deck;
   this.playerID = id;
   this.playerIndex = index;
-
-
 }
 
 function rotatePlayers(){
