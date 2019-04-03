@@ -21,7 +21,6 @@ let gameDirection =1;
 
 //Stores how many +2, or +4s are stacked
 let drawStack ={
-    amountToDraw: 0,
     stackAmt: 0,
     cardType: 2 // either 2 or 4
 };
@@ -153,6 +152,24 @@ function useCard()
         let cardBeingPlayed = players[gameTurn].playerDeck.getCard(cardIndex);
         alert("Debug: Valid move.");
         
+        
+        //Will run if there is a stackable card played, +2 or +4
+        if(drawStack.stackAmt != 0){
+            //checks that the card played stacks
+            if(cardBeingPlayed.value == playFieldCard.value){
+                
+                if(cardBeingPlayed.value == 10){
+                    cardDraw2();
+                }else if(cardBeingPlayed.value == 1){
+                    cardDraw4();
+                }
+                
+            }else{
+                alert("Card chosen Doesn't stack");
+                return;
+            }
+        }
+        
         players[gameTurn].playerDeck.playCard(cardIndex);
         
         if(cardBeingPlayed.color == 'Special'){
@@ -205,11 +222,7 @@ function initializeWindow()
 //Tracks and displays the current player  -- TRAVIS
 function playerTurn()
 {
-  if (gameTurn == players.length)
-    gameTurn = 0;
-  else if (gameTurn < 0)
-    gameTurn = players.length - 1;
-
+    
   let divPlayer = document.getElementById('playerID');
   divPlayer.innerHTML = players[gameTurn].playerID;
   players[gameTurn].playerDeck.reloadHand();
@@ -255,6 +268,11 @@ function player(deck, id, index)
 
 function rotatePlayers(){
     gameTurn = gameTurn + gameDirection;
+    
+    if (gameTurn == players.length)
+        gameTurn = 0;
+    else if (gameTurn < 0)
+        gameTurn = players.length - 1;
 }
 
 window.onload = initializeWindow();
@@ -293,11 +311,13 @@ function cardWild(){
 }
 
 function cardDraw2(){
-    
+    drawStack.stackAmt++;
+    drawStack.cardType = 2;
 }
 
 function cardDraw4(){
-    
+    drawStack.stackAmt++;
+    drawStack.cardType = 4;
 }
 
 //Delete, Only here to automatically add players to save time with testing.
