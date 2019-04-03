@@ -155,19 +155,14 @@ function useCard()
         
         //Will run if there is a stackable card played, +2 or +4
         if(drawStack.stackAmt != 0){
-            //checks that the card played stacks
-            if(cardBeingPlayed.value == playFieldCard.value){
-                
-                if(cardBeingPlayed.value == 10){
-                    cardDraw2();
-                }else if(cardBeingPlayed.value == 1){
-                    cardDraw4();
+                if(cardBeingPlayed.value != playFieldCard.value){
+                    alert("Card chosen Doesn't stack");
+                    return;
+                }else if(cardBeingPlayed.value == 1 && cardBeingPlayed.color != 'Special'){
+                    alert("Card chosen Doesn't stack");
+                    return;
                 }
                 
-            }else{
-                alert("Card chosen Doesn't stack");
-                return;
-            }
         }
         
         players[gameTurn].playerDeck.playCard(cardIndex);
@@ -175,7 +170,7 @@ function useCard()
         if(cardBeingPlayed.color == 'Special'){
             if(cardBeingPlayed.value == 0){
                 cardWild();
-            }else if(cardBeingPlayed == 1){
+            }else if(cardBeingPlayed.value == 1){
                 cardDraw4();
             }
         }else if(cardBeingPlayed.value == 10){
@@ -334,6 +329,7 @@ function cardDraw2(){
 function cardDraw4(){
     drawStack.stackAmt++;
     drawStack.cardType = 4;
+    cardWild();
 }
 
 //Delete, Only here to automatically add players to save time with testing.
