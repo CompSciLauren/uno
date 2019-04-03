@@ -116,7 +116,7 @@ function deck(){
     //Get in the value by element ID
     let cardColor = this.cards[c].color;
     let cardNumber = this.cards[c].value;
-    if (cardColor == playFieldCard.color)
+    if (cardColor == playFieldCard.color || cardColor == 'Special')
     {
         return(true);
     }
