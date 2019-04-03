@@ -16,6 +16,16 @@ let players = [];
 //Global Turn Tracker
 let gameTurn = 0;
 
+//sets direction of game, 1 for forward, -1 for backward
+let gameDirection =1;
+
+//Stores how many +2, or +4s are stacked
+let drawStack ={
+    amountToDraw: 0,
+    stackAmt: 0,
+    cardType: 2 // either 2 or 4
+};
+
 //card constructor
 function card(color,value){
     this.color = color;
@@ -140,9 +150,23 @@ function useCard()
     //Play card if valid move, otherwise ignore
     if (isValidCard == true)
     {
+        let cardBeingPlayed = players[gameTurn].playerDeck.getCard(cardIndex);
         alert("Debug: Valid move.");
+        if(cardBeingPlayed.color == 'Special'){
+            if(cardBeingPlayed.value == 0){
+                cardWild();
+            }else if(cardBeingPlayed == 1){
+                cardDraw4();
+            }
+        }else if(cardBeingPlayed.value == 10){
+            cardDraw2();
+        }else if(cardBeingPlayed.value == 11){
+            cardReverse();
+        }else if(cardBeingPlayed.value == 12){
+            cardSkip();
+        }
         players[gameTurn].playerDeck.playCard(cardIndex);
-        gameTurn++;
+        rotatePlayers();
         return;
     }
     alert("Debug: Invalid move.");
@@ -226,11 +250,39 @@ function player(deck, id, index)
 
 }
 
+function rotatePlayers(){
+    gameTurn = gameTurn + gameDirection;
+}
+
 window.onload = initializeWindow();
 //window.onload = initializePlayers();
 window.onlad = testInitializePlayers();
 
 
+
+/* Special Card Implementations */
+
+//Reverses the direction of player rotation
+function cardReverse(){
+    gameDirection = (-1) * gameDirection;
+}
+
+//Skips the next player in rotation
+function cardSkip(){
+    rotatePlayers();
+}
+
+function cardWild(){
+    
+}
+
+function cardDraw2(){
+    
+}
+
+function cardDraw4(){
+    
+}
 
 //Delete, Only here to automatically add players to save time with testing.
 function testInitializePlayers()
@@ -255,3 +307,5 @@ function testInitializePlayers()
   //Begins the first turn of the game
   playerTurn();
 }
+
+
