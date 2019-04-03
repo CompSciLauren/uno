@@ -57,7 +57,7 @@ function deck(){
     this.drawCard = function(){
         let colorArray = ['Red', 'Green', 'Blue', 'Yellow', 'Special'];
         let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
-        let randValue = Math.floor((Math.random() * 10));
+        let randValue = Math.floor((Math.random() * 13));
         if (randColor == 'Special'){
             randValue = randValue % 2;
         }
