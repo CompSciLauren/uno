@@ -152,7 +152,9 @@ function useCard()
     {
         let cardBeingPlayed = players[gameTurn].playerDeck.getCard(cardIndex);
         alert("Debug: Valid move.");
+        
         players[gameTurn].playerDeck.playCard(cardIndex);
+        
         if(cardBeingPlayed.color == 'Special'){
             if(cardBeingPlayed.value == 0){
                 cardWild();
@@ -278,7 +280,16 @@ function cardSkip(){
 }
 
 function cardWild(){
+    newColor = prompt("Enter the Color You want to switch to");
+    playFieldCard.color = newColor;
+    playFieldCard.value = -1;
     
+    //Get div elements that will be changed in HTML
+    let divColor = document.getElementById('PlayfieldCardColor');
+    let divValue = document.getElementById('PlayfieldCardValue');
+    //Change innter HTML to match new global card values
+    divColor.innerHTML = playFieldCard.color;
+    divValue.innerHTML = playFieldCard.value;
 }
 
 function cardDraw2(){
