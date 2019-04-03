@@ -21,6 +21,7 @@ let gameDirection =1;
 
 //Stores how many +2, or +4s are stacked
 let drawStack ={
+    cardValue: 0,
     stackAmt: 0,
     cardType: 2 // either 2 or 4
 };
@@ -155,7 +156,7 @@ function useCard()
         
         //Will run if there is a stackable card played, +2 or +4
         if(drawStack.stackAmt != 0){
-                if(cardBeingPlayed.value != playFieldCard.value){
+                if(cardBeingPlayed.value != drawStack.cardValue){
                     alert("Card chosen Doesn't stack");
                     return;
                 }else if(cardBeingPlayed.value == 1 && cardBeingPlayed.color != 'Special'){
@@ -287,8 +288,7 @@ function rotatePlayers(){
 }
 
 window.onload = initializeWindow();
-//window.onload = initializePlayers();
-window.onlad = testInitializePlayers();
+window.onload = initializePlayers();
 
 
 
@@ -324,36 +324,15 @@ function cardWild(){
 function cardDraw2(){
     drawStack.stackAmt++;
     drawStack.cardType = 2;
+    drawStack.cardValue = 10;
 }
 
 function cardDraw4(){
     drawStack.stackAmt++;
     drawStack.cardType = 4;
+    drawStack.cardValue = 1;
     cardWild();
 }
 
-//Delete, Only here to automatically add players to save time with testing.
-function testInitializePlayers()
-{
-  //Fills the players array with 2-4 people or bots (future, currently only allows two players)
-    let customPlayers = ["earving", "bot"];
-  while (players.length < 2)
-  {
-    let tempDeck = new deck();
-    let tempID = customPlayers[players.length];
-    let tempIndex = players.length - 1;
-    let tempPlayer = new player(tempDeck, tempID, tempIndex);
-
-    //Automatically gives the player 7 cards
-    let i = 0;
-    for(i = 0; i< 7; i++){tempDeck.drawCard();}
-
-    //adds the player to the game
-    players.push(tempPlayer);
-  }
-
-  //Begins the first turn of the game
-  playerTurn();
-}
 
 
