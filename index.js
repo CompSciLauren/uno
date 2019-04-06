@@ -75,6 +75,7 @@ function deck(divId, hidden){
         if (this.cards.length == 0) {
             alert("You win!");
             location.reload();
+            return;
         }
         this.reloadHand();
     };
@@ -139,12 +140,47 @@ function useCard() {
     //Play card if valid move, otherwise ignore
 
     if (isValidCard == true) {
-        alert("Debug: Valid move.");
+        //alert("Debug: Valid move.");
 
         players[gameTurn].playerDeck.playCard(cardIndex);
         gameTurn++;
         return;
     }
+}
+
+//Initial crack at starting logic. If "Bot" name detected, should just try to play cards until winner then move on
+function botLogic(){
+        console.log("Player is a bot!");
+        let numBotCards = players[gameTurn].playerDeck.amtCards;
+        console.log("num of bot cards: " + numBotCards);
+        //Check through all current bot cards for a match
+        for(let i = 0; i < numBotCards; i++)
+        {
+            let isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(i);
+            if (isValidCard == true) {
+                //alert("Debug: Valid move.");
+                players[gameTurn].playerDeck.playCard(i);
+                gameTurn++;
+                return;
+            }
+        }
+
+        //If not match, draw card and check. First check if last card is a match (no)
+        let isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(players[gameTurn].playerDeck.amtCards - 1);
+        console.log("last card valid: " + isValidCard);
+        //Draw a card, then check if that new card is a match. Should break loop if it is
+        //The 20 card limit is just for testing, keeps infinite decks from being made
+        while (isValidCard == false && players[gameTurn].playerDeck.amtCards < 20 ){    
+        players[gameTurn].playerDeck.drawCard();
+        isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(players[gameTurn].playerDeck.amtCards - 1);
+        console.log(isValidCard + players[gameTurn].playerDeck.cards[players[gameTurn].playerDeck.amtCards - 1].color + + players[gameTurn].playerDeck.cards[players[gameTurn].playerDeck.amtCards - 1].value);
+        }
+        if (isValidCard == true) {
+            //alert("Debug: Valid move.");
+            players[gameTurn].playerDeck.playCard(players[gameTurn].playerDeck.amtCards - 1);
+            gameTurn++;
+            return;
+        }
 }
 
 
@@ -180,9 +216,16 @@ function playerTurn() {
     else if (gameTurn < 0)
         gameTurn = players.length - 1;
 
+        //If the current player is a BOT, do bot logic and 'skip' to next player
+    if (players[gameTurn].playerID == "Bot"){
+        botLogic();
+        playerTurn();
+        return;
+        }
     let divPlayer = document.getElementById('playerID');
     divPlayer.innerHTML = players[gameTurn].playerID;
     players[gameTurn].playerDeck.reloadHand();
+
 }
 
 //All players created, people and bots determined (future)  -- TRAVIS
@@ -199,7 +242,7 @@ function initializePlayers()
       if(players.length == 0){
         tempDeck = new deck(playerHandDiv,false);
       }else{
-        tempDeck = new deck(playerHandDiv,true);
+        tempDeck = new deck(playerHandDiv,false);   //set to true to blackout
       }
     
     let tempID = "";
@@ -214,7 +257,7 @@ function initializePlayers()
 
         //Automatically gives the player 7 cards
         let i = 0;
-        for (i = 0; i < 7; i++) { tempDeck.drawCard(); }
+        for (i = 0; i < 3; i++) { tempDeck.drawCard(); }
 
         //adds the player to the game
         players.push(tempPlayer);
