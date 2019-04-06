@@ -27,16 +27,19 @@ function card(color, value) {
 }
 
 //deck constructor
-function deck() {
+
+function deck(divId, hidden){
+
     this.cards = [];
     this.amtCards = 0;
+    this.hand = document.getElementById(divId);
+    this.isHidden = hidden;
 
     // Adds a card to the cards array
     this.addCard = function (c) {
         this.cards.push(c);
         this.amtCards = this.cards.length;
     };
-
 
     // removes a card from card array
     this.removeCard = function (c) {
@@ -82,16 +85,23 @@ function deck() {
     };
 
     //Reloads the player hand to have the most recent cards in player hand
-    this.reloadHand = function () {
-        let hand = document.getElementById('playerHand');
-        hand.innerHTML = "";
+
+    this.reloadHand = function(){
+        
+        this.hand.innerHTML = "";
         let i = 0;
         for (i = 0; i < this.amtCards; i++) {
             let cardDiv = document.createElement('div');
-            hand.append(cardDiv);
-            cardDiv.innerHTML = this.getCard(i).value;
+            this.hand.append(cardDiv);
             cardDiv.classList.add('card');
-            cardDiv.style.backgroundColor = this.getCard(i).getColorValue();
+            
+            if(!this.isHidden){
+                cardDiv.innerHTML = this.getCard(i).value;
+                cardDiv.style.backgroundColor = this.getCard(i).getColorValue();
+            }else{
+                cardDiv.style.backgroundColor = "#000000";
+            }
+            
         }
     };
 
@@ -127,13 +137,14 @@ function useCard() {
     //Validates the move is good (matching color/value)
     let isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(cardIndex);
     //Play card if valid move, otherwise ignore
+
     if (isValidCard == true) {
         alert("Debug: Valid move.");
+
         players[gameTurn].playerDeck.playCard(cardIndex);
         gameTurn++;
         return;
     }
-    alert("Debug: Invalid move.");
 }
 
 
@@ -175,14 +186,28 @@ function playerTurn() {
 }
 
 //All players created, people and bots determined (future)  -- TRAVIS
-function initializePlayers() {
-    //Fills the players array with 2-4 people or bots (future, currently only allows two players)
-    while (players.length < 2) {
-        let tempDeck = new deck();
-        let tempID = "";
-        while (tempID == "" || tempID == null) {
-            tempID = prompt("Please enter your name.  If you would like to have a bot play for you, please enter the name 'Bot'");
-        }
+
+function initializePlayers()
+{
+  //Fills the players array with 2-4 people or bots (future, currently only allows two players)
+  while (players.length < 2)
+  {
+    let playerHandDiv = "player" + (players.length + 1) + "Hand";
+      
+      let tempDeck;
+      
+      if(players.length == 0){
+        tempDeck = new deck(playerHandDiv,false);
+      }else{
+        tempDeck = new deck(playerHandDiv,true);
+      }
+    
+    let tempID = "";
+    while (tempID == "" || tempID == null)
+    {
+      tempID = prompt("Please enter your name.  If you would like to have a bot play for you, please enter the name 'Bot'");
+    }
+
 
         let tempIndex = players.length - 1;
         let tempPlayer = new player(tempDeck, tempID, tempIndex);
