@@ -1,14 +1,17 @@
 <html>
-	<head>
-		<title> Playfield Compare </title>
-      <link href="styles.css" rel="stylesheet" type="text/css">
-	</head>
 
-	<body>
+<head>
+    <title> Playfield Compare </title>
+    <link href="styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
     <div>
-        <h1 id="Playfield">Playfield card: <div id=PlayfieldCardColor></div> <div id=PlayfieldCardValue></div></h1>
+        <h1 id="Playfield">Playfield card: <div id=PlayfieldCardColor></div>
+            <div id=PlayfieldCardValue></div>
+        </h1>
         <form>
-           <!-- Enter a card color("Red", "Green", "Yellow", "Blue"):<br>
+            <!-- Enter a card color("Red", "Green", "Yellow", "Blue"):<br>
             <input id="cardColor" type="text" name="cardColor"><br>
             Enter a card number(0 - 9):<br>
             <input id="cardNumber" type="number" name="cardNumber"><br>
@@ -16,7 +19,7 @@
             <button type="button" onclick="initializeWindow()">New Playfield Card</button>
 
         </form>
-				<div id="Current Player ID">Current Player: <div id="playerID"></div><br></div>
+        <div id="Current Player ID">Current Player: <div id="playerID"></div><br></div>
         <form>
             Enter a card index to play that card:<br>
             <input id="cardIndex" type="number" name="cardIndex"><br>
@@ -25,12 +28,13 @@
         </form>
     </div>
 
-        <div id="player1Hand">
-        </div>
-        <div id="player2Hand">
-        </div>
-        <button onclick="players[gameTurn].playerDeck.drawCard()">Draw Card</button>
+    <div id="player1Hand">
+    </div>
+    <div id="player2Hand">
+    </div>
+    <button onclick="players[gameTurn].playerDeck.drawCard()">Draw Card</button>
 
     <script type="text/javascript" src="index.js"></script>
-	</body>
+</body>
+
 </html>
