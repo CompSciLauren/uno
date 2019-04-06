@@ -63,12 +63,16 @@ function deck() {
         //Get div elements that will be changed in HTML
         let divColor = document.getElementById('PlayfieldCardColor');
         let divValue = document.getElementById('PlayfieldCardValue');
-        //Change innter HTML to match new global card values
+        //Change inner HTML to match new global card values
         divColor.innerHTML = playFieldCard.color;
         divValue.innerHTML = playFieldCard.value;
 
         //Remove played card from hand
         this.removeCard(c);
+        if (this.cards.length == 0) {
+            alert("You win!");
+            location.reload();
+        }
         this.reloadHand();
     };
 
