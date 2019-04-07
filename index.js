@@ -1,12 +1,3 @@
-/*
-Author: Eric Seitz
-KUID: 2928468
-Assignment: Project 3
-Date: Mar 28 2019
-Class: EECS 448
-*/
-
-
 // Global Playfield Card
 let playFieldCard;
 
@@ -27,38 +18,41 @@ let drawStack ={
 };
 
 //card constructor
-function card(color,value){
+function card(color, value) {
     this.color = color;
     this.value = value;
-    this.getColorValue = function(){
-        if(this.color == 'Red'){
+    this.getColorValue = function () {
+        if (this.color == 'Red') {
             return '#A60000';
-        }else if(this.color == 'Blue'){
+        } else if (this.color == 'Blue') {
             return '#2C0066';
-        }else if(this.color == 'Green'){
+        } else if (this.color == 'Green') {
             return '#004f19';
-        }else if(this.color == 'Yellow'){
+        } else if (this.color == 'Yellow') {
             return '#e5bf00';
-        }else{
+        } else {
             return '#333333';
         }
     }
 }
 
 //deck constructor
-function deck(){
+
+function deck(divId, hidden){
+
     this.cards = [];
     this.amtCards = 0;
+    this.hand = document.getElementById(divId);
+    this.isHidden = hidden;
 
     // Adds a card to the cards array
-    this.addCard = function(c){
+    this.addCard = function (c) {
         this.cards.push(c);
         this.amtCards = this.cards.length;
     };
 
-
     // removes a card from card array
-    this.removeCard = function(c){
+    this.removeCard = function (c) {
         this.cards.splice(c, 1);
         this.amtCards = this.cards.length;
     };
@@ -77,7 +71,7 @@ function deck(){
     };
 
     //removes card from hand and reloads hand (post-validation of good move)
-    this.playCard = function(c){
+    this.playCard = function (c) {
         //Set playfield card to validated 'played' card
         playFieldCard.color = this.cards[c].color;
         playFieldCard.value = this.cards[c].value;
@@ -85,37 +79,48 @@ function deck(){
         //Get div elements that will be changed in HTML
         let divColor = document.getElementById('PlayfieldCardColor');
         let divValue = document.getElementById('PlayfieldCardValue');
-        //Change innter HTML to match new global card values
+        //Change inner HTML to match new global card values
         divColor.innerHTML = playFieldCard.color;
         divValue.innerHTML = playFieldCard.value;
 
         //Remove played card from hand
         this.removeCard(c);
+        if (this.cards.length == 0) {
+            alert("You win!");
+            location.reload();
+        }
         this.reloadHand();
     };
 
     //Returns card at index c
-    this.getCard = function(c){
-        return(this.cards[c]);
+    this.getCard = function (c) {
+        return (this.cards[c]);
     };
 
     //Reloads the player hand to have the most recent cards in player hand
+
     this.reloadHand = function(){
-        let hand = document.getElementById('playerHand');
-        hand.innerHTML = "";
+        
+        this.hand.innerHTML = "";
         let i = 0;
-        for( i = 0; i < this.amtCards; i++){
+        for (i = 0; i < this.amtCards; i++) {
             let cardDiv = document.createElement('div');
-            hand.append(cardDiv);
-            cardDiv.innerHTML = this.getCard(i).value;
+            this.hand.append(cardDiv);
             cardDiv.classList.add('card');
-            cardDiv.style.backgroundColor = this.getCard(i).getColorValue();
+            
+            if(!this.isHidden){
+                cardDiv.innerHTML = this.getCard(i).value;
+                cardDiv.style.backgroundColor = this.getCard(i).getColorValue();
+            }else{
+                cardDiv.style.backgroundColor = "#000000";
+            }
+            
         }
     };
 
     //For Testing. logs all cards and card amount
-    this.showDeck = function(){
-        for(i = 0; i < this.amtCards; i++){
+    this.showDeck = function () {
+        for (i = 0; i < this.amtCards; i++) {
             console.log(this.cards[i].color + " " + this.cards[i].value);
         }
         console.log("There are a total of " + this.amtCards + " in this deck");
@@ -135,14 +140,13 @@ function deck(){
         return(true);
     }
 
-    return(false);
+        return (false);
     };//end of check card to playfield
 }
 
 
 //Testing function, plays a card
-function useCard()
-{
+function useCard() {
     //Get in the value by element ID
     let cardIndex = document.getElementById("cardIndex").value;
     //Validates the move is good (matching color/value)
@@ -151,7 +155,6 @@ function useCard()
     if (isValidCard == true)
     {
         let cardBeingPlayed = players[gameTurn].playerDeck.getCard(cardIndex);
-        alert("Debug: Valid move.");
         
         
         //Will run if there is a stackable card played, +2 or +4
@@ -162,8 +165,11 @@ function useCard()
                 }else if(cardBeingPlayed.value == 1 && cardBeingPlayed.color != 'Special'){
                     alert("Card chosen Doesn't stack");
                     return;
+                }else{
+                    alert("Debug: Valid move.");
                 }
-                
+        }else{
+            alert("Debug: Valid move.");
         }
         
         players[gameTurn].playerDeck.playCard(cardIndex);
@@ -185,7 +191,6 @@ function useCard()
         rotatePlayers();
         return;
     }
-    alert("Debug: Invalid move.");
 }
 
 //Function draws cards and adds them to playerhand
@@ -209,18 +214,16 @@ function drawACard(){
 
 
 //Changes the global card object to random color/value assignment
-function SelectPlayfieldCard()
-{
+function SelectPlayfieldCard() {
     let colorArray = ['Red', 'Green', 'Blue', 'Yellow'];
     let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
     let randValue = Math.floor((Math.random() * 10));
-    playFieldCard = new card(randColor,randValue);
+    playFieldCard = new card(randColor, randValue);
 }
 
 
 //Changes the displayed text and calls function to randomize playfield card
-function initializeWindow()
-{
+function initializeWindow() {
     //Get div elements that will be changed in HTML
     let divColor = document.getElementById('PlayfieldCardColor');
     let divValue = document.getElementById('PlayfieldCardValue');
@@ -243,31 +246,42 @@ function playerTurn()
 }
 
 //All players created, people and bots determined (future)  -- TRAVIS
+
 function initializePlayers()
 {
   //Fills the players array with 2-4 people or bots (future, currently only allows two players)
   while (players.length < 2)
   {
-    let tempDeck = new deck();
+    let playerHandDiv = "player" + (players.length + 1) + "Hand";
+      
+      let tempDeck;
+      
+      if(players.length == 0){
+        tempDeck = new deck(playerHandDiv,false);
+      }else{
+        tempDeck = new deck(playerHandDiv,false);
+      }
+    
     let tempID = "";
     while (tempID == "" || tempID == null)
     {
       tempID = prompt("Please enter your name.  If you would like to have a bot play for you, please enter the name 'Bot'");
     }
 
-    let tempIndex = players.length - 1;
-    let tempPlayer = new player(tempDeck, tempID, tempIndex);
 
-    //Automatically gives the player 7 cards
-    let i = 0;
-    for(i = 0; i< 7; i++){tempDeck.drawCard();}
+        let tempIndex = players.length - 1;
+        let tempPlayer = new player(tempDeck, tempID, tempIndex);
 
-    //adds the player to the game
-    players.push(tempPlayer);
-  }
+        //Automatically gives the player 7 cards
+        let i = 0;
+        for (i = 0; i < 7; i++) { tempDeck.drawCard(); }
 
-  //Begins the first turn of the game
-  playerTurn();
+        //adds the player to the game
+        players.push(tempPlayer);
+    }
+
+    //Begins the first turn of the game
+    playerTurn();
 }
 
 //Player constructor -- TRAVIS
