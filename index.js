@@ -88,6 +88,7 @@ function deck(divId, hidden){
         if (this.cards.length == 0) {
             alert("You win!");
             location.reload();
+            return;
         }
         this.reloadHand();
     };
@@ -100,21 +101,21 @@ function deck(divId, hidden){
     //Reloads the player hand to have the most recent cards in player hand
 
     this.reloadHand = function(){
-        
+
         this.hand.innerHTML = "";
         let i = 0;
         for (i = 0; i < this.amtCards; i++) {
             let cardDiv = document.createElement('div');
             this.hand.append(cardDiv);
             cardDiv.classList.add('card');
-            
+
             if(!this.isHidden){
                 cardDiv.innerHTML = this.getCard(i).value;
                 cardDiv.style.backgroundColor = this.getCard(i).getColorValue();
             }else{
                 cardDiv.style.backgroundColor = "#000000";
             }
-            
+
         }
     };
 
@@ -152,11 +153,12 @@ function useCard() {
     //Validates the move is good (matching color/value)
     let isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(cardIndex);
     //Play card if valid move, otherwise ignore
+<<<<<<< HEAD
     if (isValidCard == true)
     {
         let cardBeingPlayed = players[gameTurn].playerDeck.getCard(cardIndex);
-        
-        
+
+
         //Will run if there is a stackable card played, +2 or +4
         if(drawStack.stackAmt != 0){
                 if(cardBeingPlayed.value != drawStack.cardValue){
@@ -171,9 +173,11 @@ function useCard() {
         }else{
             alert("Debug: Valid move.");
         }
-        
+
+=======
+>>>>>>> BotLogic_t2
         players[gameTurn].playerDeck.playCard(cardIndex);
-        
+
         if(cardBeingPlayed.color == 'Special'){
             if(cardBeingPlayed.value == 0){
                 cardWild();
@@ -187,12 +191,13 @@ function useCard() {
         }else if(cardBeingPlayed.value == 12){
             cardSkip();
         }
-        
+
         rotatePlayers();
         return;
     }
 }
 
+<<<<<<< HEAD
 //Function draws cards and adds them to playerhand
 function drawACard(){
     if(drawStack.stackAmt != 0){
@@ -200,18 +205,49 @@ function drawACard(){
         let i = 0;
         for(i = 0; i < drawTimes; i++){
             players[gameTurn].playerDeck.drawCard();
-        } 
+        }
         rotatePlayers();
         playerTurn();
         drawStack.stackAmt = 0;
     }else{
         players[gameTurn].playerDeck.drawCard();
     }
-    
-     
 }
-
-
+=======
+//Initial crack at starting logic. If "Bot" name detected, should just try to play cards until winner then move on
+function botLogic(){
+  console.log("Player is a bot!");
+  let numBotCards = players[gameTurn].playerDeck.amtCards;
+  console.log("num of bot cards: " + numBotCards);
+  //Check through all current bot cards for a match
+  for(let i = 0; i < numBotCards; i++)
+  {
+      let isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(i);
+      if (isValidCard == true) {
+          //alert("Debug: Valid move.");
+          players[gameTurn].playerDeck.playCard(i);
+          gameTurn++;
+          return;
+      }
+  }
+  //If not match, draw card and check. First check if last card is a match (no)
+  let isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(players[gameTurn].playerDeck.amtCards - 1);
+  console.log("last card valid: " + isValidCard);
+  //Draw a card, then check if that new card is a match. Should break loop if it is
+  //The 20 card limit is just for testing, keeps infinite decks from being made
+  while (isValidCard == false && players[gameTurn].playerDeck.amtCards < 20 ){
+  players[gameTurn].playerDeck.drawCard();
+  isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(players[gameTurn].playerDeck.amtCards - 1);
+  console.log(isValidCard + players[gameTurn].playerDeck.cards[players[gameTurn].playerDeck.amtCards - 1].color + + players[gameTurn].playerDeck.cards[players[gameTurn].playerDeck.amtCards - 1].value);
+  }
+  if (isValidCard == true) {
+      //alert("Debug: Valid move.");
+      players[gameTurn].playerDeck.playCard(players[gameTurn].playerDeck.amtCards - 1);
+      gameTurn++;
+      return;
+  }
+}
+>>>>>>> BotLogic_t2
 
 //Changes the global card object to random color/value assignment
 function SelectPlayfieldCard() {
@@ -237,12 +273,20 @@ function initializeWindow() {
 }
 
 //Tracks and displays the current player  -- TRAVIS
+<<<<<<< HEAD
 function playerTurn()
 {
-    
+
   let divPlayer = document.getElementById('playerID');
   divPlayer.innerHTML = players[gameTurn].playerID;
   players[gameTurn].playerDeck.reloadHand();
+  if (players[gameTurn].playerID == "Bot"){
+      botLogic();
+      setTimeout(function() {rotatePlayers();}, 1000);
+      return;
+      }
+=======
+>>>>>>> BotLogic_t2
 }
 
 //All players created, people and bots determined (future)  -- TRAVIS
@@ -253,15 +297,18 @@ function initializePlayers()
   while (players.length < 2)
   {
     let playerHandDiv = "player" + (players.length + 1) + "Hand";
-      
+
       let tempDeck;
-      
+
       if(players.length == 0){
         tempDeck = new deck(playerHandDiv,false);
       }else{
-        tempDeck = new deck(playerHandDiv,false);
+<<<<<<< HEAD
+=======
+        tempDeck = new deck(playerHandDiv,false);   //set to true to blackout
+>>>>>>> BotLogic_t2
       }
-    
+
     let tempID = "";
     while (tempID == "" || tempID == null)
     {
@@ -274,7 +321,7 @@ function initializePlayers()
 
         //Automatically gives the player 7 cards
         let i = 0;
-        for (i = 0; i < 7; i++) { tempDeck.drawCard(); }
+        for (i = 0; i < 3; i++) { tempDeck.drawCard(); }
 
         //adds the player to the game
         players.push(tempPlayer);
@@ -294,7 +341,7 @@ function player(deck, id, index)
 
 function rotatePlayers(){
     gameTurn = gameTurn + gameDirection;
-    
+
     if (gameTurn == players.length)
         gameTurn = 0;
     else if (gameTurn < 0)
@@ -314,7 +361,7 @@ function cardReverse(){
         rotatePlayers();
     }else{
         gameDirection = (-1) * gameDirection;
-    }  
+    }
 }
 
 //Skips the next player in rotation
@@ -326,7 +373,7 @@ function cardWild(){
     newColor = prompt("Enter the Color You want to switch to");
     playFieldCard.color = newColor;
     playFieldCard.value = -1;
-    
+
     //Get div elements that will be changed in HTML
     let divColor = document.getElementById('PlayfieldCardColor');
     let divValue = document.getElementById('PlayfieldCardValue');
@@ -347,6 +394,3 @@ function cardDraw4(){
     drawStack.cardValue = 1;
     cardWild();
 }
-
-
-
