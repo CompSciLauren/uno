@@ -7,6 +7,16 @@ let players = [];
 //Global Turn Tracker
 let gameTurn = 0;
 
+//sets direction of game, 1 for forward, -1 for backward
+let gameDirection =1;
+
+//Stores how many +2, or +4s are stacked
+let drawStack ={
+    cardValue: 0,
+    stackAmt: 0,
+    cardType: 2 // either 2 or 4
+};
+
 //card constructor
 function card(color, value) {
     this.color = color;
@@ -48,11 +58,14 @@ function deck(divId, hidden){
     };
 
     // Gives player a random card
-    this.drawCard = function () {
-        let colorArray = ['Red', 'Green', 'Blue', 'Yellow'];
+    this.drawCard = function(){
+        let colorArray = ['Red', 'Green', 'Blue', 'Yellow', 'Special'];
         let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
-        let randValue = Math.floor((Math.random() * 10));
-        let tempCard = new card(randColor, randValue);
+        let randValue = Math.floor((Math.random() * 13));
+        if (randColor == 'Special'){
+            randValue = randValue % 2;
+        }
+        let tempCard = new card(randColor,randValue);
         this.addCard(tempCard);
         this.reloadHand();
     };
@@ -114,16 +127,18 @@ function deck(divId, hidden){
     };
 
     //Compare selected card to playfield card
-    this.checkPlayerCardToPlayfield = function (c) {
-        //Get in the value by element ID
-        let cardColor = this.cards[c].color;
-        let cardNumber = this.cards[c].value;
-        if (cardColor == playFieldCard.color) {
-            return (true);
-        }
-        if (cardNumber == playFieldCard.value) {
-            return (true);
-        }
+    this.checkPlayerCardToPlayfield = function(c){
+    //Get in the value by element ID
+    let cardColor = this.cards[c].color;
+    let cardNumber = this.cards[c].value;
+    if (cardColor == playFieldCard.color || cardColor == 'Special')
+    {
+        return(true);
+    }
+    if (cardNumber == playFieldCard.value)
+    {
+        return(true);
+    }
 
         return (false);
     };//end of check card to playfield
@@ -137,14 +152,63 @@ function useCard() {
     //Validates the move is good (matching color/value)
     let isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(cardIndex);
     //Play card if valid move, otherwise ignore
-
-    if (isValidCard == true) {
-        alert("Debug: Valid move.");
-
+    if (isValidCard == true)
+    {
+        let cardBeingPlayed = players[gameTurn].playerDeck.getCard(cardIndex);
+        
+        
+        //Will run if there is a stackable card played, +2 or +4
+        if(drawStack.stackAmt != 0){
+                if(cardBeingPlayed.value != drawStack.cardValue){
+                    alert("Card chosen Doesn't stack");
+                    return;
+                }else if(cardBeingPlayed.value == 1 && cardBeingPlayed.color != 'Special'){
+                    alert("Card chosen Doesn't stack");
+                    return;
+                }else{
+                    alert("Debug: Valid move.");
+                }
+        }else{
+            alert("Debug: Valid move.");
+        }
+        
         players[gameTurn].playerDeck.playCard(cardIndex);
-        gameTurn++;
+        
+        if(cardBeingPlayed.color == 'Special'){
+            if(cardBeingPlayed.value == 0){
+                cardWild();
+            }else if(cardBeingPlayed.value == 1){
+                cardDraw4();
+            }
+        }else if(cardBeingPlayed.value == 10){
+            cardDraw2();
+        }else if(cardBeingPlayed.value == 11){
+            cardReverse();
+        }else if(cardBeingPlayed.value == 12){
+            cardSkip();
+        }
+        
+        rotatePlayers();
         return;
     }
+}
+
+//Function draws cards and adds them to playerhand
+function drawACard(){
+    if(drawStack.stackAmt != 0){
+        let drawTimes = drawStack.cardType * drawStack.stackAmt;
+        let i = 0;
+        for(i = 0; i < drawTimes; i++){
+            players[gameTurn].playerDeck.drawCard();
+        } 
+        rotatePlayers();
+        playerTurn();
+        drawStack.stackAmt = 0;
+    }else{
+        players[gameTurn].playerDeck.drawCard();
+    }
+    
+     
 }
 
 
@@ -152,7 +216,6 @@ function useCard() {
 //Changes the global card object to random color/value assignment
 function SelectPlayfieldCard() {
     let colorArray = ['Red', 'Green', 'Blue', 'Yellow'];
-    let hexColor = ['#a60000', '#004F19', '#2C0066']
     let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
     let randValue = Math.floor((Math.random() * 10));
     playFieldCard = new card(randColor, randValue);
@@ -174,15 +237,12 @@ function initializeWindow() {
 }
 
 //Tracks and displays the current player  -- TRAVIS
-function playerTurn() {
-    if (gameTurn == players.length)
-        gameTurn = 0;
-    else if (gameTurn < 0)
-        gameTurn = players.length - 1;
-
-    let divPlayer = document.getElementById('playerID');
-    divPlayer.innerHTML = players[gameTurn].playerID;
-    players[gameTurn].playerDeck.reloadHand();
+function playerTurn()
+{
+    
+  let divPlayer = document.getElementById('playerID');
+  divPlayer.innerHTML = players[gameTurn].playerID;
+  players[gameTurn].playerDeck.reloadHand();
 }
 
 //All players created, people and bots determined (future)  -- TRAVIS
@@ -199,7 +259,7 @@ function initializePlayers()
       if(players.length == 0){
         tempDeck = new deck(playerHandDiv,false);
       }else{
-        tempDeck = new deck(playerHandDiv,true);
+        tempDeck = new deck(playerHandDiv,false);
       }
     
     let tempID = "";
@@ -225,13 +285,68 @@ function initializePlayers()
 }
 
 //Player constructor -- TRAVIS
-function player(deck, id, index) {
-    this.playerDeck = deck;
-    this.playerID = id;
-    this.playerIndex = index;
+function player(deck, id, index)
+{
+  this.playerDeck = deck;
+  this.playerID = id;
+  this.playerIndex = index;
+}
 
-
+function rotatePlayers(){
+    gameTurn = gameTurn + gameDirection;
+    
+    if (gameTurn == players.length)
+        gameTurn = 0;
+    else if (gameTurn < 0)
+        gameTurn = players.length - 1;
 }
 
 window.onload = initializeWindow();
 window.onload = initializePlayers();
+
+
+
+/* Special Card Implementations */
+
+//Reverses the direction of player rotation
+function cardReverse(){
+    if(players.length == 2){
+        rotatePlayers();
+    }else{
+        gameDirection = (-1) * gameDirection;
+    }  
+}
+
+//Skips the next player in rotation
+function cardSkip(){
+    rotatePlayers();
+}
+
+function cardWild(){
+    newColor = prompt("Enter the Color You want to switch to");
+    playFieldCard.color = newColor;
+    playFieldCard.value = -1;
+    
+    //Get div elements that will be changed in HTML
+    let divColor = document.getElementById('PlayfieldCardColor');
+    let divValue = document.getElementById('PlayfieldCardValue');
+    //Change innter HTML to match new global card values
+    divColor.innerHTML = playFieldCard.color;
+    divValue.innerHTML = playFieldCard.value;
+}
+
+function cardDraw2(){
+    drawStack.stackAmt++;
+    drawStack.cardType = 2;
+    drawStack.cardValue = 10;
+}
+
+function cardDraw4(){
+    drawStack.stackAmt++;
+    drawStack.cardType = 4;
+    drawStack.cardValue = 1;
+    cardWild();
+}
+
+
+
