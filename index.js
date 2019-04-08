@@ -170,7 +170,7 @@ function deck(divId, hidden){
         if(cardNumber != drawStack.cardValue){
           return false;
         }
-        else if(cardNumber == 1 && cardNumber != 'Special'){
+        else if(cardNumber == 1 && cardColor != 'Special'){
           return false;
         }else{
           return true;
@@ -347,9 +347,12 @@ window.onload = initializePlayers();
 
 
 function play(){
-    if (players[gameTurn].isBot){
-        players[gameTurn].botLogic();
-    }
+    setTimeout(function(){ 
+        if (players[gameTurn].isBot){
+            players[gameTurn].botLogic();
+        }
+    }, 1000);
+
 }
 
 
