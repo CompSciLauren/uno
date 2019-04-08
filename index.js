@@ -62,7 +62,7 @@ function deck(divId, hidden){
 
     // Gives player a random card
     this.drawCard = function(){
-        let colorArray = ['Red', 'Green', 'Blue', 'Yellow', 'Special'];
+        let colorArray = ['Red', 'Green', 'Blue', 'Yellow']; //['Red', 'Green', 'Blue', 'Yellow', 'Special'];
         let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
         let randValue = Math.floor((Math.random() * 13));
         if (randColor == 'Special'){
@@ -148,7 +148,7 @@ function deck(divId, hidden){
 
 
 //Testing function, plays a card
- async function useCard() {
+ function useCard() {
     let cardIndex;
     //If the player is a bot, get the card index by whatever picked
     if (players[gameTurn].playerID == "Bot"){
@@ -173,6 +173,23 @@ function deck(divId, hidden){
       
       if(drawStack.stackAmt != 0)
       {
+        //Check deck if there's a valid card to stack on +2
+        let validStackCard = false;
+        for (let j = 0; j < players[gameTurn].playerDeck.amtCards; j++)
+        {
+          if (players[gameTurn].playerDeck.getCard(j).value == 10)
+          {
+            console.log("Valid card found at: " + j);
+            validStackCard = true;
+          }
+        }
+        //If no card found, draw 2 cards
+        if (validStackCard == false)
+        {
+          drawACard();
+          return;
+        }
+
         if(cardBeingPlayed.value != drawStack.cardValue){
           cardInvalid();
           return;
@@ -185,11 +202,11 @@ function deck(divId, hidden){
       
         players[gameTurn].playerDeck.playCard(cardIndex);
         //Special conditions, if a draw2, 4, wild, skip or reverse.
-        if(cardBeingPlayed.color == 'Special'){
+        
+        //Windcards no longer populate deck or drawn cards for now
+       if(cardBeingPlayed.color == 'Special'){
             if(cardBeingPlayed.value == 0){
-                 console.log("Pre-promise");
-                  let x = await cardWild();
-                  console.log("Promise: " + x);
+                  cardWild();
             }else if(cardBeingPlayed.value == 1){
                 cardDraw4();
             }
@@ -206,7 +223,9 @@ function deck(divId, hidden){
     }
     else {
       cardInvalid();
+      return;
     }
+    playerTurn();
 }//end of useCard
 
 //Function draws cards and adds them to playerhand
@@ -274,8 +293,7 @@ function drawACard(){
   let isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(players[gameTurn].playerDeck.amtCards - 1);
   console.log("last card valid: " + isValidCard);
   //Draw a card, then check if that new card is a match. Should break loop if it is
-  //The 20 card limit is just for testing, keeps infinite decks from being made
-  while (isValidCard == false && players[gameTurn].playerDeck.amtCards < 20 ){
+  while (isValidCard == false ){
     players[gameTurn].playerDeck.drawCard();
     isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(players[gameTurn].playerDeck.amtCards - 1);
     console.log(isValidCard + players[gameTurn].playerDeck.cards[players[gameTurn].playerDeck.amtCards - 1].color + + players[gameTurn].playerDeck.cards[players[gameTurn].playerDeck.amtCards - 1].value);
@@ -322,9 +340,6 @@ function clickEvent(){
     console.log("Player index: " + document.getElementById("cardIndex").value);
      useCard();
   }
-
-  playerTurn();
-  checkPlayer();
 }
 
 //Tracks and displays the current player  -- TRAVIS
@@ -335,11 +350,11 @@ function clickEvent(){
     players[gameTurn].playerDeck.reloadHand();
     console.log("playerTurn end check");
     console.log("===================turn end===================");
-    //checkPlayer();
+    checkPlayer();
     return;
 }
 
-//Special case, if a bot calls a bot, needs to run playerTurn again
+//checks if the 'current' player is a bot. If so, do bot-stuff
 function checkPlayer()
 {
   console.log("checkPlayer PlayerID: " + players[gameTurn].playerID);
@@ -491,8 +506,8 @@ function cardDraw4(){
     drawStack.stackAmt++;
     drawStack.cardType = 4;
     drawStack.cardValue = 1;
-    cardWild(); 
-    // Temp, for testing. Uncomment!
+    // cardWild(); 
+    // Temp, remove wildcard options for now
 }
 
 function cardInvalid()
