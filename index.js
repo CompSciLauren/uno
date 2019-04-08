@@ -88,21 +88,21 @@ function deck(divId, hidden){
     //Reloads the player hand to have the most recent cards in player hand
 
     this.reloadHand = function(){
-        
+
         this.hand.innerHTML = "";
         let i = 0;
         for (i = 0; i < this.amtCards; i++) {
             let cardDiv = document.createElement('div');
             this.hand.append(cardDiv);
             cardDiv.classList.add('card');
-            
+
             if(!this.isHidden){
                 cardDiv.innerHTML = this.getCard(i).value;
                 cardDiv.style.backgroundColor = this.getCard(i).getColorValue();
             }else{
                 cardDiv.style.backgroundColor = "#000000";
             }
-            
+
         }
     };
 
@@ -170,7 +170,7 @@ function botLogic(){
         console.log("last card valid: " + isValidCard);
         //Draw a card, then check if that new card is a match. Should break loop if it is
         //The 20 card limit is just for testing, keeps infinite decks from being made
-        while (isValidCard == false && players[gameTurn].playerDeck.amtCards < 20 ){    
+        while (isValidCard == false && players[gameTurn].playerDeck.amtCards < 20 ){
         players[gameTurn].playerDeck.drawCard();
         isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(players[gameTurn].playerDeck.amtCards - 1);
         console.log(isValidCard + players[gameTurn].playerDeck.cards[players[gameTurn].playerDeck.amtCards - 1].color + + players[gameTurn].playerDeck.cards[players[gameTurn].playerDeck.amtCards - 1].value);
@@ -219,7 +219,7 @@ function playerTurn() {
         //If the current player is a BOT, do bot logic and 'skip' to next player
     if (players[gameTurn].playerID == "Bot"){
         botLogic();
-        playerTurn();
+        setTimeout(function() {playerTurn();}, 1000);
         return;
         }
     let divPlayer = document.getElementById('playerID');
@@ -236,15 +236,15 @@ function initializePlayers()
   while (players.length < 2)
   {
     let playerHandDiv = "player" + (players.length + 1) + "Hand";
-      
+
       let tempDeck;
-      
+
       if(players.length == 0){
         tempDeck = new deck(playerHandDiv,false);
       }else{
         tempDeck = new deck(playerHandDiv,false);   //set to true to blackout
       }
-    
+
     let tempID = "";
     while (tempID == "" || tempID == null)
     {
