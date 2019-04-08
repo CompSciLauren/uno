@@ -294,13 +294,14 @@ function drawACard(){
   console.log("last card valid: " + isValidCard);
   //Draw a card, then check if that new card is a match. Should break loop if it is
   while (isValidCard == false ){
-    players[gameTurn].playerDeck.drawCard();
+    drawACard();
     isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(players[gameTurn].playerDeck.amtCards - 1);
     console.log(isValidCard + players[gameTurn].playerDeck.cards[players[gameTurn].playerDeck.amtCards - 1].color + + players[gameTurn].playerDeck.cards[players[gameTurn].playerDeck.amtCards - 1].value);
   }
   if (isValidCard == true){
     botCardIndex = players[gameTurn].playerDeck.amtCards - 1;
-     useCard();
+    setTimeout(function() {useCard();}, 2000);
+     //useCard();
     return true;
   }
   return true;
@@ -335,7 +336,7 @@ function clickEvent(){
   if (players[gameTurn].playerID == "Bot"){
     //let botLogicReturn = false;
     //botLogicReturn = botLogic(); //setTimeout(function() {botLogic();}, 2000);
-     botLogic();
+    setTimeout(function() {botLogic();}, 2000);
   }else{
     console.log("Player index: " + document.getElementById("cardIndex").value);
      useCard();
