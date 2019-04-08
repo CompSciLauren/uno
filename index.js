@@ -10,6 +10,9 @@ let gameTurn = 0;
 //sets direction of game, 1 for forward, -1 for backward
 let gameDirection =1;
 
+//Global bot card index for playing cards
+let botCardIndex = 0;
+
 //Stores how many +2, or +4s are stacked
 let drawStack ={
     cardValue: 0,
@@ -145,9 +148,19 @@ function deck(divId, hidden){
 
 
 //Testing function, plays a card
-function useCard() {
+ async function useCard() {
+    let cardIndex;
+    //If the player is a bot, get the card index by whatever picked
+    if (players[gameTurn].playerID == "Bot"){
+        cardIndex = botCardIndex;
+        console.log("Bot card index: " + botCardIndex);
+    }else{
     //Get in the value by element ID
-    let cardIndex = document.getElementById("cardIndex").value;
+    cardIndex = document.getElementById("cardIndex").value;
+    }
+
+    console.log("Card used: " + players[gameTurn].playerDeck.cards[cardIndex].color + " " + players[gameTurn].playerDeck.cards[cardIndex].value);
+
     //Validates the move is good (matching color/value)
     let isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(cardIndex);
 
@@ -156,6 +169,8 @@ function useCard() {
     {
       let cardBeingPlayed = players[gameTurn].playerDeck.getCard(cardIndex);
       //Will run if there is a stackable card played, +2 or +4
+      //Eric: Unneeded? Already check valid card from above
+      
       if(drawStack.stackAmt != 0)
       {
         if(cardBeingPlayed.value != drawStack.cardValue){
@@ -163,16 +178,18 @@ function useCard() {
           return;
         }
         else if(cardBeingPlayed.value == 1 && cardBeingPlayed.color != 'Special'){
-          cardInvlaid();
+          cardInvalid();
           return;
         }
       }
-
+      
         players[gameTurn].playerDeck.playCard(cardIndex);
-
+        //Special conditions, if a draw2, 4, wild, skip or reverse.
         if(cardBeingPlayed.color == 'Special'){
             if(cardBeingPlayed.value == 0){
-                cardWild();
+                 console.log("Pre-promise");
+                  let x = await cardWild();
+                  console.log("Promise: " + x);
             }else if(cardBeingPlayed.value == 1){
                 cardDraw4();
             }
@@ -184,13 +201,13 @@ function useCard() {
             cardSkip();
         }
 
-        rotatePlayers();
+        // rotatePlayers();
         //return;
     }
     else {
       cardInvalid();
     }
-}
+}//end of useCard
 
 //Function draws cards and adds them to playerhand
 function drawACard(){
@@ -209,7 +226,7 @@ function drawACard(){
     }
 }
 //Initial crack at starting logic. If "Bot" name detected, should just try to play cards until winner then move on
-function botLogic(){
+ function botLogic(){
   console.log("Player is a bot!");
   let numBotCards = players[gameTurn].playerDeck.amtCards;
 
@@ -220,13 +237,13 @@ function botLogic(){
     {
       if (players[gameTurn].playerDeck.getCard(j).value == 10)
       {
-        document.getElementById('cardIndex').value = j;
-        useCard();
-        return;
+        botCardIndex = j;
+         useCard();
+        return true;
       }
     }
     drawACard();
-    return;
+    return true;
   }
   //Bot behavior for Draw 4 cards
   if (playFieldCard.value == -1  && drawStack.stackAmt != 0)
@@ -235,22 +252,22 @@ function botLogic(){
     {
       if (players[gameTurn].playerDeck.getCard(k).value == 10)
       {
-        document.getElementById('cardIndex').value = k;
-        useCard();
-        return;
+        botCardIndex = k;
+         useCard();
+        return true;
       }
     }
     drawACard();
-    return;
+    return true;
   }
   //Standard bot behavior
   for(let i = 0; i < numBotCards; i++)
   {
       let isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(i);
       if (isValidCard == true) {
-        document.getElementById('cardIndex').value = i;
-        useCard();
-        return;
+        botCardIndex = i;
+         useCard();
+        return true;
       }
   }
   //If not match, draw card and check. First check if last card is a match (no)
@@ -263,9 +280,13 @@ function botLogic(){
     isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(players[gameTurn].playerDeck.amtCards - 1);
     console.log(isValidCard + players[gameTurn].playerDeck.cards[players[gameTurn].playerDeck.amtCards - 1].color + + players[gameTurn].playerDeck.cards[players[gameTurn].playerDeck.amtCards - 1].value);
   }
-  if (isValidCard == true)
-      players[gameTurn].playerDeck.playCard(players[gameTurn].playerDeck.amtCards - 1);
-}
+  if (isValidCard == true){
+    botCardIndex = players[gameTurn].playerDeck.amtCards - 1;
+     useCard();
+    return true;
+  }
+  return true;
+}//end of bot logic
 
 //Changes the global card object to random color/value assignment
 function SelectPlayfieldCard() {
@@ -290,19 +311,42 @@ function initializeWindow() {
     divValue.innerHTML = playFieldCard.value;
 }
 
+//click event for play card HTML button
+function clickEvent(){
+  console.log("clickevent");
+  if (players[gameTurn].playerID == "Bot"){
+    //let botLogicReturn = false;
+    //botLogicReturn = botLogic(); //setTimeout(function() {botLogic();}, 2000);
+     botLogic();
+  }else{
+    console.log("Player index: " + document.getElementById("cardIndex").value);
+     useCard();
+  }
+
+  playerTurn();
+  checkPlayer();
+}
+
 //Tracks and displays the current player  -- TRAVIS
-function playerTurn()
+ function playerTurn()
 {
+    rotatePlayers();
     document.getElementById('playerID').innerHTML = players[gameTurn].playerID;
     players[gameTurn].playerDeck.reloadHand();
-
-    if (players[gameTurn].playerID == "Bot"){
-      botLogic();
-      //setTimeout(function() {botLogic();}, 1000);
-      console.log("botLogic return");
-    }
-
     console.log("playerTurn end check");
+    console.log("===================turn end===================");
+    //checkPlayer();
+    return;
+}
+
+//Special case, if a bot calls a bot, needs to run playerTurn again
+function checkPlayer()
+{
+  console.log("checkPlayer PlayerID: " + players[gameTurn].playerID);
+  if (players[gameTurn].playerID == "Bot"){
+    clickEvent();
+  }
+  return;
 }
 
 //All players created  -- TRAVIS
@@ -339,8 +383,9 @@ function initializePlayers()
         players.push(tempPlayer);
     }
 
-    //Begins the first turn of the game
-    playerTurn();
+    //Initial load
+    document.getElementById('playerID').innerHTML = players[gameTurn].playerID;
+    players[gameTurn].playerDeck.reloadHand();
 }
 
 //Player constructor -- TRAVIS
@@ -358,7 +403,7 @@ function rotatePlayers(){
         gameTurn = 0;
     else if (gameTurn < 0)
         gameTurn = players.length - 1;
-console.log("rotatePlayers check");
+console.log("rotatePlayers check, player: " + gameTurn);
 }
 
 window.onload = initializeWindow();
@@ -384,13 +429,30 @@ function cardSkip(){
     rotatePlayers();
 }
 
-function cardWild(){
-  console.log("Wild Card!");
+//Make Wildcard a function that returns a new promise,
+//this promise is a function with 2 parameters (also functions), accept/deny or something
+//On good input, return accept, on bad return deny.
+//Look into JS promises
+
+ function cardWild(){
+   return new Promise(resolve => {
+    console.log("Wild Card! PlayerID: " + players[gameTurn].playerID);
     if (players[gameTurn].playerID == "Bot")
     {
       let colorArray = ['Red', 'Green', 'Blue', 'Yellow'];
       let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
       document.getElementById('PlayfieldCardColor').innerHTML = randColor;
+
+      playFieldCard.color = randColor;
+      playFieldCard.value = -1;
+      document.getElementById('wildColor').innerHTML = "";
+      //Get div elements that will be changed in HTML
+      let divColor = document.getElementById('PlayfieldCardColor');
+      let divValue = document.getElementById('PlayfieldCardValue');
+      //Change innter HTML to match new global card values
+      divColor.innerHTML = playFieldCard.color;
+      divValue.innerHTML = playFieldCard.value;
+      console.log(playFieldCard.color);
     }
     else {
       let wildUI = document.createElement("div");
@@ -411,8 +473,11 @@ function cardWild(){
         console.log(playFieldCard.color);
         };
     }
+    return true;
+  }//end of resolve
 
-}
+  );//end of promise
+}//end of cardWild
 
 function cardDraw2(){
   console.log("Draw 2 Card!");
@@ -426,11 +491,13 @@ function cardDraw4(){
     drawStack.stackAmt++;
     drawStack.cardType = 4;
     drawStack.cardValue = 1;
-    cardWild();
+    cardWild(); 
+    // Temp, for testing. Uncomment!
 }
 
 function cardInvalid()
 {
   let audio = new Audio('error.mp3');
   audio.play();
+  console.log("Card invalid! Playfield card: " + playFieldCard.color + " " + playFieldCard.value);
 }
