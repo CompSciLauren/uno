@@ -153,7 +153,6 @@ function useCard() {
     //Validates the move is good (matching color/value)
     let isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(cardIndex);
     //Play card if valid move, otherwise ignore
-<<<<<<< HEAD
     if (isValidCard == true)
     {
         let cardBeingPlayed = players[gameTurn].playerDeck.getCard(cardIndex);
@@ -174,8 +173,6 @@ function useCard() {
             alert("Debug: Valid move.");
         }
 
-=======
->>>>>>> BotLogic_t2
         players[gameTurn].playerDeck.playCard(cardIndex);
 
         if(cardBeingPlayed.color == 'Special'){
@@ -197,7 +194,6 @@ function useCard() {
     }
 }
 
-<<<<<<< HEAD
 //Function draws cards and adds them to playerhand
 function drawACard(){
     if(drawStack.stackAmt != 0){
@@ -213,7 +209,6 @@ function drawACard(){
         players[gameTurn].playerDeck.drawCard();
     }
 }
-=======
 //Initial crack at starting logic. If "Bot" name detected, should just try to play cards until winner then move on
 function botLogic(){
   console.log("Player is a bot!");
@@ -247,7 +242,6 @@ function botLogic(){
       return;
   }
 }
->>>>>>> BotLogic_t2
 
 //Changes the global card object to random color/value assignment
 function SelectPlayfieldCard() {
@@ -273,7 +267,6 @@ function initializeWindow() {
 }
 
 //Tracks and displays the current player  -- TRAVIS
-<<<<<<< HEAD
 function playerTurn()
 {
 
@@ -285,8 +278,6 @@ function playerTurn()
       setTimeout(function() {rotatePlayers();}, 1000);
       return;
       }
-=======
->>>>>>> BotLogic_t2
 }
 
 //All players created, people and bots determined (future)  -- TRAVIS
@@ -303,10 +294,7 @@ function initializePlayers()
       if(players.length == 0){
         tempDeck = new deck(playerHandDiv,false);
       }else{
-<<<<<<< HEAD
-=======
         tempDeck = new deck(playerHandDiv,false);   //set to true to blackout
->>>>>>> BotLogic_t2
       }
 
     let tempID = "";
