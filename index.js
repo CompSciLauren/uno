@@ -25,7 +25,7 @@ function card(color, value) {
         if (this.color == 'Red') {
             return '#A60000';
         } else if (this.color == 'Blue') {
-            return '#2C0066';
+            return '#0000FF';
         } else if (this.color == 'Green') {
             return '#004f19';
         } else if (this.color == 'Yellow') {
@@ -161,16 +161,18 @@ function useCard() {
         //Will run if there is a stackable card played, +2 or +4
         if(drawStack.stackAmt != 0){
                 if(cardBeingPlayed.value != drawStack.cardValue){
-                    alert("Card chosen Doesn't stack");
+                      //alert("Card chosen Doesn't stack");
+                      cardInvalid();
                     return;
                 }else if(cardBeingPlayed.value == 1 && cardBeingPlayed.color != 'Special'){
-                    alert("Card chosen Doesn't stack");
+                      //alert("Card chosen Doesn't stack");
+                      cardInvlaid();
                     return;
                 }else{
-                    alert("Debug: Valid move.");
+                  //alert("Debug: Valid move.");
                 }
         }else{
-            alert("Debug: Valid move.");
+          //alert("Debug: Valid move.");
         }
 
         players[gameTurn].playerDeck.playCard(cardIndex);
@@ -192,6 +194,9 @@ function useCard() {
         rotatePlayers();
         return;
     }
+    else {
+      cardInvalid();
+    }
 }
 
 //Function draws cards and adds them to playerhand
@@ -208,6 +213,9 @@ function drawACard(){
     }else{
         players[gameTurn].playerDeck.drawCard();
     }
+<<<<<<< HEAD
+=======
+>>>>>>> master
 }
 //Initial crack at starting logic. If "Bot" name detected, should just try to play cards until winner then move on
 function botLogic(){
@@ -281,7 +289,6 @@ function playerTurn()
 }
 
 //All players created, people and bots determined (future)  -- TRAVIS
-
 function initializePlayers()
 {
   //Fills the players array with 2-4 people or bots (future, currently only allows two players)
@@ -358,16 +365,31 @@ function cardSkip(){
 }
 
 function cardWild(){
-    newColor = prompt("Enter the Color You want to switch to");
-    playFieldCard.color = newColor;
-    playFieldCard.value = -1;
+<<<<<<< HEAD
+=======
+    let wildUI = document.createElement("div");
+    document.getElementById('wildColor').append(wildUI);
+    wildUI.classList.add("wildStyle");
 
-    //Get div elements that will be changed in HTML
-    let divColor = document.getElementById('PlayfieldCardColor');
-    let divValue = document.getElementById('PlayfieldCardValue');
-    //Change innter HTML to match new global card values
-    divColor.innerHTML = playFieldCard.color;
-    divValue.innerHTML = playFieldCard.value;
+    //Runs html allowing user to choose one of 4 correct colors  --  TRAVIS
+    wildUI.innerHTML = "<form name='colorPick' id='myForm'> Enter the Color you want to switch to<br> <input type='radio' name='color' value='Red'>Red<br><input type='radio' name='color' value='Yellow'>Yellow<br><input type='radio' name='color' value='Blue'>Blue<br><input type='radio' name='color' value='Green'>Green<br><input type='button' id='colorButton' value='Pick'></form>";
+
+      document.getElementById('colorButton').onclick = function() {
+        playFieldCard.color = document.querySelector('input[name="color"]:checked').value;
+        playFieldCard.value = -1;
+        document.getElementById('wildColor').innerHTML = "";
+        //Get div elements that will be changed in HTML
+        let divColor = document.getElementById('PlayfieldCardColor');
+        let divValue = document.getElementById('PlayfieldCardValue');
+        //Change innter HTML to match new global card values
+        divColor.innerHTML = playFieldCard.color;
+        divValue.innerHTML = playFieldCard.value;
+      };
+
+//    newColor = prompt("Enter the Color You want to switch to");
+//    playFieldCard.color = newColor;
+//    playFieldCard.value = -1;
+>>>>>>> master
 }
 
 function cardDraw2(){
@@ -382,3 +404,12 @@ function cardDraw4(){
     drawStack.cardValue = 1;
     cardWild();
 }
+<<<<<<< HEAD
+=======
+
+function cardInvalid()
+{
+  let audio = new Audio('error.mp3');
+  audio.play();
+}
+>>>>>>> master
