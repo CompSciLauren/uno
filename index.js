@@ -25,7 +25,7 @@ function card(color, value) {
         if (this.color == 'Red') {
             return '#A60000';
         } else if (this.color == 'Blue') {
-            return '#2C0066';
+            return '#0000FF';
         } else if (this.color == 'Green') {
             return '#004f19';
         } else if (this.color == 'Yellow') {
@@ -100,21 +100,21 @@ function deck(divId, hidden){
     //Reloads the player hand to have the most recent cards in player hand
 
     this.reloadHand = function(){
-        
+
         this.hand.innerHTML = "";
         let i = 0;
         for (i = 0; i < this.amtCards; i++) {
             let cardDiv = document.createElement('div');
             this.hand.append(cardDiv);
             cardDiv.classList.add('card');
-            
+
             if(!this.isHidden){
                 cardDiv.innerHTML = this.getCard(i).value;
                 cardDiv.style.backgroundColor = this.getCard(i).getColorValue();
             }else{
                 cardDiv.style.backgroundColor = "#000000";
             }
-            
+
         }
     };
 
@@ -155,25 +155,27 @@ function useCard() {
     if (isValidCard == true)
     {
         let cardBeingPlayed = players[gameTurn].playerDeck.getCard(cardIndex);
-        
-        
+
+
         //Will run if there is a stackable card played, +2 or +4
         if(drawStack.stackAmt != 0){
                 if(cardBeingPlayed.value != drawStack.cardValue){
-                    alert("Card chosen Doesn't stack");
+                      //alert("Card chosen Doesn't stack");
+                      cardInvalid();
                     return;
                 }else if(cardBeingPlayed.value == 1 && cardBeingPlayed.color != 'Special'){
-                    alert("Card chosen Doesn't stack");
+                      //alert("Card chosen Doesn't stack");
+                      cardInvlaid();
                     return;
                 }else{
-                    alert("Debug: Valid move.");
+                  //alert("Debug: Valid move.");
                 }
         }else{
-            alert("Debug: Valid move.");
+          //alert("Debug: Valid move.");
         }
-        
+
         players[gameTurn].playerDeck.playCard(cardIndex);
-        
+
         if(cardBeingPlayed.color == 'Special'){
             if(cardBeingPlayed.value == 0){
                 cardWild();
@@ -187,9 +189,12 @@ function useCard() {
         }else if(cardBeingPlayed.value == 12){
             cardSkip();
         }
-        
+
         rotatePlayers();
         return;
+    }
+    else {
+      cardInvalid();
     }
 }
 
@@ -200,15 +205,15 @@ function drawACard(){
         let i = 0;
         for(i = 0; i < drawTimes; i++){
             players[gameTurn].playerDeck.drawCard();
-        } 
+        }
         rotatePlayers();
         playerTurn();
         drawStack.stackAmt = 0;
     }else{
         players[gameTurn].playerDeck.drawCard();
     }
-    
-     
+
+
 }
 
 
@@ -239,29 +244,28 @@ function initializeWindow() {
 //Tracks and displays the current player  -- TRAVIS
 function playerTurn()
 {
-    
+
   let divPlayer = document.getElementById('playerID');
   divPlayer.innerHTML = players[gameTurn].playerID;
   players[gameTurn].playerDeck.reloadHand();
 }
 
 //All players created, people and bots determined (future)  -- TRAVIS
-
 function initializePlayers()
 {
   //Fills the players array with 2-4 people or bots (future, currently only allows two players)
   while (players.length < 2)
   {
     let playerHandDiv = "player" + (players.length + 1) + "Hand";
-      
+
       let tempDeck;
-      
+
       if(players.length == 0){
         tempDeck = new deck(playerHandDiv,false);
       }else{
         tempDeck = new deck(playerHandDiv,false);
       }
-    
+
     let tempID = "";
     while (tempID == "" || tempID == null)
     {
@@ -294,7 +298,7 @@ function player(deck, id, index)
 
 function rotatePlayers(){
     gameTurn = gameTurn + gameDirection;
-    
+
     if (gameTurn == players.length)
         gameTurn = 0;
     else if (gameTurn < 0)
@@ -314,7 +318,7 @@ function cardReverse(){
         rotatePlayers();
     }else{
         gameDirection = (-1) * gameDirection;
-    }  
+    }
 }
 
 //Skips the next player in rotation
@@ -323,16 +327,28 @@ function cardSkip(){
 }
 
 function cardWild(){
-    newColor = prompt("Enter the Color You want to switch to");
-    playFieldCard.color = newColor;
-    playFieldCard.value = -1;
-    
-    //Get div elements that will be changed in HTML
-    let divColor = document.getElementById('PlayfieldCardColor');
-    let divValue = document.getElementById('PlayfieldCardValue');
-    //Change innter HTML to match new global card values
-    divColor.innerHTML = playFieldCard.color;
-    divValue.innerHTML = playFieldCard.value;
+    let wildUI = document.createElement("div");
+    document.getElementById('wildColor').append(wildUI);
+    wildUI.classList.add("wildStyle");
+
+    //Runs html allowing user to choose one of 4 correct colors  --  TRAVIS
+    wildUI.innerHTML = "<form name='colorPick' id='myForm'> Enter the Color you want to switch to<br> <input type='radio' name='color' value='Red'>Red<br><input type='radio' name='color' value='Yellow'>Yellow<br><input type='radio' name='color' value='Blue'>Blue<br><input type='radio' name='color' value='Green'>Green<br><input type='button' id='colorButton' value='Pick'></form>";
+
+      document.getElementById('colorButton').onclick = function() {
+        playFieldCard.color = document.querySelector('input[name="color"]:checked').value;
+        playFieldCard.value = -1;
+        document.getElementById('wildColor').innerHTML = "";
+        //Get div elements that will be changed in HTML
+        let divColor = document.getElementById('PlayfieldCardColor');
+        let divValue = document.getElementById('PlayfieldCardValue');
+        //Change innter HTML to match new global card values
+        divColor.innerHTML = playFieldCard.color;
+        divValue.innerHTML = playFieldCard.value;
+      };
+
+//    newColor = prompt("Enter the Color You want to switch to");
+//    playFieldCard.color = newColor;
+//    playFieldCard.value = -1;
 }
 
 function cardDraw2(){
@@ -348,5 +364,8 @@ function cardDraw4(){
     cardWild();
 }
 
-
-
+function cardInvalid()
+{
+  let audio = new Audio('error.mp3');
+  audio.play();
+}
