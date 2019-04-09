@@ -1,11 +1,10 @@
-/*
-Author: Eric Seitz
-KUID: 2928468
-Assignment: Project 3
-Date: Mar 28 2019
-Class: EECS 448
-*/
-
+$(document).ready(function () {
+    $(".my-card").click(function () {
+        const cardIndex = $('.my-card').index(this);
+        useCard(cardIndex);
+        playerTurn();
+    });
+});
 
 // Global Playfield Card
 let playFieldCard;
@@ -100,6 +99,7 @@ function deck(divId, hidden) {
             if (!this.isHidden) {
                 cardDiv.innerHTML = this.getCard(i).value;
                 cardDiv.style.backgroundColor = this.getCard(i).getColorValue();
+                cardDiv.classList.add('my-card');
             } else {
                 cardDiv.style.backgroundColor = "#000000";
             }
@@ -133,9 +133,7 @@ function deck(divId, hidden) {
 
 
 //Testing function, plays a card
-function useCard() {
-    //Get in the value by element ID
-    let cardIndex = document.getElementById("cardIndex").value;
+function useCard(cardIndex) {
     //Validates the move is good (matching color/value)
     let isValidCard = players[gameTurn].playerDeck.checkPlayerCardToPlayfield(cardIndex);
     //Play card if valid move, otherwise ignore

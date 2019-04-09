@@ -29,15 +29,19 @@
             </div>
             <div class="col-md-8 custom-border" align="center">
                 <div>
-                    <h1 id="Playfield">Playfield card: <div id=PlayfieldCardColor></div>
+                    <h1>
+                        <div id=PlayfieldCardColor></div>
                         <div id=PlayfieldCardValue></div>
                     </h1>
-                    <form>
+                    <!-- <form>
                         Enter a card index to play that card:<br>
                         <input id="cardIndex" type="number" name="cardIndex"><br>
                         <button type="button" onclick="useCard(); playerTurn()">Play Card</button>
-                    </form>
+                    </form> -->
+                    <br />
                     <button onclick="players[gameTurn].playerDeck.drawCard()">Draw Card</button>
+                    <br />
+                    <br />
                 </div>
             </div>
             <div class="col-md-2">
