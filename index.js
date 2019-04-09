@@ -82,7 +82,7 @@ function deck(divId, hidden){
         
         if(this.isValid(c)){      
             
-            alert(this.getCard(c).color + " " + this.getCard(c).value);
+            console.log(this.getCard(c).color + " " + this.getCard(c).value);
             
             //Set playfield card to validated 'played' card
             playFieldCard.color = this.cards[c].color;
@@ -102,6 +102,7 @@ function deck(divId, hidden){
             if(cardBeingPlayed.color == 'Special'){
                 if(cardBeingPlayed.value == 0){
                     cardWild();
+                    
                 }else if(cardBeingPlayed.value == 1){
                     cardDraw4();
                 }
@@ -391,13 +392,15 @@ function cardWild(){
         //Change innter HTML to match new global card values
         divColor.innerHTML = playFieldCard.color;
         divValue.innerHTML = playFieldCard.value;
+        
     }
     else {
-        /*
+    
+        let isColorSelected = false;
       let wildUI = document.createElement("div");
       document.getElementById('wildColor').append(wildUI);
       wildUI.classList.add("wildStyle");
-      Runs html allowing user to choose one of 4 correct colors  --  TRAVIS
+      //Runs html allowing user to choose one of 4 correct colors  --  TRAVIS
       wildUI.innerHTML = "<form name='colorPick' id='myForm'> Enter the Color you want to switch to<br> <input type='radio' name='color' value='Red'>Red<br><input type='radio' name='color' value='Yellow'>Yellow<br><input type='radio' name='color' value='Blue'>Blue<br><input type='radio' name='color' value='Green'>Green<br><input type='button' id='colorButton' value='Pick'></form>";
       document.getElementById('colorButton').onclick = function() {
           playFieldCard.color = document.querySelector('input[name="color"]:checked').value;
@@ -410,21 +413,11 @@ function cardWild(){
         divColor.innerHTML = playFieldCard.color;
         divValue.innerHTML = playFieldCard.value;
         console.log(playFieldCard.color);
+          isColorSelected = true;
+          rotatePlayers();
+          play();
         };
-        */
-        
-        playFieldCard.color = prompt("What color do you want to change to?");
-        playFieldCard.value = -1;
-        document.getElementById('wildColor').innerHTML = "";
-        
-        //Get div elements that will be changed in HTML
-        let divColor = document.getElementById('PlayfieldCardColor');
-        let divValue = document.getElementById('PlayfieldCardValue');
-        
-        //Change innter HTML to match new global card values
-        divColor.innerHTML = playFieldCard.color;
-        divValue.innerHTML = playFieldCard.value;
-        console.log(playFieldCard.color);
+        gameTurn = gameTurn - gameDirection;
     }
 
 }
