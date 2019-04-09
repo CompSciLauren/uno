@@ -5,8 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link href="styles.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -46,8 +44,8 @@
                         Enter a card index to play that card:<br>
                         <input id="cardIndex" type="number" name="cardIndex"><br>
                         <button type="button" onclick="useCard(); playerTurn()">Play Card</button>
-                        <button onclick="players[gameTurn].playerDeck.drawCard()">Draw Card</button>
                     </form>
+                    <button onclick="players[gameTurn].playerDeck.drawCard()">Draw Card</button>
                 </div>
             </div>
             <div class="col-md-2">
@@ -63,6 +61,8 @@
         </div>
     </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
 </body>
 
