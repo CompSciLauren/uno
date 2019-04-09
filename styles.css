@@ -8,3 +8,12 @@
     color: #ffffff;
     font-size: 50px;
 }
+
+.custom-border {
+    border-style: inset;
+    background-color: #87ceeb;
+}
+
+body {
+    background-color: #c9e9f6;
+}
