@@ -104,7 +104,7 @@ function deck(divId, hidden) {
         //Remove played card from hand
         this.removeCard(c);
         if (this.cards.length == 0) {
-            alert("You win!");
+            alert(players[gameTurn].playerID + " wins!");
             location.reload();
             return;
         }
