@@ -14,16 +14,23 @@ let initialCards = 7;
 let gameTurn = 0;
 
 //sets direction of game, 1 for forward, -1 for backward
-let gameDirection =1;
+let gameDirection = 1;
+
+//Global bot card index for playing cards
+let botCardIndex = 0;
 
 //Stores how many +2, or +4s are stacked
-let drawStack ={
+let drawStack = {
     cardValue: 0,
     stackAmt: 0,
     cardType: 2 // either 2 or 4
 };
 
-//card constructor
+/**
+ * card constructor
+ * @param {*} color 
+ * @param {*} value 
+ */
 function card(color, value) {
     this.color = color;
     this.value = value;
@@ -42,42 +49,53 @@ function card(color, value) {
     }
 }
 
-//deck constructor
-
-function deck(divId, hidden){
+/**
+ * deck constructor
+ * @param {*} divId 
+ * @param {*} hidden 
+ */
+function deck(divId, hidden) {
 
     this.cards = [];
     this.amtCards = 0;
     this.hand = document.getElementById(divId);
     this.isHidden = hidden;
 
-    // Adds a card to the cards array
+    /**
+     * Adds a card to the cards array
+     */
     this.addCard = function (c) {
         this.cards.push(c);
         this.amtCards = this.cards.length;
     };
 
-    // removes a card from card array
+    /**
+     * removes a card from card array
+     */
     this.removeCard = function (c) {
         this.cards.splice(c, 1);
         this.amtCards = this.cards.length;
     };
 
-    // Gives player a random card
-    this.drawCard = function(){
-        let colorArray = ['Red', 'Green', 'Blue', 'Yellow', 'Special'];
+    /**
+     * Gives player a random card
+     */
+    this.drawCard = function () {
+        let colorArray = ['Red', 'Green', 'Blue', 'Yellow']; //['Red', 'Green', 'Blue', 'Yellow', 'Special'];
         let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
         let randValue = Math.floor((Math.random() * 13));
-        if (randColor == 'Special'){
+        if (randColor == 'Special') {
             randValue = randValue % 2;
         }
-        let tempCard = new card(randColor,randValue);
+        let tempCard = new card(randColor, randValue);
         this.addCard(tempCard);
         this.reloadHand();
         console.log(players[gameTurn].playerID + " Drew a " + randColor + " " + randValue); //testing
     };
 
-    //removes card from hand and reloads hand (post-validation of good move)
+    /**
+     * removes card from hand and reloads hand (post-validation of good move)
+     */
     this.playCard = function (c) {
         
         if(this.isValid(c)){      
@@ -125,6 +143,7 @@ function deck(divId, hidden){
         }else{
             this.cardInvalid();
             return false;
+
         }
         
         this.reloadHand();
@@ -134,13 +153,18 @@ function deck(divId, hidden){
         
     };
 
-    //Returns card at index c
+    /**
+     * Returns card at index c
+     */
     this.getCard = function (c) {
         return (this.cards[c]);
     };
 
-    //Reloads the player hand to have the most recent cards in player hand
-    this.reloadHand = function(){
+
+    /**
+     * Reloads the player hand to have the most recent cards in player hand
+     */
+    this.reloadHand = function () {
 
         this.hand.innerHTML = "";
         let i = 0;
@@ -149,10 +173,10 @@ function deck(divId, hidden){
             this.hand.append(cardDiv);
             cardDiv.classList.add('card');
 
-            if(!this.isHidden){
+            if (!this.isHidden) {
                 cardDiv.innerHTML = this.getCard(i).value;
                 cardDiv.style.backgroundColor = this.getCard(i).getColorValue();
-            }else{
+            } else {
                 cardDiv.style.backgroundColor = "#000000";
             }
         }
@@ -187,6 +211,7 @@ function deck(divId, hidden){
           return(true);
       }
       return (false);
+
     };//end of check card to playfield
     
     this.cardInvalid = function()
@@ -197,7 +222,9 @@ function deck(divId, hidden){
 }
 
 
-//Testing function, plays a card
+/**
+ * Testing function, plays a card
+ */
 function useCard() {
     
     //Get in the value by element ID
@@ -207,13 +234,16 @@ function useCard() {
     players[gameTurn].playerDeck.playCard(cardIndex);
 }
 
-//Function draws cards and adds them to playerhand
+/**
+ * Function draws cards and adds them to playerhand
+ */
 function drawACard(){
     
+
     if(drawStack.stackAmt != 0){
         let drawTimes = drawStack.cardType * drawStack.stackAmt;
         let i = 0;
-        for(i = 0; i < drawTimes; i++){
+        for (i = 0; i < drawTimes; i++) {
             players[gameTurn].playerDeck.drawCard();
         }
         
@@ -224,9 +254,10 @@ function drawACard(){
         players[gameTurn].playerDeck.drawCard();
     }
 }
-//Initial crack at starting logic. If "Bot" name detected, should just try to play cards until winner then move on
 
-//Changes the global card object to random color/value assignment
+/**
+ * Changes the global card object to random color/value assignment
+ */
 function SelectPlayfieldCard() {
     let colorArray = ['Red', 'Green', 'Blue', 'Yellow'];
     let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
@@ -235,7 +266,9 @@ function SelectPlayfieldCard() {
 }
 
 
-//Changes the displayed text and calls function to randomize playfield card
+/**
+ * Changes the displayed text and calls function to randomize playfield card
+ */
 function initializeWindow() {
     //Get div elements that will be changed in HTML
     let divColor = document.getElementById('PlayfieldCardColor');
@@ -248,6 +281,7 @@ function initializeWindow() {
     divColor.innerHTML = playFieldCard.color;
     divValue.innerHTML = playFieldCard.value;
 }
+
 
 
 //All players created  -- TRAVIS
@@ -294,10 +328,15 @@ function initializePlayers()
     document.getElementById('playerID').innerHTML = players[gameTurn].playerID;
     
     play();
-
 }
 
-//Player constructor -- TRAVIS
+/**
+ * Player constructor
+ * @param {*} deck 
+ * @param {*} id 
+ * @param {*} index 
+ * @param {*} bot
+ */
 function player(deck, id, index, bot)
 {
   this.isBot = bot;
@@ -334,7 +373,7 @@ function player(deck, id, index, bot)
 
 }
 
-function rotatePlayers(){
+function rotatePlayers() {
     gameTurn = gameTurn + gameDirection;
 
     if (gameTurn == players.length)
@@ -346,7 +385,8 @@ function rotatePlayers(){
     players[gameTurn].playerDeck.reloadHand();
     
     
-    console.log("rotatePlayers check");
+    console.log("rotatePlayers check, player: " + gameTurn);
+
 }
 
 window.onload = initializeWindow();
@@ -365,22 +405,33 @@ function play(){
 
 /* Special Card Implementations */
 
-//Reverses the direction of player rotation
-function cardReverse(){
+/**
+ * Reverses the direction of player rotation
+ */
+function cardReverse() {
   console.log("Reverse Card!");
     if(players.length == 2){
         rotatePlayers();
-    }else{
+    } else {
         gameDirection = (-1) * gameDirection;
     }
 }
 
-//Skips the next player in rotation
+
+
+
+/**
+ * Skips the next player in rotation
+ */
 function cardSkip(){
   console.log("Skip Card!");
     rotatePlayers();
 }
 
+
+/**
+ * Card is wild
+ */
 function cardWild(){
   console.log("Wild Card!");
     if (players[gameTurn].isBot)
@@ -398,36 +449,42 @@ function cardWild(){
         //Change innter HTML to match new global card values
         divColor.innerHTML = playFieldCard.color;
         divValue.innerHTML = playFieldCard.value;
-        
+     
     }
     else {
     
         let isColorSelected = false;
-      let wildUI = document.createElement("div");
-      document.getElementById('wildColor').append(wildUI);
-      wildUI.classList.add("wildStyle");
-      //Runs html allowing user to choose one of 4 correct colors  --  TRAVIS
-      wildUI.innerHTML = "<form name='colorPick' id='myForm'> Enter the Color you want to switch to<br> <input type='radio' name='color' value='Red'>Red<br><input type='radio' name='color' value='Yellow'>Yellow<br><input type='radio' name='color' value='Blue'>Blue<br><input type='radio' name='color' value='Green'>Green<br><input type='button' id='colorButton' value='Pick'></form>";
-      document.getElementById('colorButton').onclick = function() {
+        let wildUI = document.createElement("div");
+        document.getElementById('wildColor').append(wildUI);
+        wildUI.classList.add("wildStyle");
+        //Runs html allowing user to choose one of 4 correct colors  --  TRAVIS
+        wildUI.innerHTML = "<form name='colorPick' id='myForm'> Enter the Color you want to switch to<br> <input type='radio' name='color' value='Red'>Red<br><input type='radio' name='color' value='Yellow'>Yellow<br><input type='radio' name='color' value='Blue'>Blue<br><input type='radio' name='color' value='Green'>Green<br><input type='button' id='colorButton' value='Pick'></form>";
+        document.getElementById('colorButton').onclick = function() {
           playFieldCard.color = document.querySelector('input[name="color"]:checked').value;
-        playFieldCard.value = -1;
-        document.getElementById('wildColor').innerHTML = "";
-        //Get div elements that will be changed in HTML
-        let divColor = document.getElementById('PlayfieldCardColor');
-        let divValue = document.getElementById('PlayfieldCardValue');
-        //Change innter HTML to match new global card values
-        divColor.innerHTML = playFieldCard.color;
-        divValue.innerHTML = playFieldCard.value;
-        console.log(playFieldCard.color);
+          playFieldCard.value = -1;
+          document.getElementById('wildColor').innerHTML = "";
+          //Get div elements that will be changed in HTML
+          let divColor = document.getElementById('PlayfieldCardColor');
+          let divValue = document.getElementById('PlayfieldCardValue');
+          //Change innter HTML to match new global card values
+          divColor.innerHTML = playFieldCard.color;
+          divValue.innerHTML = playFieldCard.value;
+          console.log(playFieldCard.color);
           isColorSelected = true;
           rotatePlayers();
           play();
         };
         gameTurn = gameTurn - gameDirection;
     }
+    return true;
+  }//end of resolve
 
-}
+  );//end of promise
+}//end of cardWild
 
+/**
+ * Draws 2 cards
+ */
 function cardDraw2(){
   console.log("Draw 2 Card!");
     drawStack.stackAmt++;
@@ -435,11 +492,15 @@ function cardDraw2(){
     drawStack.cardValue = 10;
 }
 
-function cardDraw4(){
+/**
+ * Draws 4 cards
+ */
+function cardDraw4() {
   console.log("Draw 4 Card!");
     drawStack.stackAmt++;
     drawStack.cardType = 4;
     drawStack.cardValue = 1;
-    cardWild();
+    // cardWild(); 
+    // Temp, remove wildcard options for now
 }
 
