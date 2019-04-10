@@ -97,12 +97,8 @@ function deck(divId, hidden) {
             this.hand.append(cardDiv);
             cardDiv.classList.add('card');
 
-            if (!this.isHidden) {
-                cardDiv.innerHTML = this.getCard(i).value;
-                cardDiv.style.backgroundColor = this.getCard(i).getColorValue();
-            } else {
-                cardDiv.style.backgroundColor = "#000000";
-            }
+            cardDiv.innerHTML = this.getCard(i).value;
+            cardDiv.style.backgroundColor = this.getCard(i).getColorValue();
 
         }
     };
