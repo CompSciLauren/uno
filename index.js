@@ -81,7 +81,7 @@ function deck(divId, hidden) {
      * Gives player a random card
      */
     this.drawCard = function () {
-        let colorArray = ['Red', 'Green', 'Blue', 'Yellow']; //['Red', 'Green', 'Blue', 'Yellow', 'Special'];
+        let colorArray = ['Red', 'Green', 'Blue', 'Yellow', 'Special'];
         let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
         let randValue = Math.floor((Math.random() * 13));
         if (randColor == 'Special') {
@@ -477,9 +477,6 @@ function cardWild(){
         gameTurn = gameTurn - gameDirection;
     }
     return true;
-  }//end of resolve
-
-  );//end of promise
 }//end of cardWild
 
 /**
