@@ -5,7 +5,7 @@ let playFieldCard;
 let players = [];
 
 //Amount of players in the game
-let amtPlayers = 4;
+let amtPlayers = 2;
 
 //Initial amount of cards for each player
 let initialCards = 7;
@@ -16,8 +16,6 @@ let gameTurn = 0;
 //sets direction of game, 1 for forward, -1 for backward
 let gameDirection = 1;
 
-//Global bot card index for playing cards
-let botCardIndex = 0;
 
 //Stores how many +2, or +4s are stacked
 let drawStack = {
@@ -497,7 +495,6 @@ function cardDraw4() {
     drawStack.stackAmt++;
     drawStack.cardType = 4;
     drawStack.cardValue = 1;
-    // cardWild(); 
-    // Temp, remove wildcard options for now
+    cardWild(); 
 }
 
