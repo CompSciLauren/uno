@@ -5,7 +5,7 @@ let playFieldCard;
 let players = [];
 
 //Amount of players in the game
-let amtPlayers = 2;
+let amtPlayers = 4;
 
 //Initial amount of cards for each player
 let initialCards = 7;
@@ -317,11 +317,17 @@ function player(deck, id, index, bot)
           }
       }
       
+      if(drawStack.stackAmt != 0){
+          
+          drawACard();
+
       
-      //Draw a card, then check if that new card is a match. Should break loop if it is
-      //The 20 card limit is just for testing, keeps infinite decks from being made
-      while (!(players[gameTurn].playerDeck.playCard(this.playerDeck.amtCards -1)) ){
-        drawACard();
+      }else{
+          //Draw a card, then check if that new card is a match. Should break loop if it is
+          //The 20 card limit is just for testing, keeps infinite decks from being made
+          while (!(this.playerDeck.playCard(this.playerDeck.amtCards-1)) ){
+            drawACard();
+          }
       }
       
     }
