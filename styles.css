@@ -1,12 +1,14 @@
 .card{
-    width: 70px;
-    height: 100px;
+    width: 100px;
+    height: 140px;
     margin: 10px 2px;
     display: inline-block;
     box-sizing: border-box;
     padding: 10px;
     color: #ffffff;
     font-size: 50px;
+    border-radius: 6px;
+    border: 7px solid #fff;
 }
 
 .wildStyle{

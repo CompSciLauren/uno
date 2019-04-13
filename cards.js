@@ -6,7 +6,7 @@
 function card(color, value) {
   this.color = color;
   this.value = value;
-  this.getColorValue = function() {
+  this.getColorValue = function () {
     if (this.color == "Red") {
       return "#A60000";
     } else if (this.color == "Blue") {
@@ -35,7 +35,7 @@ function deck(divId, hidden) {
   /**
    * Adds a card to the cards array
    */
-  this.addCard = function(c) {
+  this.addCard = function (c) {
     this.cards.push(c);
     this.amtCards = this.cards.length;
   };
@@ -43,7 +43,7 @@ function deck(divId, hidden) {
   /**
    * removes a card from card array
    */
-  this.removeCard = function(c) {
+  this.removeCard = function (c) {
     this.cards.splice(c, 1);
     this.amtCards = this.cards.length;
   };
@@ -51,7 +51,7 @@ function deck(divId, hidden) {
   /**
    * Gives player a random card
    */
-  this.drawCard = function() {
+  this.drawCard = function () {
     let colorArray = ["Red", "Green", "Blue", "Yellow", "Special"];
     let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
     let randValue = Math.floor(Math.random() * 13);
@@ -69,7 +69,7 @@ function deck(divId, hidden) {
   /**
    * removes card from hand and reloads hand (post-validation of good move)
    */
-  this.playCard = function(c) {
+  this.playCard = function (c) {
     if (this.isValid(c)) {
       console.log(this.getCard(c).color + " " + this.getCard(c).value);
 
@@ -122,24 +122,24 @@ function deck(divId, hidden) {
   /**
    * Returns card at index c
    */
-  this.getCard = function(c) {
+  this.getCard = function (c) {
     return this.cards[c];
   };
 
   /**
    * Reloads the player hand to have the most recent cards in player hand
    */
-  this.reloadHand = function() {
+  this.reloadHand = function () {
     this.hand.innerHTML = "";
     let i = 0;
     for (i = 0; i < this.amtCards; i++) {
       let cardDiv = document.createElement("div");
       this.hand.append(cardDiv);
       cardDiv.classList.add("card");
-
       if (!this.isHidden) {
         cardDiv.innerHTML = this.getCard(i).value;
         cardDiv.style.backgroundColor = this.getCard(i).getColorValue();
+        cardDiv.classList.add('my-card');
       } else {
         cardDiv.style.backgroundColor = "#000000";
       }
@@ -147,7 +147,7 @@ function deck(divId, hidden) {
   };
 
   //Compare selected card to playfield card
-  this.isValid = function(c) {
+  this.isValid = function (c) {
     //Get in the value by element ID
     let cardColor = this.cards[c].color;
     let cardNumber = this.cards[c].value;
@@ -172,7 +172,7 @@ function deck(divId, hidden) {
     return false;
   }; //end of check card to playfield
 
-  this.cardInvalid = function() {
+  this.cardInvalid = function () {
     let audio = new Audio("error.mp3");
     audio.play();
   };
@@ -181,10 +181,7 @@ function deck(divId, hidden) {
 /**
  * Testing function, plays a card
  */
-function useCard() {
-  //Get in the value by element ID
-  let cardIndex = document.getElementById("cardIndex").value;
-
+function useCard(cardIndex) {
   //Play card
   players[gameTurn].playerDeck.playCard(cardIndex);
 }

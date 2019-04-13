@@ -1,3 +1,11 @@
+$(document).ready(function () {
+  $(document).on("click", ".card", function () {
+    let cardIndex = $('.my-card').index(this);
+    console.log("index: " + cardIndex);
+    useCard(cardIndex);
+  });
+});
+
 // Global Playfield Card
 let playFieldCard;
 
@@ -50,7 +58,7 @@ function initializePlayers() {
     if (players.length == 0) {
       tempDeck = new deck(playerHandDiv, false);
     } else {
-      tempDeck = new deck(playerHandDiv, false); //set to true to blackout
+      tempDeck = new deck(playerHandDiv, true); //set to true to blackout
     }
 
     let tempID = "";
