@@ -78,7 +78,10 @@ function initializePlayers() {
     }
   }
 
-  document.getElementById("playerID").innerHTML = players[gameTurn].playerID;
+  document.getElementById("player1ID").innerHTML = players[0].playerID;
+  $("#player1ID").css("font-weight", "bold");
+
+  document.getElementById("player2ID").innerHTML = players[1].playerID;
 
   play();
 }
@@ -90,7 +93,7 @@ window.onload = initializePlayers();
  * Play
  */
 function play() {
-  setTimeout(function() {
+  setTimeout(function () {
     if (players[gameTurn].isBot) {
       players[gameTurn].botLogic();
     }
