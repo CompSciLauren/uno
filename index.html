@@ -31,8 +31,10 @@
           <div id=PlayfieldCardColor></div>
           <div id=PlayfieldCardValue></div>
         </h1>
+        <div id="playfieldHand"></div>
         <form>
-          <button type="button" onclick="initializeWindow()">
+          <button type="button" onclick="initializeWindow()" onclick="newPlayfieldCard()">
+            <!-- call refreshPlayfieldCardVisual() too -->
             New Playfield Card
           </button>
         </form>
@@ -51,6 +53,7 @@
         </div>
       </h3>
       <div id="player1Hand"></div>
+      <button onclick="callUno()">Uno!</button>
     </div>
   </div>
 

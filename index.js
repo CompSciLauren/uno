@@ -8,6 +8,7 @@ $(document).ready(function () {
 
 // Global Playfield Card
 let playFieldCard;
+let playfieldCardArray = [];
 
 //Creates a Global array to store players  --  TRAVIS
 let players = [];
@@ -42,7 +43,7 @@ function initializeWindow() {
   //Reassign global card value to random values
   SelectPlayfieldCard();
 
-  //Change innter HTML to match new global card values
+  //Change inner HTML to match new global card values
   divColor.innerHTML = playFieldCard.color;
   divValue.innerHTML = playFieldCard.value;
 }
@@ -91,6 +92,14 @@ function initializePlayers() {
 
   document.getElementById("player2ID").innerHTML = players[1].playerID;
 
+  // let tempDeck = new deck("playfieldHand", false);
+  // let tempPlayer = new player(tempDeck, "playfieldID", 0, false);
+  // playfieldCardArray.push(tempPlayer);
+  // playfieldCardArray[0].playerDeck.drawCard();
+  // playfieldCardArray[0].playerDeck.cards[0].color = playFieldCard.color;
+  // playfieldCardArray[0].playerDeck.cards[0].value = playFieldCard.value;
+  // playfieldCardArray[0].playerDeck.reloadHand();
+
   play();
 }
 
@@ -107,3 +116,9 @@ function play() {
     }
   }, 1000);
 }
+
+// function refreshPlayfieldCardVisual() {
+//   playfieldCardArray[0].playerDeck.cards[0].color = playFieldCard.color;
+//   playfieldCardArray[0].playerDeck.cards[0].value = playFieldCard.value;
+//   playfieldCardArray[0].playerDeck.reloadHand();
+// }

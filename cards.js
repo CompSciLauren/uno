@@ -214,3 +214,10 @@ function SelectPlayfieldCard() {
   let randValue = Math.floor(Math.random() * 10);
   playFieldCard = new card(randColor, randValue);
 }
+
+/**
+ * Calls Uno
+ */
+function callUno() {
+  console.log("Uno!");
+}
