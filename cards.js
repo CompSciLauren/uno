@@ -73,19 +73,13 @@ function deck(divId, hidden) {
     if (this.isValid(c)) {
       console.log(this.getCard(c).color + " " + this.getCard(c).value);
 
-      //Set playfield card to validated 'played' card
-      playFieldCard.color = this.cards[c].color;
-      playFieldCard.value = this.cards[c].value;
-
-      //Get div elements that will be changed in HTML
-      let divColor = document.getElementById("PlayfieldCardColor");
-      let divValue = document.getElementById("PlayfieldCardValue");
-
-      //Change inner HTML to match new global card values
-      divColor.innerHTML = playFieldCard.color;
-      divValue.innerHTML = playFieldCard.value;
-
       let cardBeingPlayed = this.cards[c];
+        
+      //Set playfield card to validated 'played' card
+      playFieldCard.color = cardBeingPlayed.color;
+      playFieldCard.value = cardBeingPlayed.value;
+
+      refreshPlayfieldCardVisual();
 
       if (cardBeingPlayed.color == "Special") {
         if (cardBeingPlayed.value == 0) {

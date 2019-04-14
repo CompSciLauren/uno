@@ -43,9 +43,7 @@ function initializeWindow() {
   //Reassign global card value to random values
   SelectPlayfieldCard();
 
-  //Change inner HTML to match new global card values
-  divColor.innerHTML = playFieldCard.color;
-  divValue.innerHTML = playFieldCard.value;
+  refreshPlayfieldCardVisual();
 }
 
 //All players created  -- TRAVIS
@@ -115,6 +113,16 @@ function play() {
       players[gameTurn].botLogic();
     }
   }, 1000);
+}
+
+function refreshPlayfieldCardVisual(){
+    let pfcDiv = document.getElementById("PlayfieldCardDiv");
+    let cardDiv = document.createElement("div");
+    pfcDiv.innerHTML = " ";
+    pfcDiv.append(cardDiv);
+    cardDiv.classList.add("card");
+    cardDiv.innerHTML = playFieldCard.value;
+    cardDiv.style.backgroundColor = playFieldCard.getColorValue();
 }
 
 // function refreshPlayfieldCardVisual() {
