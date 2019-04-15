@@ -9,6 +9,7 @@
     font-size: 50px;
     border-radius: 6px;
     border: 7px solid #fff;
+    margin-left: -50px;
 }
 
 .wildStyle{
@@ -24,3 +25,19 @@ body {
     background-color: #c9e9f6;
 }
 
+.my-card{
+    position: relative;
+    top: 0;
+    transition: top 0.5s ease, margin-right 0.5s;
+    -webkit-transition: top 0.5s ease, margin-right 1s;
+}
+
+.my-card:hover{
+    cursor: pointer;
+    top: -20px;
+    margin-right: 50px;
+}
+
+.my-card:last-child:hover{
+    margin-right: 0;
+}
