@@ -1,5 +1,14 @@
+$(document).ready(function () {
+  $(document).on("click", ".card", function () {
+    let cardIndex = $('.my-card').index(this);
+    console.log("index: " + cardIndex);
+    useCard(cardIndex);
+  });
+});
+
 // Global Playfield Card
 let playFieldCard;
+let playfieldCardArray = [];
 
 //Creates a Global array to store players  --  TRAVIS
 let players = [];
@@ -34,9 +43,7 @@ function initializeWindow() {
   //Reassign global card value to random values
   SelectPlayfieldCard();
 
-  //Change innter HTML to match new global card values
-  divColor.innerHTML = playFieldCard.color;
-  divValue.innerHTML = playFieldCard.value;
+  refreshPlayfieldCardVisual();
 }
 
 //All players created  -- TRAVIS
@@ -50,7 +57,7 @@ function initializePlayers() {
     if (players.length == 0) {
       tempDeck = new deck(playerHandDiv, false);
     } else {
-      tempDeck = new deck(playerHandDiv, false); //set to true to blackout
+      tempDeck = new deck(playerHandDiv, true); //set to true to blackout
     }
 
     let tempID = "";
@@ -78,7 +85,12 @@ function initializePlayers() {
     }
   }
 
-  document.getElementById("playerID").innerHTML = players[gameTurn].playerID;
+  document.getElementById("player1ID").innerHTML = players[0].playerID;
+  $("#player1ID").css("font-weight", "bold");
+  $("#player1ID").css("color", "black");
+  $("#player2ID").css("color", "gray");
+
+  document.getElementById("player2ID").innerHTML = players[1].playerID;
 
   play();
 }
@@ -90,9 +102,19 @@ window.onload = initializePlayers();
  * Play
  */
 function play() {
-  setTimeout(function() {
+  setTimeout(function () {
     if (players[gameTurn].isBot) {
       players[gameTurn].botLogic();
     }
   }, 1000);
+}
+
+function refreshPlayfieldCardVisual() {
+  let pfcDiv = document.getElementById("PlayfieldCardDiv");
+  let cardDiv = document.createElement("div");
+  pfcDiv.innerHTML = " ";
+  pfcDiv.append(cardDiv);
+  cardDiv.classList.add("card");
+  cardDiv.innerHTML = playFieldCard.value;
+  cardDiv.style.backgroundColor = playFieldCard.getColorValue();
 }

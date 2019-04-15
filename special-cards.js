@@ -32,12 +32,7 @@ function cardWild() {
     playFieldCard.color = randColor;
     playFieldCard.value = -1;
 
-    //Get div elements that will be changed in HTML
-    let divColor = document.getElementById("PlayfieldCardColor");
-    let divValue = document.getElementById("PlayfieldCardValue");
-    //Change inner HTML to match new global card values
-    divColor.innerHTML = playFieldCard.color;
-    divValue.innerHTML = playFieldCard.value;
+    refreshPlayfieldCardVisual();
   } else {
     let isColorSelected = false;
     let wildUI = document.createElement("div");
@@ -52,12 +47,7 @@ function cardWild() {
       ).value;
       playFieldCard.value = -1;
       document.getElementById("wildColor").innerHTML = "";
-      //Get div elements that will be changed in HTML
-      let divColor = document.getElementById("PlayfieldCardColor");
-      let divValue = document.getElementById("PlayfieldCardValue");
-      //Change inner HTML to match new global card values
-      divColor.innerHTML = playFieldCard.color;
-      divValue.innerHTML = playFieldCard.value;
+      refreshPlayfieldCardVisual();
       console.log(playFieldCard.color);
       isColorSelected = true;
       rotatePlayers();
