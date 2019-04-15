@@ -41,11 +41,15 @@ function rotatePlayers() {
   players[gameTurn].playerDeck.reloadHand();
   if (gameTurn == 0) {
     $("#player1ID").css("font-weight", "bold");
+    $("#player1ID").css("color", "black");
     $("#player2ID").css("font-weight", "normal");
+    $("#player2ID").css("color", "gray");
   }
   else {
     $("#player2ID").css("font-weight", "bold");
+    $("#player2ID").css("color", "black");
     $("#player1ID").css("font-weight", "normal");
+    $("#player1ID").css("color", "gray");
   }
 
   console.log("rotatePlayers check, player: " + gameTurn);

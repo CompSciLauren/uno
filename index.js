@@ -87,16 +87,10 @@ function initializePlayers() {
 
   document.getElementById("player1ID").innerHTML = players[0].playerID;
   $("#player1ID").css("font-weight", "bold");
+  $("#player1ID").css("color", "black");
+  $("#player2ID").css("color", "gray");
 
   document.getElementById("player2ID").innerHTML = players[1].playerID;
-
-  // let tempDeck = new deck("playfieldHand", false);
-  // let tempPlayer = new player(tempDeck, "playfieldID", 0, false);
-  // playfieldCardArray.push(tempPlayer);
-  // playfieldCardArray[0].playerDeck.drawCard();
-  // playfieldCardArray[0].playerDeck.cards[0].color = playFieldCard.color;
-  // playfieldCardArray[0].playerDeck.cards[0].value = playFieldCard.value;
-  // playfieldCardArray[0].playerDeck.reloadHand();
 
   play();
 }
@@ -115,18 +109,12 @@ function play() {
   }, 1000);
 }
 
-function refreshPlayfieldCardVisual(){
-    let pfcDiv = document.getElementById("PlayfieldCardDiv");
-    let cardDiv = document.createElement("div");
-    pfcDiv.innerHTML = " ";
-    pfcDiv.append(cardDiv);
-    cardDiv.classList.add("card");
-    cardDiv.innerHTML = playFieldCard.value;
-    cardDiv.style.backgroundColor = playFieldCard.getColorValue();
+function refreshPlayfieldCardVisual() {
+  let pfcDiv = document.getElementById("PlayfieldCardDiv");
+  let cardDiv = document.createElement("div");
+  pfcDiv.innerHTML = " ";
+  pfcDiv.append(cardDiv);
+  cardDiv.classList.add("card");
+  cardDiv.innerHTML = playFieldCard.value;
+  cardDiv.style.backgroundColor = playFieldCard.getColorValue();
 }
-
-// function refreshPlayfieldCardVisual() {
-//   playfieldCardArray[0].playerDeck.cards[0].color = playFieldCard.color;
-//   playfieldCardArray[0].playerDeck.cards[0].value = playFieldCard.value;
-//   playfieldCardArray[0].playerDeck.reloadHand();
-// }
