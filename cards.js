@@ -149,7 +149,7 @@ function deck(divId, hidden) {
         cardDiv.style.backgroundColor = this.getCard(i).getColorValue();
         cardDiv.classList.add('my-card');
       } else {
-        cardDiv.style.backgroundColor = "#000000";
+         cardDiv.style.backgroundColor = "#000000";
       }
     }
   };
@@ -222,12 +222,3 @@ function SelectPlayfieldCard() {
   let randValue = Math.floor(Math.random() * 10);
   playFieldCard = new card(randColor, randValue);
 }
-
-/**
- * Calls Uno
- 
-function callUno() {
-  console.log("Uno!");
-}
-
-*/

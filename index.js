@@ -106,14 +106,13 @@ function play() {
     if (players[gameTurn].isBot) {
       players[gameTurn].botLogic();
     }
-  }, 1000);
+  }, 1500);
 }
 
 /**
  * Player's uno call button. Must be pressed BEFORE playing second to last card
  */
 function callUno(){
-  //players[gameTurn].unoCall = 1;
   console.log("Amt of cards: " + players[gameTurn].playerDeck.amtCards);
   if (players[gameTurn].playerDeck.amtCards > 2)
   {
