@@ -64,6 +64,9 @@ function deck(divId, hidden) {
     console.log(
       players[gameTurn].playerID + " Drew a " + randColor + " " + randValue
     ); //testing
+
+    //If drawing a card, player CANNOT have Uno
+    players[gameTurn].unoCall = 0;
   };
 
   /**
@@ -71,6 +74,13 @@ function deck(divId, hidden) {
    */
   this.playCard = function (c) {
     if (this.isValid(c)) {
+      //Check if second to last card & Uno call protection
+      if (players[gameTurn].playerDeck.amtCards == 2 && players[gameTurn].unoCall != 1)
+      {
+        console.log("Player failed to call Uno before playing second to last card. Penalty 2 cards");
+        players[gameTurn].playerDeck.drawCard();
+        players[gameTurn].playerDeck.drawCard();
+      }
       console.log(this.getCard(c).color + " " + this.getCard(c).value);
 
       let cardBeingPlayed = this.cards[c];
@@ -211,7 +221,9 @@ function SelectPlayfieldCard() {
 
 /**
  * Calls Uno
- */
+ 
 function callUno() {
   console.log("Uno!");
 }
+
+*/

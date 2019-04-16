@@ -74,7 +74,7 @@ function initializePlayers() {
       isBot = true;
     }
 
-    let tempPlayer = new player(tempDeck, tempID, tempIndex, isBot);
+    let tempPlayer = new player(tempDeck, tempID, tempIndex, isBot, 0);
 
     //adds the player to the game
     players.push(tempPlayer);
@@ -113,8 +113,27 @@ function play() {
  * Player's uno call button. Must be pressed BEFORE playing second to last card
  */
 function callUno(){
+  //players[gameTurn].unoCall = 1;
+  console.log("Amt of cards: " + players[gameTurn].playerDeck.amtCards);
+  if (players[gameTurn].playerDeck.amtCards > 2)
+  {
+    console.log("Player called Uno too early, penalty 1 card");
+    players[gameTurn].playerDeck.drawCard();
+    //players[gameTurn].playerDeck.drawCard();
+    rotatePlayers();
+    play();
+    return;
+  }
+  else
+  {
+    console.log("Successful Uno call protection");
+    players[gameTurn].unoCall = 1;
+  }
+}
 
-  
+//for debug
+function checkUno(){
+  console.log("Unocall: " + players[gameTurn].unoCall);
 }
 
 function refreshPlayfieldCardVisual() {
