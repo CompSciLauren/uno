@@ -109,6 +109,14 @@ function play() {
   }, 1000);
 }
 
+/**
+ * Player's uno call button. Must be pressed BEFORE playing second to last card
+ */
+function callUno(){
+
+  
+}
+
 function refreshPlayfieldCardVisual() {
   let pfcDiv = document.getElementById("PlayfieldCardDiv");
   let cardDiv = document.createElement("div");
