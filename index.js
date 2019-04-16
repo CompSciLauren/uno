@@ -117,12 +117,7 @@ function callUno(){
   console.log("Amt of cards: " + players[gameTurn].playerDeck.amtCards);
   if (players[gameTurn].playerDeck.amtCards > 2)
   {
-    console.log("Player called Uno too early, penalty 1 card");
-    players[gameTurn].playerDeck.drawCard();
-    //players[gameTurn].playerDeck.drawCard();
-    rotatePlayers();
-    play();
-    return;
+    console.log("Player called Uno too early");
   }
   else
   {

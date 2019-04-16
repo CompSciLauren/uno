@@ -17,7 +17,12 @@ function player(deck, id, index, bot, unoCall) {
 
     //Standard bot behavior
     for (let i = 0; i < numBotCards; i++) {
-      if (players[gameTurn].playerDeck.playCard(i)) {
+      if (players[gameTurn].playerDeck.isValid(i)) {
+        if (players[gameTurn].playerDeck.amtCards == 2)
+        {
+          players[gameTurn].unoCall = 1;
+        }
+        players[gameTurn].playerDeck.playCard(i);
         return;
       }
     }

@@ -81,6 +81,10 @@ function deck(divId, hidden) {
         players[gameTurn].playerDeck.drawCard();
         players[gameTurn].playerDeck.drawCard();
       }
+      else
+      {
+        console.log("Player called Uno");
+      }
       console.log(this.getCard(c).color + " " + this.getCard(c).value);
 
       let cardBeingPlayed = this.cards[c];
