@@ -3,36 +3,32 @@
 
 <head>
     <title>Rules</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
     <div id="rules">
         <h4>Rule and Information:</h4>
         <ul>
-            <li>This is a modified game of Uno, matching color or card value</li>
-            <li>Cards with value 10 are Draw 2</li>
-            <li>Cards with value 11 are Reverse Play Order</li>
-            <li>Cards with value 12 are Skip next Player's Turn</li>
-            <li>
-                Cards can be Red, Green, Blue, or Yellow. 0-9, +2, switch directions,
-                and skips for each color
-            </li>
-            <li>
-                To play a card simply enter the index of the card starting at the
-                leftmost card at 0 (0, 1, 2, 3, ... )
-            </li>
-            <li>
-                You do not have to directly call Uno, to win you simply play your
-                final card
-            </li>
-            <li>
-                If you do not have a valid card to play you must draw until you get
-                one you can play
-            </li>
-            <li>There are no special rules in this version (e.g swap decks)</li>
-            <li>Bots play by the same rules as you do</li>
-            <li>Bots require some time to "think"</li>
+            <li style=" margin-bottom: 5px;">This is a modified game of Uno, matching color or card value.</li>
+
+            <li style=" margin-bottom: 5px;">Card colors can be Red, Green, Blue, or Yellow. Wildcard colors can choose from all 4.</li>
+
+            <li style=" margin-bottom: 5px;">Card values can be 0-9, draw 2, switch directions, and skips for each color. Wildcards can be color choice or additionally draw 4.</li>
+            
+            <li style=" margin-bottom: 5px;">To play a card simply click on the card you wish to play.</li>
+            
+            <li style=" margin-bottom: 5px;">You must call uno BEFORE playing your second-to-last card. Failing to do so will result in a card penalty.</li>
+            
+            <li style=" margin-bottom: 5px;">If you do not have a valid card to play you must draw until you get one you can play.</li>
+            
+            <li style=" margin-bottom: 5px;">There are no special rules in this version (e.g swap decks).</li>
+            
+            <li style=" margin-bottom: 5px;">Bots play by the same rules as you do.</li>
+            
+            <li style=" margin-bottom: 5px;">Bots require some time to "think".</li>
         </ul>
+        <input type="button" value="Back" onclick="history.back()">
     </div>
 </body>
 
