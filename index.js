@@ -95,11 +95,9 @@ function initializePlayers() {
 function startGame(){
   let playerNameInput = document.getElementById("playerName");
   let playerName = playerNameInput.value;
-  
-  playerNameInput.style.border = "none";
+  playerNameInput.classList.remove("is-valid");
   if(playerName.length == 0){
-     playerNameInput.style.border = "red 1px solid";
-    playerNameInput.placeholder = "Please Input a Name";
+     playerNameInput.classList.add("is-invalid");
     return;
   }
     document.getElementById("setupGame").classList.add("d-none");

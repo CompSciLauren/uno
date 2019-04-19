@@ -18,7 +18,7 @@
 
 <body>
   <div id="setupGame" class="container">
-      <form>
+      <form class="text-center">
           <div class="form-group mt-5">
             <label for="playerName">Player Name:</label>
             <input type="text" class="form-control" id="playerName" placeholder="eg. TheLegend27">
@@ -31,10 +31,11 @@
               <option value="4">4</option>
             </select>
         </div>  
-          <button type="button" onclick="startGame()">Start Game</button>
+          <button class="btn btn-primary center-block" type="button" onclick="startGame()">Start Game</button>
       </form>
     
   </div>
+  
   <div id="playingField" class="container mt-5 d-none">
     <div class="row">
       <div class="col" align="center">
@@ -45,6 +46,7 @@
         <div id="player2Hand"></div>
       </div>
     </div>
+    
     <div class="row">
       <div class="col-md-2">
         <h3>Player 3</h3>
@@ -70,8 +72,9 @@
         <div id="player4Hand"></div>
       </div>
     </div>
+    
     <div class="row">
-        <div align="center">
+        <div class="col"  align="center">
           <h3>
             <div id="player1ID">
             </div>
