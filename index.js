@@ -93,8 +93,8 @@ function initializePlayers() {
 
 
 function startGame(){
-    document.getElementById("setupGame").classList.add("hide");
-    document.getElementById("playingField").classList.remove("hide");
+    document.getElementById("setupGame").classList.add("d-none");
+    document.getElementById("playingField").classList.remove("d-none");
     let playerAmtDiv = document.getElementById("amtPlayers");
     let playerAmt = playerAmtDiv.options[playerAmtDiv.selectedIndex].value;
     amtPlayers = playerAmt;
