@@ -41,3 +41,11 @@ body {
     margin-right: 10px;
     margin-left: 10px;
 }
+
+.sideHand > .card{
+  margin-right: 0;
+  margin-left: 0;
+  margin-bottom: -50px;
+  width: 140px;
+  height: 100px;
+}
