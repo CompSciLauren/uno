@@ -66,7 +66,7 @@ function deck(divId, hidden) {
     ); //testing
 
     //If drawing a card, player CANNOT have Uno
-    players[gameTurn].unoCall = 0;
+    players[gameTurn].unoCall = false;
   };
 
   /**
@@ -75,7 +75,7 @@ function deck(divId, hidden) {
   this.playCard = function (c) {
     if (this.isValid(c)) {
       //Check if second to last card & Uno call protection
-      if (players[gameTurn].playerDeck.amtCards == 2 && players[gameTurn].unoCall != 1)
+      if (players[gameTurn].playerDeck.amtCards == 2 && players[gameTurn].unoCall != true)
       {
         console.log("Player failed to call Uno before playing second to last card. Penalty 2 cards");
         players[gameTurn].playerDeck.drawCard();
