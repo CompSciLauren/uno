@@ -60,17 +60,13 @@ function initializePlayers() {
       tempDeck = new deck(playerHandDiv, true); //set to true to blackout
     }
 
-    let tempID = "";
-    while (tempID == "" || tempID == null) {
-      tempID = prompt(
-        "Please enter your name.  If you would like to have a bot play for you, please enter the name 'Bot'"
-      );
-    }
+    let tempID = document.getElementById("playerName").value;
 
     let tempIndex = players.length - 1;
 
     let isBot = false;
-    if (tempID == "Bot") {
+    if (players.length != 0 || tempID == "Bot") {
+      tempID = "Bot"
       isBot = true;
     }
 
@@ -95,8 +91,26 @@ function initializePlayers() {
   play();
 }
 
-window.onload = initializeWindow();
-window.onload = initializePlayers();
+
+function startGame(){
+  let playerNameInput = document.getElementById("playerName");
+  let playerName = playerNameInput.value;
+  playerNameInput.classList.remove("is-valid");
+  if(playerName.length == 0){
+     playerNameInput.classList.add("is-invalid");
+    return;
+  }
+    document.getElementById("setupGame").classList.add("d-none");
+    document.getElementById("playingField").classList.remove("d-none");
+    let playerAmtDiv = document.getElementById("amtPlayers");
+    let playerAmt = playerAmtDiv.options[playerAmtDiv.selectedIndex].value;
+    amtPlayers = playerAmt;
+    initializeWindow();
+    initializePlayers();
+}
+
+
+
 
 /**
  * Play
