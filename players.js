@@ -4,18 +4,25 @@
  * @param {*} id
  * @param {*} index
  * @param {*} bot
+ * @param {*} unoCall
  */
-function player(deck, id, index, bot) {
+function player(deck, id, index, bot, unoCall) {
   this.isBot = bot;
   this.playerDeck = deck;
   this.playerID = id;
   this.playerIndex = index;
+  this.playerUnoCall = unoCall;
   this.botLogic = function () {
     let numBotCards = this.playerDeck.amtCards;
 
     //Standard bot behavior
     for (let i = 0; i < numBotCards; i++) {
-      if (players[gameTurn].playerDeck.playCard(i)) {
+      if (players[gameTurn].playerDeck.isValid(i)) {
+        if (players[gameTurn].playerDeck.amtCards == 2)
+        {
+          players[gameTurn].unoCall = true;
+        }
+        players[gameTurn].playerDeck.playCard(i);
         return;
       }
     }

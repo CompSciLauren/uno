@@ -64,6 +64,9 @@ function deck(divId, hidden) {
     console.log(
       players[gameTurn].playerID + " Drew a " + randColor + " " + randValue
     ); //testing
+
+    //If drawing a card, player CANNOT have Uno
+    players[gameTurn].unoCall = false;
   };
 
   /**
@@ -71,6 +74,17 @@ function deck(divId, hidden) {
    */
   this.playCard = function (c) {
     if (this.isValid(c)) {
+      //Check if second to last card & Uno call protection
+      if (players[gameTurn].playerDeck.amtCards == 2 && players[gameTurn].unoCall != true)
+      {
+        console.log("Player failed to call Uno before playing second to last card. Penalty 2 cards");
+        players[gameTurn].playerDeck.drawCard();
+        players[gameTurn].playerDeck.drawCard();
+      }
+      else
+      {
+        console.log("Player called Uno");
+      }
       console.log(this.getCard(c).color + " " + this.getCard(c).value);
 
       let cardBeingPlayed = this.cards[c];
@@ -135,7 +149,7 @@ function deck(divId, hidden) {
         cardDiv.style.backgroundColor = this.getCard(i).getColorValue();
         cardDiv.classList.add('my-card');
       } else {
-        cardDiv.style.backgroundColor = "#000000";
+         cardDiv.style.backgroundColor = "#000000";
       }
     }
   };
@@ -207,11 +221,4 @@ function SelectPlayfieldCard() {
   let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
   let randValue = Math.floor(Math.random() * 10);
   playFieldCard = new card(randColor, randValue);
-}
-
-/**
- * Calls Uno
- */
-function callUno() {
-  console.log("Uno!");
 }
