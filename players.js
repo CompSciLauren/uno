@@ -20,7 +20,7 @@ function player(deck, id, index, bot, unoCall) {
       if (players[gameTurn].playerDeck.isValid(i)) {
         if (players[gameTurn].playerDeck.amtCards == 2)
         {
-          players[gameTurn].unoCall = 1;
+          players[gameTurn].unoCall = true;
         }
         players[gameTurn].playerDeck.playCard(i);
         return;
