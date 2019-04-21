@@ -74,7 +74,7 @@ function initializePlayers() {
       isBot = true;
     }
 
-    let tempPlayer = new player(tempDeck, tempID, tempIndex, isBot, 0);
+    let tempPlayer = new player(tempDeck, tempID, tempIndex, isBot, false);
 
     //adds the player to the game
     players.push(tempPlayer);
@@ -121,7 +121,7 @@ function callUno(){
   else
   {
     console.log("Successful Uno call protection");
-    players[gameTurn].unoCall = 1;
+    players[gameTurn].unoCall = true;
   }
 }
 
