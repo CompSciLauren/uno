@@ -46,8 +46,11 @@ function initializeWindow() {
 //All players created  -- TRAVIS
 function initializePlayers() {
   //Fills the players array with 2-4 people or bots (future, currently only allows two players)
+  let seats =["BottomSeat","RightSeat","TopSeat","LeftSeat"];
   while (players.length < amtPlayers) {
-    let playerHandDiv = "player" + (players.length + 1) + "Hand";
+    let seatIndex = Math.round(4/amtPlayers) * (players.length);
+    let playerHandDiv = seats[seatIndex];
+    let playerHandLabel = playerHandDiv + "ID";
 
     let tempDeck;
 
@@ -66,6 +69,8 @@ function initializePlayers() {
       tempID = "Bot"
       isBot = true;
     }
+    
+    document.getElementById(playerHandLabel).innerHTML = "<h3>" + tempID + "</h3>";
 
     let tempPlayer = new player(tempDeck, tempID, tempIndex, isBot, false);
 
@@ -77,13 +82,6 @@ function initializePlayers() {
       players[players.length - 1].playerDeck.drawCard();
     }
   }
-
-  document.getElementById("player1ID").innerHTML = players[0].playerID;
-  $("#player1ID").css("font-weight", "bold");
-  $("#player1ID").css("color", "black");
-  $("#player2ID").css("color", "gray");
-
-  document.getElementById("player2ID").innerHTML = players[1].playerID;
 
   initialDraw = false;
   
@@ -112,11 +110,15 @@ function startGame(){
  * Play
  */
 function play() {
-  setTimeout(function () {
-    if (players[gameTurn].isBot) {
+  for(let i = 0; i < players.length; i++){
+    document.getElementById(players[i].playerDeck.hand.id + "ID").childNodes[0].classList.remove("activePlayer");
+  }
+  document.getElementById(players[gameTurn].playerDeck.hand.id + "ID").childNodes[0].classList.add("activePlayer");
+  if (players[gameTurn].isBot) {
+    setTimeout(function () {
       players[gameTurn].botLogic();
-    }
-  }, 1500);
+    }, 1500);
+  }
 }
 
 /**

@@ -111,9 +111,10 @@
 
 
 
-
-
-
+.activePlayer{
+  font-weight: bold;
+  color: #000;
+}
 
 
 
@@ -152,4 +153,9 @@ body {
   margin-bottom: -60px;
   width: 140px;
   height: 100px;
+}
+
+h3{
+  font-weight: normal;
+  color: gray;
 }
