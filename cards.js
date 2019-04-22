@@ -58,7 +58,7 @@ function deck(divId, hidden) {
     if (randColor == "Special") {
       //Pick random number between 1 and 3, if 1 or 2 make Wildcard, else regular card
       let randNum = Math.round((Math.random()*2)+1);
-      console.log("Rand num: " + randNum);
+      //console.log("Rand num: " + randNum);
       if (randNum == 1 || randNum == 2)
       {
         randValue = randValue % 2;
@@ -73,9 +73,9 @@ function deck(divId, hidden) {
     let tempCard = new card(randColor, randValue);
     this.addCard(tempCard);
     this.reloadHand();
-    console.log(
-      players[gameTurn].playerID + " Drew a " + randColor + " " + randValue
-    ); //testing
+    //console.log(
+    //  players[gameTurn].playerID + " Drew a " + randColor + " " + randValue
+   // ); //testing
 
     //If drawing a card, player CANNOT have Uno
     players[gameTurn].unoCall = false;
@@ -95,9 +95,9 @@ function deck(divId, hidden) {
       }
       else
       {
-        console.log("Player called Uno");
+        //console.log("Player called Uno");
       }
-      console.log(this.getCard(c).color + " " + this.getCard(c).value);
+      //console.log(this.getCard(c).color + " " + this.getCard(c).value);
 
       let cardBeingPlayed = this.cards[c];
 
@@ -190,6 +190,9 @@ function deck(divId, hidden) {
     if (cardNumber == discardPile.cards[discardPile.cards.length - 1].value) {
       return true;
     }
+    console.log("Played card: " + cardColor + " " + cardNumber);
+    console.log("Playfield card card: " + discardPile.cards[discardPile.cards.length - 1].color + " " + discardPile.cards[discardPile.cards.length - 1].value);
+
     return false;
   }; //end of check card to playfield
 

@@ -122,7 +122,7 @@ function play() {
  * Player's uno call button. Must be pressed BEFORE playing second to last card
  */
 function callUno(){
-  console.log("Amt of cards: " + players[gameTurn].playerDeck.amtCards);
+  //console.log("Amt of cards: " + players[gameTurn].playerDeck.amtCards);
   if (players[gameTurn].playerDeck.amtCards > 2)
   {
     console.log("Player called Uno too early");
