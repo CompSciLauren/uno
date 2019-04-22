@@ -66,7 +66,7 @@ function deck(divId, hidden) {
       else
       {
         //array of colors minus "Special" option
-        randColor = colorArray[Math.floor(Math.random() * colorArray.length-2)];
+        randColor = colorArray[Math.floor(Math.random() * (colorArray.length-1))];
         randValue = Math.floor(Math.random() * 13);
       }
     }
