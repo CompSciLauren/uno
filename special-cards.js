@@ -29,8 +29,8 @@ function cardWild() {
     let colorArray = ["Red", "Green", "Blue", "Yellow"];
     let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
 
-    playFieldCard.color = randColor;
-    playFieldCard.value = -1;
+    discardPile.cards[discardPile.cards.length - 1].color = randColor;
+    discardPile.cards[discardPile.cards.length - 1].value = -1;
 
     refreshPlayfieldCardVisual();
   } else {
@@ -42,13 +42,13 @@ function cardWild() {
     wildUI.innerHTML =
       "<form name='colorPick' id='myForm'> Enter the Color you want to switch to<br> <input type='radio' name='color' value='Red'>Red<br><input type='radio' name='color' value='Yellow'>Yellow<br><input type='radio' name='color' value='Blue'>Blue<br><input type='radio' name='color' value='Green'>Green<br><input type='button' id='colorButton' value='Pick'></form>";
     document.getElementById("colorButton").onclick = function() {
-      playFieldCard.color = document.querySelector(
+      discardPile.cards[discardPile.cards.length - 1].color = document.querySelector(
         'input[name="color"]:checked'
       ).value;
-      playFieldCard.value = -1;
+      discardPile.cards[discardPile.cards.length - 1].value = -1;
       document.getElementById("wildColor").innerHTML = "";
       refreshPlayfieldCardVisual();
-      console.log(playFieldCard.color);
+      console.log(discardPile.cards[discardPile.cards.length - 1].color);
       isColorSelected = true;
       rotatePlayers();
       play();

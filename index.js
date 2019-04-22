@@ -7,14 +7,13 @@ $(document).ready(function () {
 });
 
 // Global Playfield Card
-let playFieldCard;
-let playfieldCardArray = [];
+let discardPile = new deck(discardDeckDiv, false);
 
 //Creates a Global array to store players  --  TRAVIS
 let players = [];
 
 //Amount of players in the game
-let amtPlayers = 2;
+let amtPlayers = 4;
 
 //Initial amount of cards for each player
 let initialCards = 7;
@@ -36,13 +35,8 @@ let drawStack = {
  * Changes the displayed text and calls function to randomize playfield card
  */
 function initializeWindow() {
-  //Get div elements that will be changed in HTML
-  let divColor = document.getElementById("PlayfieldCardColor");
-  let divValue = document.getElementById("PlayfieldCardValue");
-
   //Reassign global card value to random values
   SelectPlayfieldCard();
-
   refreshPlayfieldCardVisual();
 }
 
@@ -60,21 +54,17 @@ function initializePlayers() {
       tempDeck = new deck(playerHandDiv, true); //set to true to blackout
     }
 
-    let tempID = "";
-    while (tempID == "" || tempID == null) {
-      tempID = prompt(
-        "Please enter your name.  If you would like to have a bot play for you, please enter the name 'Bot'"
-      );
-    }
+    let tempID = document.getElementById("playerName").value;
 
     let tempIndex = players.length - 1;
 
     let isBot = false;
-    if (tempID == "Bot") {
+    if (players.length != 0 || tempID == "Bot") {
+      tempID = "Bot"
       isBot = true;
     }
 
-    let tempPlayer = new player(tempDeck, tempID, tempIndex, isBot, 0);
+    let tempPlayer = new player(tempDeck, tempID, tempIndex, isBot, false);
 
     //adds the player to the game
     players.push(tempPlayer);
@@ -95,8 +85,27 @@ function initializePlayers() {
   play();
 }
 
-window.onload = initializeWindow();
-window.onload = initializePlayers();
+
+function startGame(){
+  let playerNameInput = document.getElementById("playerName");
+  let playerName = playerNameInput.value;
+  playerNameInput.classList.remove("is-valid");
+  if(playerName.length == 0){
+     playerNameInput.classList.add("is-invalid");
+    return;
+  }
+    document.getElementById("setupGame").classList.add("d-none");
+    document.getElementById("playingField").classList.remove("d-none");
+    let playerAmtDiv = document.getElementById("amtPlayers");
+    let playerAmt = playerAmtDiv.options[playerAmtDiv.selectedIndex].value;
+    amtPlayers = playerAmt;
+
+    initializeWindow();
+    initializePlayers();
+}
+
+
+
 
 /**
  * Play
@@ -121,7 +130,7 @@ function callUno(){
   else
   {
     console.log("Successful Uno call protection");
-    players[gameTurn].unoCall = 1;
+    players[gameTurn].unoCall = true;
   }
 }
 
@@ -131,11 +140,13 @@ function checkUno(){
 }
 
 function refreshPlayfieldCardVisual() {
-  let pfcDiv = document.getElementById("PlayfieldCardDiv");
-  let cardDiv = document.createElement("div");
+  let pfcDiv = document.getElementById("discardDeckDiv");
   pfcDiv.innerHTML = " ";
-  pfcDiv.append(cardDiv);
-  cardDiv.classList.add("card");
-  cardDiv.innerHTML = playFieldCard.value;
-  cardDiv.style.backgroundColor = playFieldCard.getColorValue();
+  for (let i = 0; i < discardPile.cards.length; i++){
+    let cardDiv = document.createElement("div");
+    pfcDiv.append(cardDiv);
+    cardDiv.classList.add("card");
+    cardDiv.innerHTML = discardPile.cards[i].value;
+    cardDiv.style.backgroundColor = discardPile.cards[i].getColorValue();
+  }
 }

@@ -20,7 +20,7 @@ function player(deck, id, index, bot, unoCall) {
       if (players[gameTurn].playerDeck.isValid(i)) {
         if (players[gameTurn].playerDeck.amtCards == 2)
         {
-          players[gameTurn].unoCall = 1;
+          players[gameTurn].unoCall = true;
         }
         players[gameTurn].playerDeck.playCard(i);
         return;
@@ -45,7 +45,7 @@ function rotatePlayers() {
   if (gameTurn == players.length) gameTurn = 0;
   else if (gameTurn < 0) gameTurn = players.length - 1;
 
-  players[gameTurn].playerDeck.reloadHand();
+  //players[gameTurn].playerDeck.reloadHand();
   if (gameTurn == 0) {
     $("#player1ID").css("font-weight", "bold");
     $("#player1ID").css("color", "black");
