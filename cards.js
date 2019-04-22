@@ -60,7 +60,33 @@ function deck(divId, hidden) {
     }
     let tempCard = new card(randColor, randValue);
     this.addCard(tempCard);
-    this.reloadHand();
+    
+    //Draw Card Animation Start
+    if(!initialDraw && !players[gameTurn].isBot){
+      let drawPile = document.getElementById("drawCardPile");
+      drawPile.innerHTML = " ";
+
+      let cardDiv = document.createElement("div");
+      drawPile.append(cardDiv);
+      cardDiv.classList.add("card");
+      cardDiv.innerHTML = tempCard.value;
+      cardDiv.style.backgroundColor = tempCard.getColorValue();
+      let thisObject = this;
+      setTimeout(function () {
+        cardDiv.innerHTML = "";
+        cardDiv.style.backgroundColor = "#000";
+        thisObject.reloadHand();
+      }, 1000);
+    }else{
+      this.reloadHand();
+    }
+    
+    //Draw Card Animation End
+    
+    
+
+    
+    
     console.log(
       players[gameTurn].playerID + " Drew a " + randColor + " " + randValue
     ); //testing

@@ -24,6 +24,9 @@ let gameTurn = 0;
 //sets direction of game, 1 for forward, -1 for backward
 let gameDirection = 1;
 
+//stores if initial draw
+let initialDraw = true;
+
 //Stores how many +2, or +4s are stacked
 let drawStack = {
   cardValue: 0,
@@ -82,6 +85,8 @@ function initializePlayers() {
 
   document.getElementById("player2ID").innerHTML = players[1].playerID;
 
+  initialDraw = false;
+  
   play();
 }
 
