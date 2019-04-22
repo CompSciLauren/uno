@@ -73,7 +73,7 @@ function deck(divId, hidden) {
       drawPile.append(cardDivBack);
       
       cardDiv.classList.add("card");
-      cardDiv.classList.add("drawCardAnimationFrontDown");
+      cardDiv.classList.add("drawCardAnimationFront");
       
       cardDivBack.classList.add("card");
       cardDivBack.classList.add("drawCardAnimationBack");
