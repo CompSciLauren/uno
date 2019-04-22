@@ -14,7 +14,7 @@ let playfieldCardArray = [];
 let players = [];
 
 //Amount of players in the game
-let amtPlayers = 2;
+let amtPlayers = 4;
 
 //Initial amount of cards for each player
 let initialCards = 7;
