@@ -13,13 +13,26 @@
     margin-right: -25px;
 }
 
+#drawBG{
+    padding: 0;
+    overflow: show;
+    background-color: #000;
+}
+
 #drawCardPile{
   overflow: visible;
+  width: 500px;
+  height: 140px;
+  margin-left: -207px;
+}
+
+#drawCardPile > .card{
+  margin-top: -7px;
 }
 
 @keyframes cardDrawBack {
-  0% {transform: scale(1,1); -webkit-transform: scale(1,1)}
-  50% {transform: scale(1.5,1.5) rotateY(0.8); -webkit-transform: scale(1.5,1.5) rotateY(0);}
+  0% {transform: scale(1,1); -webkit-transform: scale(1,1); z-index: 1;}
+  50% {transform: scale(1.5,1.5) rotateY(0.8); -webkit-transform: scale(1.5,1.5) rotateY(0); z-index: 1}
   100% {transform: scale(1.5,1.5) rotateY(180deg); -webkit-transform: scale(1.5,1.5) rotateY(180deg)}
 }
 
@@ -64,6 +77,7 @@
 
 
 .drawCardAnimationFront{
+    display: inline-block;
     transform: rotateY(180deg);
     -webkit-transform: rotateY(180deg);
     position: relative;
@@ -73,6 +87,7 @@
 }
 
 .drawCardAnimationFrontDown{
+    display: inline-block;
     transform: rotateY(180deg);
     -webkit-transform: rotateY(180deg);
     position: relative;

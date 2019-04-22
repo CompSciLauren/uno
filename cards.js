@@ -64,7 +64,6 @@ function deck(divId, hidden) {
     //Draw Card Animation Start
     if(!initialDraw && !players[gameTurn].isBot){
       let drawPile = document.getElementById("drawCardPile");
-      drawPile.innerHTML = " ";
 
       let cardDiv = document.createElement("div");
       let cardDivBack = document.createElement("div");
@@ -86,9 +85,8 @@ function deck(divId, hidden) {
       
       let thisObject = this;
       setTimeout(function () {
-        cardDiv.innerHTML = "";
-        cardDiv.style.backgroundColor = "#000";
-        cardDiv.style.transform = "rotateY(0);";
+        drawPile.removeChild(drawPile.childNodes[0]);
+        drawPile.removeChild(drawPile.childNodes[0]);
         thisObject.reloadHand();
       }, 1000);
     }else{
