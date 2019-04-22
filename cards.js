@@ -56,7 +56,19 @@ function deck(divId, hidden) {
     let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
     let randValue = Math.floor(Math.random() * 13);
     if (randColor == "Special") {
-      randValue = randValue % 2;
+      //Pick random number between 1 and 2, if 1 make Wildcard, else regular card
+      let randNum = Math.round((Math.random()*1)+1);
+      console.log("Rand num: " + randNum);
+      if (randNum == 1)
+      {
+        randValue = randValue % 2;
+      }
+      else
+      {
+        //array of colors minus "Special" option
+        randColor = colorArray[Math.floor(Math.random() * colorArray.length-2)];
+        randValue = Math.floor(Math.random() * 13);
+      }
     }
     let tempCard = new card(randColor, randValue);
     this.addCard(tempCard);
