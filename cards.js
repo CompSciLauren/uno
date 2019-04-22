@@ -90,8 +90,9 @@ function deck(divId, hidden) {
       let cardBeingPlayed = this.cards[c];
 
       //Set playfield card to validated 'played' card
-      playFieldCard.color = cardBeingPlayed.color;
-      playFieldCard.value = cardBeingPlayed.value;
+      //playFieldCard.color = cardBeingPlayed.color;
+      //playFieldCard.value = cardBeingPlayed.value;
+      discard(cardBeingPlayed);
 
       refreshPlayfieldCardVisual();
 
@@ -171,10 +172,10 @@ function deck(divId, hidden) {
       }
     }
 
-    if (cardColor == playFieldCard.color || cardColor == "Special") {
+    if (cardColor == discardPile.cards[discardPile.cards.length - 1].color || cardColor == "Special") {
       return true;
     }
-    if (cardNumber == playFieldCard.value) {
+    if (cardNumber == discardPile.cards[discardPile.cards.length - 1].value) {
       return true;
     }
     return false;
@@ -220,9 +221,13 @@ function SelectPlayfieldCard() {
   let colorArray = ["Red", "Green", "Blue", "Yellow"];
   let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
   let randValue = Math.floor(Math.random() * 10);
-  playFieldCard = new card(randColor, randValue);
+  let tempCard = new card(randColor, randValue);
+
+  discard(tempCard);
 }
 
-function discard(){
-  
+function discard(card){
+  discardPile.addCard(card);
+  if (discardPile.cards.length > 5)
+    discardPile.removeCard(0);
 }

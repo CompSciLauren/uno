@@ -7,7 +7,6 @@ $(document).ready(function () {
 });
 
 // Global Playfield Card
-let playFieldCard;
 let discardPile = new deck(discardDeckDiv, false);
 
 //Creates a Global array to store players  --  TRAVIS
@@ -36,13 +35,8 @@ let drawStack = {
  * Changes the displayed text and calls function to randomize playfield card
  */
 function initializeWindow() {
-  //Get div elements that will be changed in HTML
-  //let divColor = document.getElementById("PlayfieldCardColor");
-  //let divValue = document.getElementById("PlayfieldCardValue");
-
   //Reassign global card value to random values
   SelectPlayfieldCard();
-
   refreshPlayfieldCardVisual();
 }
 
@@ -106,8 +100,6 @@ function startGame(){
     let playerAmt = playerAmtDiv.options[playerAmtDiv.selectedIndex].value;
     amtPlayers = playerAmt;
 
-    let discardPile = new deck(discardDeckDiv, false);
-
     initializeWindow();
     initializePlayers();
 }
@@ -148,11 +140,13 @@ function checkUno(){
 }
 
 function refreshPlayfieldCardVisual() {
-  let pfcDiv = document.getElementById("PlayfieldCardDiv");
-  let cardDiv = document.createElement("div");
+  let pfcDiv = document.getElementById("discardDeckDiv");
   pfcDiv.innerHTML = " ";
-  pfcDiv.append(cardDiv);
-  cardDiv.classList.add("card");
-  cardDiv.innerHTML = playFieldCard.value;
-  cardDiv.style.backgroundColor = playFieldCard.getColorValue();
+  for (let i = 0; i < discardPile.cards.length; i++){
+    let cardDiv = document.createElement("div");
+    pfcDiv.append(cardDiv);
+    cardDiv.classList.add("card");
+    cardDiv.innerHTML = discardPile.cards[i].value;
+    cardDiv.style.backgroundColor = discardPile.cards[i].getColorValue();
+  }
 }
