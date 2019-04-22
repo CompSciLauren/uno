@@ -85,7 +85,6 @@ function initializePlayers() {
   play();
 }
 
-
 function startGame(){
   let playerNameInput = document.getElementById("playerName");
   let playerName = playerNameInput.value;
@@ -103,9 +102,6 @@ function startGame(){
     initializeWindow();
     initializePlayers();
 }
-
-
-
 
 /**
  * Play
