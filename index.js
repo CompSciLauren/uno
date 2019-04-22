@@ -8,7 +8,7 @@ $(document).ready(function () {
 
 // Global Playfield Card
 let playFieldCard;
-let playfieldCardArray = [];
+let discardPile = new deck(discardDeckDiv, false);
 
 //Creates a Global array to store players  --  TRAVIS
 let players = [];
@@ -37,8 +37,8 @@ let drawStack = {
  */
 function initializeWindow() {
   //Get div elements that will be changed in HTML
-  let divColor = document.getElementById("PlayfieldCardColor");
-  let divValue = document.getElementById("PlayfieldCardValue");
+  //let divColor = document.getElementById("PlayfieldCardColor");
+  //let divValue = document.getElementById("PlayfieldCardValue");
 
   //Reassign global card value to random values
   SelectPlayfieldCard();
@@ -105,6 +105,9 @@ function startGame(){
     let playerAmtDiv = document.getElementById("amtPlayers");
     let playerAmt = playerAmtDiv.options[playerAmtDiv.selectedIndex].value;
     amtPlayers = playerAmt;
+
+    let discardPile = new deck(discardDeckDiv, false);
+
     initializeWindow();
     initializePlayers();
 }

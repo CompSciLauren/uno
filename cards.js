@@ -88,7 +88,7 @@ function deck(divId, hidden) {
       console.log(this.getCard(c).color + " " + this.getCard(c).value);
 
       let cardBeingPlayed = this.cards[c];
-        
+
       //Set playfield card to validated 'played' card
       playFieldCard.color = cardBeingPlayed.color;
       playFieldCard.value = cardBeingPlayed.value;
@@ -221,4 +221,8 @@ function SelectPlayfieldCard() {
   let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
   let randValue = Math.floor(Math.random() * 10);
   playFieldCard = new card(randColor, randValue);
+}
+
+function discard(){
+  
 }
