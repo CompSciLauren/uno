@@ -209,7 +209,12 @@ function drawACard() {
     drawStack.stackAmt = 0;
     rotatePlayers();
     play();
-  } else {
+  }
+  else if (forcePlay()) {
+    let audio = new Audio("error.mp3");
+    audio.play();
+  }
+  else {
     players[gameTurn].playerDeck.drawCard();
   }
 }
@@ -230,4 +235,12 @@ function discard(card){
   discardPile.addCard(card);
   if (discardPile.cards.length > 5)
     discardPile.removeCard(0);
+}
+
+function forcePlay() {
+  for (let i = 0; i < players[gameTurn].playerDeck.cards.length; i++) {
+    if (players[gameTurn].playerDeck.isValid(i))
+      return true;
+  }
+  return false;
 }
