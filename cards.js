@@ -67,14 +67,28 @@ function deck(divId, hidden) {
       drawPile.innerHTML = " ";
 
       let cardDiv = document.createElement("div");
+      let cardDivBack = document.createElement("div");
+      
       drawPile.append(cardDiv);
+      drawPile.append(cardDivBack);
+      
       cardDiv.classList.add("card");
+      cardDiv.classList.add("drawCardAnimationFrontDown");
+      
+      cardDivBack.classList.add("card");
+      cardDivBack.classList.add("drawCardAnimationBack");
+      
+      
       cardDiv.innerHTML = tempCard.value;
       cardDiv.style.backgroundColor = tempCard.getColorValue();
+      
+      cardDivBack.style.backgroundColor = "#000";
+      
       let thisObject = this;
       setTimeout(function () {
         cardDiv.innerHTML = "";
         cardDiv.style.backgroundColor = "#000";
+        cardDiv.style.transform = "rotateY(0);";
         thisObject.reloadHand();
       }, 1000);
     }else{
