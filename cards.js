@@ -62,7 +62,7 @@ function deck(divId, hidden) {
     this.addCard(tempCard);
     
     //Draw Card Animation Start
-    if(!initialDraw && !players[gameTurn].isBot){
+    if(!initialDraw){
       let drawPile = document.getElementById("drawCardPile");
 
       let cardDiv = document.createElement("div");
@@ -72,16 +72,28 @@ function deck(divId, hidden) {
       drawPile.append(cardDivBack);
       
       cardDiv.classList.add("card");
-      cardDiv.classList.add("drawCardAnimationFront");
-      
       cardDivBack.classList.add("card");
-      cardDivBack.classList.add("drawCardAnimationBack");
       
-      
-      cardDiv.innerHTML = tempCard.value;
-      cardDiv.style.backgroundColor = tempCard.getColorValue();
-      
+      cardDiv.style.backgroundColor = "#000";
       cardDivBack.style.backgroundColor = "#000";
+      if(this.hand.id == "BottomSeat"){
+        cardDiv.innerHTML = tempCard.value;
+        cardDiv.style.backgroundColor = tempCard.getColorValue();
+        cardDiv.classList.add("drawCardAnimationFrontDown");
+        cardDivBack.classList.add("drawCardAnimationBack");
+      }else {
+        if(this.hand.id == "TopSeat"){
+          cardDiv.classList.add("drawCardAnimationHiddenUp");
+        }else if(this.hand.id == "RightSeat"){
+          cardDiv.classList.add("drawCardAnimationHiddenRight");
+        }else if(this.hand.id == "LeftSeat"){
+          cardDiv.classList.add("drawCardAnimationHiddenLeft");
+        }else{
+          cardDiv.classList.add("drawCardAnimationFront");         
+        }
+        cardDivBack.classList.add("drawCardBackHidden");
+      }
+      
       
       let thisObject = this;
       setTimeout(function () {
