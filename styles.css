@@ -31,60 +31,59 @@
 }
 
 @keyframes cardDrawBack {
-  0% {transform: scale(1,1);  z-index: 1}
-  30% {transform: scale(1.5,1.5) rotateY(0); z-index: 1}
+  0% {transform: scale(1,1)}
+  30% {transform: scale(1.5,1.5) rotateY(0)}
   60% {transform: scale(1.5,1.5) rotateY(180deg)}
   100% {transform: scale(1.5,1.5) rotateY(180deg)}
 }
 
 @keyframes cardDrawFront {
-  0% {transform: scale(1,1)}
+  0% {transform: scale(1,1) rotateY(180deg)}
   30% {transform: scale(1.5,1.5) rotateY(180deg)}
-  60% {transform: scale(1.5,1.5) rotateY(0); z-index: 1;}
-  90% {transform: scale(1.5,1.5) rotateY(0); z-index: 1; opacity: 1;}
-  100% {transform: scale(1.5,1.5) rotateY(0); z-index: 1; opacity: 0;}
+  60% {transform: scale(1.5,1.5) rotateY(0); z-index: 2; bottom: 0;}
+  90% {transform: scale(1.5,1.5) rotateY(0); z-index: 2; bottom: -150px; opacity: 1;}
+  100% {transform: scale(1.5,1.5) rotateY(0); z-index: 2; bottom: -200px; opacity: 0;}
 }
 
-@keyframes cardDrawHidden {
+@keyframes cardDrawHiddenRight {
   0% {transform: scale(1,1)}
-  60% {transform: scale(1.5,1.5)}
-  90% {transform: scale(1.5,1.5); opacity: 1;}
-  100% {transform: scale(1.5,1.5); opacity: 0;}
+  50% {transform: scale(1.5,1.5); right: 0;}
+  80% {transform: scale(1.5,1.5); right: -120px; opacity: 1;}
+  100% {transform: scale(1.5,1.5); right: -200px; opacity: 0;}
+}
+
+@keyframes cardDrawHiddenLeft {
+  0% {transform: scale(1,1)}
+  50% {transform: scale(1.5,1.5); left: 0;}
+  80% {transform: scale(1.5,1.5); left: -120px; opacity: 1;}
+  100% {transform: scale(1.5,1.5); left: -200px; opacity: 0;}
+}
+
+@keyframes cardDrawHiddenUp {
+  0% {transform: scale(1,1)}
+  50% {transform: scale(1.5,1.5); top: 0;}
+  80% {transform: scale(1.5,1.5); top: -120px; opacity: 1;}
+  100% {transform: scale(1.5,1.5); top: -200px; opacity: 0;}
 }
 
 
-@keyframes slideDown {
-  0% {bottom: 0;}
-  100% {bottom: -200px;}
-}
-
-@keyframes slideRight {
-  0% {right: 0;}
-  100% {right: -200px;}
-}
-
-@keyframes slideLeft {
-  0% {left: 0;}
-  100% {left: -200px;}
-}
-
-@keyframes slideUp {
-  0% {top: 0;}
-  100% {top: -200px;}
-}
 
 
 .drawCardAnimationBack{
+    z-index: 1;
     position: absolute;
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     margin-left: -75px;
-    animation: cardDrawBack 1s;
+    animation-name: cardDrawBack;
+    animation-duration: 1s;
 }
 
 .drawCardBackHidden{
     transform: rotateY(180deg);
     position: absolute;
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     margin-left: -75px;
 }
 
@@ -92,35 +91,45 @@
 .drawCardAnimationHidden{
     position: relative;
     backface-visibility: hidden;
-    animation: cardDrawHidden 1.2s;
+    -webkit-backface-visibility: hidden;
+    animation-name: cardDrawHidden;
+    animation-duration: 1.2s;
 }
 
 .drawCardAnimationFrontDown{
     transform: rotateY(180deg);
     position: relative;
     backface-visibility: hidden;
-    animation: cardDrawFront 1s, slideDown 0.4s 0.6s;
+    -webkit-backface-visibility: hidden;
+    animation-name: cardDrawFront;
+    animation-duration: 1s;
 }
 
 .drawCardAnimationHiddenRight{
     z-index: 1;
     position: relative;
     backface-visibility: hidden;
-    animation: cardDrawHidden 1.2s, slideRight 0.6s 0.6s;
+    -webkit-backface-visibility: hidden;
+    animation-name: cardDrawHiddenRight;
+    animation-duration: 1.2s;
 }
 
 .drawCardAnimationHiddenLeft{
     z-index: 1;
     position: relative;
     backface-visibility: hidden;
-    animation: cardDrawHidden 1.2s, slideLeft 0.6s 0.6s;
+    -webkit-backface-visibility: hidden;
+    animation-name: cardDrawHiddenLeft;
+    animation-duration: 1.2s;
 }
 
 .drawCardAnimationHiddenUp{
     z-index: 1;
     position: relative;
     backface-visibility: hidden;
-    animation: cardDrawHidden 1.2s, slideUp 0.6s 0.6s;
+    -webkit-backface-visibility: hidden;
+    animation-name: cardDrawHiddenUp;
+    animation-duration: 1.2s;
 }
 
 
