@@ -31,25 +31,25 @@
 }
 
 @keyframes cardDrawBack {
-  0% {transform: scale(1,1); -webkit-transform: scale(1,1); z-index: 1;}
-  30% {transform: scale(1.5,1.5) rotateY(0.8); -webkit-transform: scale(1.5,1.5) rotateY(0); z-index: 1}
-  60% {transform: scale(1.5,1.5) rotateY(180deg); -webkit-transform: scale(1.5,1.5) rotateY(180deg)}
-  100% {transform: scale(1.5,1.5) rotateY(180deg); -webkit-transform: scale(1.5,1.5) rotateY(180deg)}
+  0% {transform: scale(1,1);  z-index: 1}
+  30% {transform: scale(1.5,1.5) rotateY(0); z-index: 1}
+  60% {transform: scale(1.5,1.5) rotateY(180deg)}
+  100% {transform: scale(1.5,1.5) rotateY(180deg)}
 }
 
 @keyframes cardDrawFront {
-  0% {transform: scale(1,1); -webkit-transform: scale(1,1)}
-  30% {transform: scale(1.5,1.5) rotateY(180deg); -webkit-transform: scale(1.5,1.5) rotateY(180deg);}
-  60% {transform: scale(1.5,1.5) rotateY(0); -webkit-transform: scale(1.5,1.5) rotateY(0); z-index: 1;}
-  90% {transform: scale(1.5,1.5) rotateY(0); -webkit-transform: scale(1.5,1.5) rotateY(0); z-index: 1; opacity: 1;}
-  100% {transform: scale(1.5,1.5) rotateY(0); -webkit-transform: scale(1.5,1.5) rotateY(0); z-index: 1; opacity: 0;}
+  0% {transform: scale(1,1)}
+  30% {transform: scale(1.5,1.5) rotateY(180deg)}
+  60% {transform: scale(1.5,1.5) rotateY(0); z-index: 1;}
+  90% {transform: scale(1.5,1.5) rotateY(0); z-index: 1; opacity: 1;}
+  100% {transform: scale(1.5,1.5) rotateY(0); z-index: 1; opacity: 0;}
 }
 
 @keyframes cardDrawHidden {
-  0% {transform: scale(1,1); -webkit-transform: scale(1,1)}
-  60% {transform: scale(1.5,1.5); -webkit-transform: scale(1.5,1.5)}
-  90% {transform: scale(1.5,1.5); -webkit-transform: scale(1.5,1.5); opacity: 1;}
-  100% {transform: scale(1.5,1.5); -webkit-transform: scale(1.5,1.5); opacity: 0;}
+  0% {transform: scale(1,1)}
+  60% {transform: scale(1.5,1.5)}
+  90% {transform: scale(1.5,1.5); opacity: 1;}
+  100% {transform: scale(1.5,1.5); opacity: 0;}
 }
 
 
@@ -78,15 +78,11 @@
     position: absolute;
     backface-visibility: hidden;
     margin-left: -75px;
-    animation-name: cardDrawBack;
-    animation-duration: 1s;
-    -webkit-animation-name: cardDrawBack;
-    -webkit-animation-duration: 1s;
+    animation: cardDrawBack 1s;
 }
 
 .drawCardBackHidden{
     transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
     position: absolute;
     backface-visibility: hidden;
     margin-left: -75px;
@@ -97,16 +93,13 @@
     position: relative;
     backface-visibility: hidden;
     animation: cardDrawHidden 1.2s;
-    -webkit-animation: cardDrawHidden 1.2s;
 }
 
 .drawCardAnimationFrontDown{
     transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
     position: relative;
     backface-visibility: hidden;
     animation: cardDrawFront 1s, slideDown 0.4s 0.6s;
-    -webkit-animation: cardDrawFront 1s, slideDown 0.4s 0.6s;
 }
 
 .drawCardAnimationHiddenRight{
@@ -114,7 +107,6 @@
     position: relative;
     backface-visibility: hidden;
     animation: cardDrawHidden 1.2s, slideRight 0.6s 0.6s;
-    -webkit-animation: cardDrawHidden 1.2s, slideRight 0.6s 0.6s;
 }
 
 .drawCardAnimationHiddenLeft{
@@ -122,7 +114,6 @@
     position: relative;
     backface-visibility: hidden;
     animation: cardDrawHidden 1.2s, slideLeft 0.6s 0.6s;
-    -webkit-animation: cardDrawHidden 1.2s, slideLeft 0.6s 0.6s;
 }
 
 .drawCardAnimationHiddenUp{
@@ -130,7 +121,6 @@
     position: relative;
     backface-visibility: hidden;
     animation: cardDrawHidden 1.2s, slideUp 0.6s 0.6s;
-    -webkit-animation: cardDrawHidden 1.2s, slideUp 0.6s 0.6s;
 }
 
 
@@ -161,8 +151,6 @@ body {
     top: 0;
     transition: top 0.5s ease, margin-right 0.5s, margin-left 0.5s;
     transition-delay: 0.1s;
-    -webkit-transition: top 0.5s ease, margin-right 0.5s, margin-left 0.5s;
-    -webkit-transition-delay: 0.1s;
 }
 
 .my-card:hover{
