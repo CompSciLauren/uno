@@ -40,9 +40,9 @@
 @keyframes cardDrawFront {
   0% {transform: scale(1,1); -webkit-transform: scale(1,1)}
   30% {transform: scale(1.5,1.5) rotateY(180deg); -webkit-transform: scale(1.5,1.5) rotateY(180deg);}
-  60% {transform: translate(0,0) scale(1.5,1.5) rotateY(0); -webkit-transform: translate(0,0) scale(1.5,1.5) rotateY(0); z-index: 1;}
-  90% {transform: translate(-250px, 0) scale(1.5,1.5) rotateY(0); -webkit-transform: scale(1.5,1.5) rotateY(0); z-index: 1; opacity: 1;}
-  100% {transform: translate(-250px, 0) scale(1.5,1.5) rotateY(0); -webkit-transform: scale(1.5,1.5) rotateY(0); z-index: 1; opacity: 0;}
+  60% {transform: scale(1.5,1.5) rotateY(0); -webkit-transform: scale(1.5,1.5) rotateY(0); z-index: 1;}
+  90% {transform: scale(1.5,1.5) rotateY(0); -webkit-transform: scale(1.5,1.5) rotateY(0); z-index: 1; opacity: 1;}
+  100% {transform: scale(1.5,1.5) rotateY(0); -webkit-transform: scale(1.5,1.5) rotateY(0); z-index: 1; opacity: 0;}
 }
 
 @keyframes cardDrawHidden {
@@ -55,22 +55,22 @@
 
 @keyframes slideDown {
   0% {bottom: 0;}
-  100% {bottom: -100px;}
+  100% {bottom: -200px;}
 }
 
 @keyframes slideRight {
   0% {right: 0;}
-  100% {right: -100px;}
+  100% {right: -200px;}
 }
 
 @keyframes slideLeft {
   0% {left: 0;}
-  100% {left: -100px;}
+  100% {left: -200px;}
 }
 
 @keyframes slideUp {
   0% {top: 0;}
-  100% {top: -100px;}
+  100% {top: -200px;}
 }
 
 

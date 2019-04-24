@@ -47,6 +47,7 @@ function initializeWindow() {
 function initializePlayers() {
   //Fills the players array with 2-4 people or bots (future, currently only allows two players)
   let seats =["BottomSeat","RightSeat","TopSeat","LeftSeat"];
+  let botNames = ["Justa Guye","Homer Sapien","Pierre Son","Mist Tyre","Jin Tellmin","Guy Pierreson","Norm Hal","Avery Mann","Hugh Man","Aver Ageman","Amanda Skyzdazawoman","Guy Chapman", "Aman Justasyu", "Sivi Lian", "Norma Laedie", "Nunya Concern","Noab Elman","Lay Dee", "Notta Imposter", "Justin Disgais", "Naeem Hiddon", "Aylov Peypul", "Jawl E. Goodfellow","Roger Otto Benjamin Olsen Tanner"];
   while (players.length < amtPlayers) {
     let seatIndex = Math.round(4/amtPlayers) * (players.length);
     let playerHandDiv = seats[seatIndex];
@@ -65,8 +66,13 @@ function initializePlayers() {
     let tempIndex = players.length - 1;
 
     let isBot = false;
+    
+    let botIndex = Math.floor(Math.random() * botNames.length);
+    let botName = botNames[botIndex];
+    
     if (players.length != 0 || tempID == "Bot") {
-      tempID = "Bot"
+      tempID = botName;
+      botNames.splice(botIndex, 1);
       isBot = true;
     }
     
@@ -110,14 +116,19 @@ function startGame(){
  * Play
  */
 function play() {
-  for(let i = 0; i < players.length; i++){
-    document.getElementById(players[i].playerDeck.hand.id + "ID").childNodes[0].classList.remove("activePlayer");
-  }
-  document.getElementById(players[gameTurn].playerDeck.hand.id + "ID").childNodes[0].classList.add("activePlayer");
   if (players[gameTurn].isBot) {
     setTimeout(function () {
+      for(let i = 0; i < players.length; i++){
+        document.getElementById(players[i].playerDeck.hand.id + "ID").childNodes[0].classList.remove("activePlayer");
+      }
+      document.getElementById(players[gameTurn].playerDeck.hand.id + "ID").childNodes[0].classList.add("activePlayer");
       players[gameTurn].botLogic();
     }, 1500);
+  }else{
+      for(let i = 0; i < players.length; i++){
+        document.getElementById(players[i].playerDeck.hand.id + "ID").childNodes[0].classList.remove("activePlayer");
+      }
+      document.getElementById(players[gameTurn].playerDeck.hand.id + "ID").childNodes[0].classList.add("activePlayer");
   }
 }
 
