@@ -49,3 +49,7 @@ body {
   width: 140px;
   height: 100px;
 }
+
+ li { 
+     margin-bottom: 5px; 
+}
