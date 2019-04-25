@@ -39,20 +39,18 @@
   <div id="playingField" class="container mt-5 d-none">
     <div class="row">
       <div class="col" align="center">
-        <h3>
-          <div id="player2ID">
-          </div>
-        </h3>
-        <div id="player2Hand"></div>
+        <div id="TopSeatID"></div>
+        <div id="TopSeat"></div>
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-2">
-        <h3>Player 3</h3>
-        <div id="player3Hand" class="sideHand"></div>
+        <div id="LeftSeatID"></div>
+        <div id="LeftSeat" class="sideHand"></div>
       </div>
       <div class="col-md-8 custom-border" align="center">
+        <div id="drawBG" class="card"><div id="drawCardPile"></div></div>
         <h1>
           <div id="discardDeckDiv"></div>    <!-- Travis -->
         </h1>
@@ -66,19 +64,16 @@
         <button onclick="drawACard()">Draw Card</button>
       </div>
       <div class="col-md-2">
-        <h3>Player 4</h3>
-        <div id="player4Hand" class="sideHand"></div>
+        <div id="RightSeatID"></div>
+        <div id="RightSeat" class="sideHand"></div>
       </div>
     </div>
 
     <div class="row">
         <div class="col"  align="center">
-          <h3>
-            <div id="player1ID">
-            </div>
-          </h3>
-          <div id="player1Hand"></div>
-          <button onclick="callUno()">Uno!</button><br>
+          <div id="BottomSeatID"></div>
+          <div id="BottomSeat"></div>
+          <button onclick="callUno()">Uno!</button>
           *Reminder, you must call Uno BEFORE playing your second-to-last card!
           <div id="button"><a href="rules.html">Rules & Info</a></div>    
         </div>
