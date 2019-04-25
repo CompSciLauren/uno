@@ -60,7 +60,57 @@ function deck(divId, hidden) {
     }
     let tempCard = new card(randColor, randValue);
     this.addCard(tempCard);
-    this.reloadHand();
+    
+    //Draw Card Animation Start
+    if(!initialDraw){
+      let drawPile = document.getElementById("drawCardPile");
+
+      let cardDiv = document.createElement("div");
+      let cardDivBack = document.createElement("div");
+      
+      drawPile.append(cardDiv);
+      drawPile.append(cardDivBack);
+      
+      cardDiv.classList.add("card");
+      cardDivBack.classList.add("card");
+      
+      cardDiv.style.backgroundColor = "#000";
+      cardDivBack.style.backgroundColor = "#000";
+      if(this.hand.id == "BottomSeat"){
+        cardDiv.innerHTML = tempCard.value;
+        cardDiv.style.backgroundColor = tempCard.getColorValue();
+        cardDiv.classList.add("drawCardAnimationFrontDown");
+        cardDivBack.classList.add("drawCardAnimationBack");
+      }else {
+        if(this.hand.id == "TopSeat"){
+          cardDiv.classList.add("drawCardAnimationHiddenUp");
+        }else if(this.hand.id == "RightSeat"){
+          cardDiv.classList.add("drawCardAnimationHiddenRight");
+        }else if(this.hand.id == "LeftSeat"){
+          cardDiv.classList.add("drawCardAnimationHiddenLeft");
+        }else{
+          cardDiv.classList.add("drawCardAnimationFront");         
+        }
+        cardDivBack.classList.add("drawCardBackHidden");
+      }
+      
+      
+      let thisObject = this;
+      setTimeout(function () {
+        drawPile.removeChild(drawPile.childNodes[0]);
+        drawPile.removeChild(drawPile.childNodes[0]);
+        thisObject.reloadHand();
+      }, 1000);
+    }else{
+      this.reloadHand();
+    }
+    
+    //Draw Card Animation End
+    
+    
+
+    
+    
     console.log(
       players[gameTurn].playerID + " Drew a " + randColor + " " + randValue
     ); //testing
