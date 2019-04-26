@@ -57,7 +57,18 @@ function initializeWindow() {
  * Gives player a specific card (testing: red 1 only)
  */
 function giveMeABreak(cardColor, cardValue) {
-  drawSpecificCard(cardColor, cardValue);
+  if (cardColor == "Special" && cardValue > 1 || cardValue < 0)
+  {
+    console.log("Invalid wild card selection: " + cardColor + " " + cardValue);
+    return;
+  } else if (cardValue > 12)
+  {
+    console.log("Invalid card selection: " + cardColor + " " + cardValue);
+    return;
+  } else
+  {
+    drawSpecificCard(cardColor, cardValue);
+  }
  }
 
 /**
@@ -66,8 +77,10 @@ function giveMeABreak(cardColor, cardValue) {
 */
 function showMeCheats() {
   console.log("newPlayfieldCard() -- Adds a new playfield card to top of stack");
-  console.log("giveMeABreak() -- Adds a specific card to player's hand (Red 1 for now)");
-
+  console.log('giveMeABreak("cardColor", cardValue) -- Adds a specific card to players hand');
+  console.log("     Possible card colors: Red, Green, Blue, Yellow, Special");
+  console.log("     Possible card values for R-G-B-Y: 0-9, 10 (for draw 2), 11 (for reverse), 12 (for skip)");
+  console.log("     Possible card values for 'Special': 0 (for Wild), 1 (for Wild + Draw 4)");
  }
 
 //All players created  -- TRAVIS
