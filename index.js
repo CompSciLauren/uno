@@ -123,12 +123,14 @@ function play() {
       }
       document.getElementById(players[gameTurn].playerDeck.hand.id + "ID").childNodes[0].classList.add("activePlayer");
       players[gameTurn].botLogic();
-    }, 1500);
+    }, 1000);
   }else{
+    setTimeout(function () {
       for(let i = 0; i < players.length; i++){
         document.getElementById(players[i].playerDeck.hand.id + "ID").childNodes[0].classList.remove("activePlayer");
       }
       document.getElementById(players[gameTurn].playerDeck.hand.id + "ID").childNodes[0].classList.add("activePlayer");
+    }, 1000);
   }
 }
 
