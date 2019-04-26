@@ -52,12 +52,11 @@
       <div class="col-md-8 custom-border" align="center">
         <div id="drawBG" class="card"><div id="drawCardPile"></div></div>
         <h1>
-          <div id="discardDeckDiv"></div>    <!-- Travis -->
+          <div id="discardDeckDiv"></div>
         </h1>
         <div id="playfieldHand"></div>
         <form>
           <button type="button" onclick="initializeWindow()" onclick="newPlayfieldCard()">
-            <!-- call refreshPlayfieldCardVisual() too -->
             New Playfield Card
           </button>
         </form>
@@ -73,7 +72,7 @@
         <div class="col"  align="center">
           <div id="BottomSeatID"></div>
           <div id="BottomSeat"></div>
-          <button onclick="callUno()">Uno!</button>
+          <button id="unoButton" onclick="callUno()">Uno!</button>
           <br>*Reminder, you must call Uno BEFORE playing your second-to-last card!
           <div id="button">
               <input type="button" value="Rules & Info"

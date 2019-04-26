@@ -66,16 +66,16 @@ function initializePlayers() {
     let tempIndex = players.length - 1;
 
     let isBot = false;
-    
+
     let botIndex = Math.floor(Math.random() * botNames.length);
     let botName = botNames[botIndex];
-    
+
     if (players.length != 0 || tempID == "Bot") {
       tempID = botName;
       botNames.splice(botIndex, 1);
       isBot = true;
     }
-    
+
     document.getElementById(playerHandLabel).innerHTML = "<h3>" + tempID + "</h3>";
 
     let tempPlayer = new player(tempDeck, tempID, tempIndex, isBot, false);
@@ -90,7 +90,7 @@ function initializePlayers() {
   }
 
   initialDraw = false;
-  
+
   play();
 }
 
@@ -139,7 +139,9 @@ function callUno(){
   //console.log("Amt of cards: " + players[gameTurn].playerDeck.amtCards);
   if (players[gameTurn].playerDeck.amtCards > 2)
   {
-    console.log("Player called Uno too early");
+    console.log("Player called Uno too early.  Penalty 2 cards.");
+    players[gameTurn].playerDeck.drawCard();
+    players[gameTurn].playerDeck.drawCard();
   }
   else
   {
