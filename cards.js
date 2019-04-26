@@ -56,7 +56,19 @@ function deck(divId, hidden) {
     let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
     let randValue = Math.floor(Math.random() * 13);
     if (randColor == "Special") {
-      randValue = randValue % 2;
+      //Pick random number between 1 and 3, if 1 or 2 make Wildcard, else regular card
+      let randNum = Math.round((Math.random()*2)+1);
+      //console.log("Rand num: " + randNum);
+      if (randNum == 1 || randNum == 2)
+      {
+        randValue = randValue % 2;
+      }
+      else
+      {
+        //array of colors minus "Special" option
+        randColor = colorArray[Math.floor(Math.random() * (colorArray.length-1))];
+        randValue = Math.floor(Math.random() * 13);
+      }
     }
     let tempCard = new card(randColor, randValue);
     this.addCard(tempCard);
@@ -133,9 +145,9 @@ function deck(divId, hidden) {
       }
       else
       {
-        console.log("Player called Uno");
+        //console.log("Player called Uno");
       }
-      console.log(this.getCard(c).color + " " + this.getCard(c).value);
+      //console.log(this.getCard(c).color + " " + this.getCard(c).value);
 
       let cardBeingPlayed = this.cards[c];
 
@@ -228,6 +240,9 @@ function deck(divId, hidden) {
     if (cardNumber == discardPile.cards[discardPile.cards.length - 1].value) {
       return true;
     }
+    console.log("Played card: " + cardColor + " " + cardNumber);
+    console.log("Playfield card card: " + discardPile.cards[discardPile.cards.length - 1].color + " " + discardPile.cards[discardPile.cards.length - 1].value);
+
     return false;
   }; //end of check card to playfield
 

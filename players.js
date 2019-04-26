@@ -34,6 +34,7 @@ function player(deck, id, index, bot, unoCall) {
       //The 20 card limit is just for testing, keeps infinite decks from being made
       while (!this.playerDeck.playCard(this.playerDeck.amtCards - 1)) {
         drawACard();
+        //setTimeout(drawACard(), 1000);
       }
     }
   };
