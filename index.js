@@ -49,12 +49,12 @@ function initializeWindow() {
  */
  function newPlayfieldCard() {
   initializeWindow();
- }
+}
 
 
 /**
  * Cheat console command. 
- * Gives player a specific card (testing: red 1 only)
+ * Gives player a specific card (input from console)
  */
 function giveMeABreak(cardColor, cardValue) {
   if (cardColor == "Special" && cardValue > 1 || cardValue < 0)
@@ -69,11 +69,11 @@ function giveMeABreak(cardColor, cardValue) {
   {
     drawSpecificCard(cardColor, cardValue);
   }
- }
+}
 
 /**
  * Cheat console command. 
- * Gives player a specific card (testing: red 1 only)
+ * Gives player a specific number of cards
  */
 function forceDraw(numCards) {
   if (numCards > 0)
@@ -84,7 +84,22 @@ function forceDraw(numCards) {
   {
     console.log("Invalid number of cards: " + numCards);
   }
- }
+}
+
+/**
+ * Cheat console command. 
+ * Removes a specific number of cards from players hand
+ */
+function forceRemove(numCards) {
+  if (numCards > 0)
+  {
+    removeManyCards(numCards)
+  }
+  else
+  {
+    console.log("Invalid number of cards: " + numCards);
+  }
+}
 
 /**
 * Cheat console command. 
@@ -99,8 +114,9 @@ function showMeCheats() {
   console.log("     Possible card values for 'Special': 0 (for Wild), 1 (for Wild + Draw 4)");
   console.log(" ");
   console.log("forceDraw(number) -- Draws the specific number of cards from the deck and adds to the player's hand");
-
- }
+  console.log(" ");
+  console.log("forceRemove(number) -- Removes the specific number of cards (Must leave 2 or more) from the player's hand starting at the leftmost card");
+}
 
 //All players created  -- TRAVIS
 function initializePlayers() {
