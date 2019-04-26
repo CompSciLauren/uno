@@ -72,15 +72,34 @@ function giveMeABreak(cardColor, cardValue) {
  }
 
 /**
+ * Cheat console command. 
+ * Gives player a specific card (testing: red 1 only)
+ */
+function forceDraw(numCards) {
+  if (numCards > 0)
+  {
+    drawManyCard(numCards);
+  }
+  else
+  {
+    console.log("Invalid number of cards: " + numCards);
+  }
+ }
+
+/**
 * Cheat console command. 
 * Lists cheatcode in console
 */
 function showMeCheats() {
   console.log("newPlayfieldCard() -- Adds a new playfield card to top of stack");
-  console.log('giveMeABreak("cardColor", cardValue) -- Adds a specific card to players hand');
+  console.log(" ");
+  console.log('giveMeABreak("Color", Value) -- Adds a specific card to players hand');
   console.log("     Possible card colors: Red, Green, Blue, Yellow, Special");
   console.log("     Possible card values for R-G-B-Y: 0-9, 10 (for draw 2), 11 (for reverse), 12 (for skip)");
   console.log("     Possible card values for 'Special': 0 (for Wild), 1 (for Wild + Draw 4)");
+  console.log(" ");
+  console.log("forceDraw(number) -- Draws the specific number of cards from the deck and adds to the player's hand");
+
  }
 
 //All players created  -- TRAVIS
