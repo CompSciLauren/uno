@@ -43,6 +43,33 @@ function initializeWindow() {
   refreshPlayfieldCardVisual();
 }
 
+/**
+ * Cheat console command. 
+ * Gives a new playfield card
+ */
+ function newPlayfieldCard() {
+  initializeWindow();
+ }
+
+
+/**
+ * Cheat console command. 
+ * Gives player a specific card (testing: red 1 only)
+ */
+function giveMeABreak(cardColor, cardValue) {
+  drawSpecificCard(cardColor, cardValue);
+ }
+
+/**
+* Cheat console command. 
+* Lists cheatcode in console
+*/
+function showMeCheats() {
+  console.log("newPlayfieldCard() -- Adds a new playfield card to top of stack");
+  console.log("giveMeABreak() -- Adds a specific card to player's hand (Red 1 for now)");
+
+ }
+
 //All players created  -- TRAVIS
 function initializePlayers() {
   //Fills the players array with 2-4 people or bots (future, currently only allows two players)

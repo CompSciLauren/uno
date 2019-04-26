@@ -48,6 +48,19 @@ function deck(divId, hidden) {
     this.amtCards = this.cards.length;
   };
 
+
+/**
+   * Gives player a specific card for cheat code
+   */
+  this.drawSpecificCard = function (cardColor, cardValue) {
+    let tempCardColor = cardColor;
+    let tempCardValue = cardValue;
+
+    let tempCard = new card(tempCardColor, tempCardValue);
+    this.addCard(tempCard);
+    this.reloadHand();
+  }
+
   /**
    * Gives player a random card
    */
@@ -258,6 +271,13 @@ function deck(divId, hidden) {
 function useCard(cardIndex) {
   //Play card
   players[gameTurn].playerDeck.playCard(cardIndex);
+}
+
+/**
+ * Function draws a specific card for cheat
+ */
+function drawSpecificCard(cardColor, cardValue) {
+  players[gameTurn].playerDeck.drawSpecificCard(cardColor, cardValue);
 }
 
 /**
