@@ -281,7 +281,7 @@ function drawSpecificCard(cardColor, cardValue) {
 }
 
 /**
- * Function draws a specific card for cheat
+ * Function draws a specific card for cheat code
  */
 function removeManyCards(numberOfCards) {
   if (numberOfCards > (players[gameTurn].playerDeck.amtCards - 2))
