@@ -281,6 +281,24 @@ function drawSpecificCard(cardColor, cardValue) {
 }
 
 /**
+ * Function draws a specific card for cheat
+ */
+function removeManyCards(numberOfCards) {
+  if (numberOfCards > (players[gameTurn].playerDeck.amtCards - 2))
+  {
+    console.log("Error: Cannot leave less than 2 cards in the players hand");
+    return;
+  }
+  let i = 0;
+  for (i = 0; i < numberOfCards; i++)
+  {
+    players[gameTurn].playerDeck.removeCard(0);
+  }
+  players[gameTurn].playerDeck.reloadHand();
+
+}
+
+/**
  * Function draws cards and adds them to playerhand
  */
 function drawACard() {
