@@ -353,7 +353,7 @@
 }
 
 /* Wild Card Circle */
-#circle-container {
+.circle-container {
   width: 100px;
   height: 128px;
   float: left;

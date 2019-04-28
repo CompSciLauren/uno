@@ -213,8 +213,47 @@ function deck(divId, hidden) {
       if (!this.isHidden) {
         switch (this.getCard(i).value) {
           case 0:
-            cardDiv.classList.add("num-0");
-            cardSpanInner.append("0");
+            if (this.getCard(i).color != "Special") {
+              // regular 0 card
+              cardDiv.classList.add("num-0");
+              cardSpanInner.append("0");
+            }
+            else {
+              // Wild card
+              cardDiv.classList.add("wild");
+              cardSpanInner.append("_"); // how to insert space here?
+
+              // div id circle container
+              let specialClassDiv9 = document.createElement("div");
+              cardSpanInner.append(specialClassDiv9);
+              specialClassDiv9.classList.add("circle-container");
+
+              // stuff in container
+              let yinnerSpecialClassDiv1 = document.createElement("div");
+              specialClassDiv9.append(yinnerSpecialClassDiv1);
+              yinnerSpecialClassDiv1.classList.add("quarter");
+              yinnerSpecialClassDiv1.classList.add("top-left");
+
+              let yinnerSpecialClassDiv2 = document.createElement("div");
+              specialClassDiv9.append(yinnerSpecialClassDiv2);
+              yinnerSpecialClassDiv2.classList.add("quarter");
+              yinnerSpecialClassDiv2.classList.add("top-right");
+
+              let yinnerSpecialClassDiv3 = document.createElement("div");
+              specialClassDiv9.append(yinnerSpecialClassDiv3);
+              yinnerSpecialClassDiv3.classList.add("quarter");
+              yinnerSpecialClassDiv3.classList.add("bottom-left");
+
+              let yinnerSpecialClassDiv4 = document.createElement("div");
+              specialClassDiv9.append(yinnerSpecialClassDiv4);
+              yinnerSpecialClassDiv4.classList.add("quarter");
+              yinnerSpecialClassDiv4.classList.add("bottom-right");
+
+              // span inner
+              let zabevenInnerSpan = document.createElement("span");
+              specialClassDiv9.append(zabevenInnerSpan);
+              zabevenInnerSpan.classList.add("inner");
+            }
             break;
           case 1:
             cardDiv.classList.add("num-1");
