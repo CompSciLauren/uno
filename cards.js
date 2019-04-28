@@ -223,7 +223,7 @@ function deck(divId, hidden) {
               cardDiv.classList.add("wild");
               cardSpanInner.append("_"); // how to insert space here?
 
-              // div id circle container
+              // div circle container
               let specialClassDiv9 = document.createElement("div");
               cardSpanInner.append(specialClassDiv9);
               specialClassDiv9.classList.add("circle-container");
@@ -256,8 +256,60 @@ function deck(divId, hidden) {
             }
             break;
           case 1:
-            cardDiv.classList.add("num-1");
-            cardSpanInner.append("1");
+            if (this.getCard(i).color != "Special") {
+              // regular 1 card
+              cardDiv.classList.add("num-1");
+              cardSpanInner.append("1");
+            }
+            else {
+              // wild +4 card
+              cardDiv.classList.add("plus-4");
+              cardSpanInner.append("_"); // how to insert space here?
+
+              // div card green
+              let specialClassDiv19 = document.createElement("div");
+              cardSpanInner.append(specialClassDiv19);
+              specialClassDiv19.classList.add("cardsInInnerPlus4");
+              specialClassDiv19.classList.add("card-plus4-green");
+              specialClassDiv19.classList.add("green");
+
+              let evenInnerSpan1 = document.createElement("span");
+              specialClassDiv19.append(evenInnerSpan1);
+              evenInnerSpan1.classList.add("inner");
+
+              // div card blue
+              let specialClassDiv192 = document.createElement("div");
+              cardSpanInner.append(specialClassDiv192);
+              specialClassDiv192.classList.add("cardsInInnerPlus4");
+              specialClassDiv192.classList.add("card-plus4-blue");
+              specialClassDiv192.classList.add("blue");
+
+              let evenInnerSpan12 = document.createElement("span");
+              specialClassDiv192.append(evenInnerSpan12);
+              evenInnerSpan12.classList.add("inner");
+
+              // div card red
+              let specialClassDiv193 = document.createElement("div");
+              cardSpanInner.append(specialClassDiv193);
+              specialClassDiv193.classList.add("cardsInInnerPlus4");
+              specialClassDiv193.classList.add("card-plus4-red");
+              specialClassDiv193.classList.add("red");
+
+              let evenInnerSpan13 = document.createElement("span");
+              specialClassDiv193.append(evenInnerSpan13);
+              evenInnerSpan13.classList.add("inner");
+
+              // div card yellow
+              let specialClassDiv194 = document.createElement("div");
+              cardSpanInner.append(specialClassDiv194);
+              specialClassDiv194.classList.add("cardsInInnerPlus4");
+              specialClassDiv194.classList.add("card-plus4-yellow");
+              specialClassDiv194.classList.add("yellow");
+
+              let evenInnerSpan14 = document.createElement("span");
+              specialClassDiv194.append(evenInnerSpan14);
+              evenInnerSpan14.classList.add("inner");
+            }
             break;
           case 2:
             cardDiv.classList.add("num-2");
