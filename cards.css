@@ -18,6 +18,8 @@
   box-shadow: 0 0 10px #777777;
   text-align: center;
   position: relative;
+  margin-left: -25px;
+  margin-right: -25px;
 }
 .card .inner {
   display: table-cell;
@@ -297,42 +299,42 @@
   position: absolute;
   left: 15px;
   top: 90px;
-  z-index: 0;
+  z-index: 0.1;
 }
 
 .card-plus2-bottom-left {
   position: absolute;
   left: 30px;
   top: 80px;
-  z-index: 0;
+  z-index: 0.1;
 }
 
 .card-plus4-blue {
   position: absolute;
   left: 30px;
   top: 60px;
-  z-index: 1;
+  z-index: 0.2;
 }
 
 .card-plus2-top-right {
   position: absolute;
   left: 45px;
   top: 50px;
-  z-index: 1;
+  z-index: 0.2;
 }
 
 .card-plus4-red {
   position: absolute;
   left: 45px;
   top: 75px;
-  z-index: 2;
+  z-index: 0.3;
 }
 
 .card-plus4-yellow {
   position: absolute;
   left: 60px;
   top: 45px;
-  z-index: 1;
+  z-index: 0.1;
 }
 
 .no-symbol {
@@ -360,7 +362,7 @@
   position: absolute;
   left: 10px;
   top: 24px;
-  z-index: 1;
+  z-index: 0.5;
   transform: rotate(18deg);
   transform: skew(-9deg, 0);
 }
