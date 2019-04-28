@@ -7,32 +7,40 @@
 
 
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
 
 
   <link href="styles.css" rel="stylesheet" type="text/css" />
+  <link href="cards.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
   <div id="setupGame" class="container">
-      <form class="text-center">
-          <div class="form-group mt-5">
-            <label for="playerName">Player Name:</label>
-            <input type="text" class="form-control" id="playerName" placeholder="eg. TheLegend27">
-          </div>
-        <div class="form-group">
-            <label for="amtPlayers">How many Players</label>
-            <select class="form-control" id="amtPlayers">
-              <option value="2" selected="selected">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-        </div>
-          <button class="btn btn-primary center-block" type="button" onclick="startGame()">Start Game</button>
-      </form>
+    <form class="text-center">
+      <div class="form-group mt-5">
+        <label for="playerName">Player Name:</label>
+        <input type="text" class="form-control" id="playerName" placeholder="eg. TheLegend27">
+      </div>
+      <div class="form-group">
+        <label for="amtPlayers">How many Players</label>
+        <select class="form-control" id="amtPlayers">
+          <option value="2" selected="selected">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+      <button class="btn btn-primary center-block" type="button" onclick="startGame()">Start Game</button>
+    </form>
 
   </div>
 
@@ -50,9 +58,11 @@
         <div id="LeftSeat" class="sideHand"></div>
       </div>
       <div class="col-md-8 custom-border" align="center">
-        <div id="drawBG" class="card"><div id="drawCardPile"></div></div>
+        <div id="drawBG" class="card">
+          <div id="drawCardPile"></div>
+        </div>
         <h1>
-          <div id="discardDeckDiv"></div>    <!-- Travis -->
+          <div id="discardDeckDiv"></div> <!-- Travis -->
         </h1>
         <div id="playfieldHand"></div>
         <form>
@@ -70,28 +80,27 @@
     </div>
 
     <div class="row">
-        <div class="col"  align="center">
-          <div id="BottomSeatID"></div>
-          <div id="BottomSeat"></div>
-          <button onclick="callUno()">Uno!</button>
-          <br>*Reminder, you must call Uno BEFORE playing your second-to-last card!
-          <div id="button">
-              <input type="button" value="Rules & Info"
-              onclick="window.open('rules.html')">
+      <div class="col" align="center">
+        <div id="BottomSeatID"></div>
+        <div id="BottomSeat"></div>
+        <button onclick="callUno()">Uno!</button>
+        <br>*Reminder, you must call Uno BEFORE playing your second-to-last card!
+        <div id="button">
+          <input type="button" value="Rules & Info" onclick="window.open('rules.html')">
         </div>
-      </h3>
-      <div id="player1Hand"></div>
+        </h3>
+        <div id="player1Hand"></div>
 
+      </div>
     </div>
-  </div>
 
 
-  <div id="wildColor"></div>
+    <div id="wildColor"></div>
 
-  <script type="text/javascript" src="cards.js"></script>
-  <script type="text/javascript" src="special-cards.js"></script>
-  <script type="text/javascript" src="players.js"></script>
-  <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="cards.js"></script>
+    <script type="text/javascript" src="special-cards.js"></script>
+    <script type="text/javascript" src="players.js"></script>
+    <script type="text/javascript" src="index.js"></script>
 </body>
 
 </html>

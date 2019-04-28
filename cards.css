@@ -1,0 +1,433 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:900);
+
+.card {
+  width: 116px;
+  height: 178px;
+  float: left;
+  background: #fff;
+  border-radius: 5px;
+  display: table;
+  box-sizing: border-box;
+  padding: 5px;
+  margin: 10px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 100px;
+  text-shadow: 1px 1px 0 #000000, -1px -1px 0 #000000, -1px 1px 0 #000000,
+    1px -1px 0 #000000, 1px 0 0 #000000, -1px 0 0 #000000, 0 -1px 0 #000000,
+    0 1px 0 #000000, 4px 4px 0 #000000;
+  box-shadow: 0 0 10px #777777;
+  text-align: center;
+  position: relative;
+}
+.card .inner {
+  display: table-cell;
+  vertical-align: middle;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.card .mark {
+  display: inline-block;
+  vertical-align: middle;
+  background: #ffffff;
+  margin: auto;
+  padding: 0 26px;
+  border-radius: 100px 60px / 120px 60px;
+  line-height: 1.4;
+}
+
+.card:before,
+.card:after {
+  display: inline-block;
+  position: absolute;
+  line-height: 0;
+  font-size: 20px;
+  color: #ffffff;
+  text-shadow: 1px 1px 0 #000000, -1px -1px 0 #000000, -1px 1px 0 #000000,
+    1px -1px 0 #000000, 1px 0 0 #000000, -1px 0 0 #000000, 0 -1px 0 #000000,
+    0 1px 0 #000000, 2px 2px 0 #000000;
+}
+
+.card:before {
+  top: 15px;
+  left: 10px;
+}
+.card:after {
+  bottom: 15px;
+  right: 10px;
+}
+
+.card.blue {
+  color: #0063b3;
+}
+
+.card.blue .inner {
+  background: #0063b3;
+}
+
+.card.green {
+  color: #18a849;
+}
+
+.card.green .inner {
+  background: #18a849;
+}
+
+.card.red {
+  color: #c72a18;
+}
+
+.card.red .inner {
+  background: #c72a18;
+}
+
+.card.yellow {
+  color: #e6ca1e;
+}
+
+.card.yellow .inner {
+  background: #e6ca1e;
+}
+
+.card.black {
+  color: #000000;
+}
+
+.card.black .inner {
+  background: #000000;
+}
+
+.cardsInInnerPlus4.black {
+  color: #000000;
+}
+
+.cardsInInnerPlus4.black .inner {
+  background: #000000;
+}
+
+.cardsInInnerPlus4.blue {
+  color: #0063b3;
+}
+
+.cardsInInnerPlus4.blue .inner {
+  background: #0063b3;
+}
+
+.cardsInInnerPlus2.blue {
+  color: #0063b3;
+}
+
+.cardsInInnerPlus2.blue .inner {
+  background: #0063b3;
+}
+
+.cardsInInnerPlus4.green {
+  color: #18a849;
+}
+
+.cardsInInnerPlus4.green .inner {
+  background: #18a849;
+}
+
+.cardsInInnerPlus4.red {
+  color: #c72a18;
+}
+
+.cardsInInnerPlus4.red .inner {
+  background: #c72a18;
+}
+
+.cardsInInnerPlus4.yellow {
+  color: #e6ca1e;
+}
+
+.cardsInInnerPlus4.yellow .inner {
+  background: #e6ca1e;
+}
+
+.card.num-0:before,
+.card.num-0:after {
+  content: "0";
+}
+
+.card.num-1:before,
+.card.num-1:after {
+  content: "1";
+}
+
+.card.num-2:before,
+.card.num-2:after {
+  content: "2";
+}
+
+.card.num-3:before,
+.card.num-3:after {
+  content: "3";
+}
+
+.card.num-4:before,
+.card.num-4:after {
+  content: "4";
+}
+
+.card.num-5:before,
+.card.num-5:after {
+  content: "5";
+}
+
+.card.num-6:before,
+.card.num-6:after {
+  content: "6";
+}
+
+.card.num-7:before,
+.card.num-7:after {
+  content: "7";
+}
+
+.card.num-8:before,
+.card.num-8:after {
+  content: "8";
+}
+
+.card.num-9:before,
+.card.num-9:after {
+  content: "9";
+}
+
+.card.num-6 .mark:after,
+.card.num-9 .mark:after {
+  display: block;
+  content: "";
+  position: relative;
+  top: -25px;
+  left: 5px;
+  width: 80%;
+  border: 1px solid #000000;
+  height: 4px;
+  box-shadow: 1px 1px 0 #000000;
+}
+.card.num-6.blue .mark:after,
+.card.num-9.blue .mark:after {
+  background: #0063b3;
+}
+.card.num-6.green .mark:after,
+.card.num-9.green .mark:after {
+  background: #18a849;
+}
+.card.num-6.red .mark:after,
+.card.num-9.red .mark:after {
+  background: #c72a18;
+}
+.card.num-6.yellow .mark:after,
+.card.num-9.yellow .mark:after {
+  background: #e6ca1e;
+}
+
+.card.plus-4:before,
+.card.plus-4:after {
+  content: "+4";
+}
+
+.card.draw2:before,
+.card.draw2:after {
+  content: "+2";
+}
+
+.card.skip:before,
+.card.skip:after {
+  content: "S";
+}
+
+.card.wild:before,
+.card.wild:after {
+  content: "W";
+}
+
+.card.reverse:before,
+.card.reverse:after {
+  content: "R";
+}
+
+.cardsInInnerPlus4 {
+  width: 26px;
+  height: 44px;
+  float: left;
+  background: #000;
+  border-radius: 5px;
+  display: table;
+  box-sizing: border-box;
+  padding: 3px;
+  margin: 10px;
+  box-shadow: 0 0 10px #000;
+  text-align: center;
+  position: relative;
+}
+
+.cardsInInnerPlus2 {
+  width: 26px;
+  height: 44px;
+  float: left;
+  background: #000;
+  border-radius: 5px;
+  display: table;
+  box-sizing: border-box;
+  padding: 3px;
+  margin: 10px;
+  box-shadow: 0 0 10px #000;
+  text-align: center;
+  position: relative;
+}
+
+.cardsInInnerSkip {
+  width: 26px;
+  height: 44px;
+  float: left;
+  background: #000;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 3px;
+  margin: 10px;
+  box-shadow: 0 0 10px #000;
+  text-align: center;
+  position: relative;
+}
+
+.card-plus4-green {
+  position: absolute;
+  left: 15px;
+  top: 90px;
+  z-index: 0;
+}
+
+.card-plus2-bottom-left {
+  position: absolute;
+  left: 30px;
+  top: 80px;
+  z-index: 0;
+}
+
+.card-plus4-blue {
+  position: absolute;
+  left: 30px;
+  top: 60px;
+  z-index: 1;
+}
+
+.card-plus2-top-right {
+  position: absolute;
+  left: 45px;
+  top: 50px;
+  z-index: 1;
+}
+
+.card-plus4-red {
+  position: absolute;
+  left: 45px;
+  top: 75px;
+  z-index: 2;
+}
+
+.card-plus4-yellow {
+  position: absolute;
+  left: 60px;
+  top: 45px;
+  z-index: 1;
+}
+
+.no-symbol {
+  position: absolute;
+  left: 13px;
+  top: 40px;
+  border: 10px solid #c72a18;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    transparent 45%,
+    #c72a18 45%,
+    #c72a18 55%,
+    transparent 55%
+  );
+}
+
+/* Wild Card Circle */
+#circle-container {
+  width: 100px;
+  height: 128px;
+  float: left;
+  position: absolute;
+  left: 13px;
+  top: 25px;
+  z-index: 1;
+  transform: rotate(18deg);
+  transform: skew(-13deg, 0);
+}
+
+.quarter {
+  width: 50px;
+  height: 64px;
+}
+
+.top-left {
+  border-top-left-radius: 200px;
+  background: #c72a18;
+  float: left;
+}
+
+.top-right {
+  border-top-right-radius: 200px;
+  background: #0063b3;
+  float: right;
+}
+
+.bottom-left {
+  border-bottom-left-radius: 200px;
+  background: #e6ca1e;
+  float: left;
+}
+
+.bottom-right {
+  border-bottom-right-radius: 200px;
+  background: #18a849;
+  float: right;
+}
+
+/* Reverse Card Arrow */
+.left-arrow-container {
+  position: absolute;
+  left: 30px;
+  top: -25px;
+}
+
+.right-arrow-container {
+  position: absolute;
+  left: 40px;
+  top: -10px;
+}
+
+.arrow-body {
+  transform: rotate(310deg);
+  width: 50px;
+  height: 15px;
+  background: #18a849;
+  margin: 100px auto;
+}
+
+.arrow-body2 {
+  transform: rotate(130deg);
+  width: 50px;
+  height: 15px;
+  background: #18a849;
+  margin: 100px auto;
+}
+
+.arrow-head {
+  border-top: 18px solid transparent;
+  border-bottom: 18px solid transparent;
+  border-left: 23px solid #18a849;
+  float: right;
+  margin-top: -13px;
+  margin-right: -21px;
+}

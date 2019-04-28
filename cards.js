@@ -57,72 +57,66 @@ function deck(divId, hidden) {
     let randValue = Math.floor(Math.random() * 13);
     if (randColor == "Special") {
       //Pick random number between 1 and 3, if 1 or 2 make Wildcard, else regular card
-      let randNum = Math.round((Math.random()*2)+1);
+      let randNum = Math.round((Math.random() * 2) + 1);
       //console.log("Rand num: " + randNum);
-      if (randNum == 1 || randNum == 2)
-      {
+      if (randNum == 1 || randNum == 2) {
         randValue = randValue % 2;
       }
-      else
-      {
+      else {
         //array of colors minus "Special" option
-        randColor = colorArray[Math.floor(Math.random() * (colorArray.length-1))];
+        randColor = colorArray[Math.floor(Math.random() * (colorArray.length - 1))];
         randValue = Math.floor(Math.random() * 13);
       }
     }
     let tempCard = new card(randColor, randValue);
     this.addCard(tempCard);
-    
+
     //Draw Card Animation Start
-    if(!initialDraw){
+    if (!initialDraw) {
       let drawPile = document.getElementById("drawCardPile");
 
       let cardDiv = document.createElement("div");
       let cardDivBack = document.createElement("div");
-      
+
       drawPile.append(cardDiv);
       drawPile.append(cardDivBack);
-      
+
       cardDiv.classList.add("card");
       cardDivBack.classList.add("card");
-      
+
       cardDiv.style.backgroundColor = "#000";
       cardDivBack.style.backgroundColor = "#000";
-      if(this.hand.id == "BottomSeat"){
+      if (this.hand.id == "BottomSeat") {
         cardDiv.innerHTML = tempCard.value;
         cardDiv.style.backgroundColor = tempCard.getColorValue();
         cardDiv.classList.add("drawCardAnimationFrontDown");
         cardDivBack.classList.add("drawCardAnimationBack");
-      }else {
-        if(this.hand.id == "TopSeat"){
+      } else {
+        if (this.hand.id == "TopSeat") {
           cardDiv.classList.add("drawCardAnimationHiddenUp");
-        }else if(this.hand.id == "RightSeat"){
+        } else if (this.hand.id == "RightSeat") {
           cardDiv.classList.add("drawCardAnimationHiddenRight");
-        }else if(this.hand.id == "LeftSeat"){
+        } else if (this.hand.id == "LeftSeat") {
           cardDiv.classList.add("drawCardAnimationHiddenLeft");
-        }else{
-          cardDiv.classList.add("drawCardAnimationFront");         
+        } else {
+          cardDiv.classList.add("drawCardAnimationFront");
         }
         cardDivBack.classList.add("drawCardBackHidden");
       }
-      
-      
+
+
       let thisObject = this;
       setTimeout(function () {
         drawPile.removeChild(drawPile.childNodes[0]);
         drawPile.removeChild(drawPile.childNodes[0]);
         thisObject.reloadHand();
       }, 1000);
-    }else{
+    } else {
       this.reloadHand();
     }
-    
-    //Draw Card Animation End
-    
-    
 
-    
-    
+    //Draw Card Animation End
+
     console.log(
       players[gameTurn].playerID + " Drew a " + randColor + " " + randValue
     ); //testing
@@ -137,14 +131,12 @@ function deck(divId, hidden) {
   this.playCard = function (c) {
     if (this.isValid(c)) {
       //Check if second to last card & Uno call protection
-      if (players[gameTurn].playerDeck.amtCards == 2 && players[gameTurn].unoCall != true)
-      {
+      if (players[gameTurn].playerDeck.amtCards == 2 && players[gameTurn].unoCall != true) {
         console.log("Player failed to call Uno before playing second to last card. Penalty 2 cards");
         players[gameTurn].playerDeck.drawCard();
         players[gameTurn].playerDeck.drawCard();
       }
-      else
-      {
+      else {
         //console.log("Player called Uno");
       }
       //console.log(this.getCard(c).color + " " + this.getCard(c).value);
@@ -207,12 +199,148 @@ function deck(divId, hidden) {
       let cardDiv = document.createElement("div");
       this.hand.append(cardDiv);
       cardDiv.classList.add("card");
+
+      let cardSpan = document.createElement("span");
+      cardDiv.append(cardSpan);
+      cardSpan.classList.add("inner");
+
+      let cardSpanInner = document.createElement("span");
+      cardSpan.append(cardSpanInner);
+      cardSpanInner.classList.add("mark");
+
+      cardDiv.append();
+
       if (!this.isHidden) {
-        cardDiv.innerHTML = this.getCard(i).value;
-        cardDiv.style.backgroundColor = this.getCard(i).getColorValue();
-        cardDiv.classList.add('my-card');
+        switch (this.getCard(i).value) {
+          case 0:
+            cardDiv.classList.add("num-0");
+            cardSpanInner.append("0");
+            break;
+          case 1:
+            cardDiv.classList.add("num-1");
+            cardSpanInner.append("1");
+            break;
+          case 2:
+            cardDiv.classList.add("num-2");
+            cardSpanInner.append("2");
+            break;
+          case 3:
+            cardDiv.classList.add("num-3");
+            cardSpanInner.append("3");
+            break;
+          case 4:
+            cardDiv.classList.add("num-4");
+            cardSpanInner.append("4");
+            break;
+          case 5:
+            cardDiv.classList.add("num-5");
+            cardSpanInner.append("5");
+            break;
+          case 6:
+            cardDiv.classList.add("num-6");
+            cardSpanInner.append("6");
+            break;
+          case 7:
+            cardDiv.classList.add("num-7");
+            cardSpanInner.append("7");
+            break;
+          case 8:
+            cardDiv.classList.add("num-8");
+            cardSpanInner.append("8");
+            break;
+          case 9:
+            cardDiv.classList.add("num-9");
+            cardSpanInner.append("9");
+            break;
+          case 10:
+            // Draw 2
+            cardDiv.classList.add("draw2");
+            cardSpanInner.append("_"); // how to insert space here?
+
+            // first inner card drawing
+            let specialClassDiv = document.createElement("div");
+            cardSpanInner.append(specialClassDiv);
+            specialClassDiv.classList.add("cardsInInnerPlus2");
+            specialClassDiv.classList.add("card-plus2-bottom-left");
+
+            let evenInnerSpan = document.createElement("span");
+            specialClassDiv.append(evenInnerSpan);
+            evenInnerSpan.classList.add("inner");
+
+            // second inner card drawing
+            let specialClassDiv2 = document.createElement("div");
+            cardSpanInner.append(specialClassDiv2);
+            specialClassDiv2.classList.add("cardsInInnerPlus2");
+            specialClassDiv2.classList.add("card-plus2-top-right");
+
+            let evenInnerSpan2 = document.createElement("span");
+            specialClassDiv2.append(evenInnerSpan2);
+            evenInnerSpan2.classList.add("inner");
+
+            break;
+          case 11:
+            // Reverse
+            cardDiv.classList.add("reverse");
+            cardSpanInner.append("_"); // how to insert space here?
+
+            // left arrow drawing
+            let aspecialClassDiv = document.createElement("div");
+            cardSpanInner.append(aspecialClassDiv);
+            aspecialClassDiv.classList.add("left-arrow-container");
+            let ainnerSpecialClassDiv = document.createElement("div");
+            aspecialClassDiv.append(ainnerSpecialClassDiv);
+            ainnerSpecialClassDiv.classList.add("arrow-body");
+
+            let aevenInnerSpan = document.createElement("span");
+            ainnerSpecialClassDiv.append(aevenInnerSpan);
+            aevenInnerSpan.classList.add("arrow-head");
+
+            // right arrow drawing
+            let bspecialClassDiv = document.createElement("div");
+            cardSpanInner.append(bspecialClassDiv);
+            bspecialClassDiv.classList.add("right-arrow-container");
+            let binnerSpecialClassDiv = document.createElement("div");
+            bspecialClassDiv.append(binnerSpecialClassDiv);
+            binnerSpecialClassDiv.classList.add("arrow-body2");
+
+            let bevenInnerSpan = document.createElement("span");
+            binnerSpecialClassDiv.append(bevenInnerSpan);
+            bevenInnerSpan.classList.add("arrow-head");
+
+            break;
+          case 12:
+            // Skip
+            cardDiv.classList.add("skip");
+            cardSpanInner.append("_"); // how to insert space here?
+
+            // first inner card drawing
+            let zspecialClassDiv = document.createElement("div");
+            cardSpanInner.append(zspecialClassDiv);
+            zspecialClassDiv.classList.add("cardsInInnerSkip");
+            zspecialClassDiv.classList.add("no-symbol");
+
+            let zevenInnerSpan = document.createElement("span");
+            zspecialClassDiv.append(zevenInnerSpan);
+            zevenInnerSpan.classList.add("inner");
+
+            break;
+        }
+
+        cardDiv.classList.add("my-card");
+        if (this.getCard(i).getColorValue() == "#0000FF") {
+          cardDiv.classList.add("blue");
+        }
+        if (this.getCard(i).getColorValue() == "#A60000") {
+          cardDiv.classList.add("red");
+        }
+        if (this.getCard(i).getColorValue() == "#004f19") {
+          cardDiv.classList.add("green");
+        }
+        if (this.getCard(i).getColorValue() == "#e5bf00") {
+          cardDiv.classList.add("yellow");
+        }
       } else {
-         cardDiv.style.backgroundColor = "#000000";
+        cardDiv.style.backgroundColor = "#000000";
       }
     }
   };
@@ -296,7 +424,7 @@ function SelectPlayfieldCard() {
   discard(tempCard);
 }
 
-function discard(card){
+function discard(card) {
   discardPile.addCard(card);
   if (discardPile.cards.length > 5)
     discardPile.removeCard(0);
