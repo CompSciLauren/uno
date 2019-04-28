@@ -221,6 +221,7 @@ function deck(divId, hidden) {
             else {
               // Wild card
               cardDiv.classList.add("wild");
+              cardDiv.classList.add("black");
               cardSpanInner.append("_"); // how to insert space here?
 
               // div circle container
@@ -264,6 +265,7 @@ function deck(divId, hidden) {
             else {
               // wild +4 card
               cardDiv.classList.add("plus-4");
+              cardDiv.classList.add("black");
               cardSpanInner.append("_"); // how to insert space here?
 
               // div card green

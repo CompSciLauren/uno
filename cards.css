@@ -354,20 +354,20 @@
 
 /* Wild Card Circle */
 .circle-container {
-  width: 100px;
-  height: 128px;
+  width: 94px;
+  height: 130px;
   float: left;
   position: absolute;
-  left: 13px;
-  top: 25px;
+  left: 10px;
+  top: 24px;
   z-index: 1;
   transform: rotate(18deg);
-  transform: skew(-13deg, 0);
+  transform: skew(-9deg, 0);
 }
 
 .quarter {
-  width: 50px;
-  height: 64px;
+  width: 47px;
+  height: 65px;
 }
 
 .top-left {
