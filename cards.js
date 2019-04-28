@@ -222,7 +222,9 @@ function deck(divId, hidden) {
               // Wild card
               cardDiv.classList.add("wild");
               cardDiv.classList.add("black");
-              cardSpanInner.append("_"); // how to insert space here?
+              cardSpanInner.append("_");
+              $(cardSpanInner).css("color", "white");
+              $(cardSpanInner).css("text-shadow", "#fff 1px 1px 1px");
 
               // div circle container
               let specialClassDiv9 = document.createElement("div");
@@ -266,7 +268,9 @@ function deck(divId, hidden) {
               // wild +4 card
               cardDiv.classList.add("plus-4");
               cardDiv.classList.add("black");
-              cardSpanInner.append("_"); // how to insert space here?
+              cardSpanInner.append("_");
+              $(cardSpanInner).css("color", "white");
+              $(cardSpanInner).css("text-shadow", "#fff 1px 1px 1px");
 
               // div card green
               let specialClassDiv19 = document.createElement("div");
@@ -348,7 +352,9 @@ function deck(divId, hidden) {
           case 10:
             // Draw 2
             cardDiv.classList.add("draw2");
-            cardSpanInner.append("_"); // how to insert space here?
+            cardSpanInner.append("_");
+            $(cardSpanInner).css("color", "white");
+            $(cardSpanInner).css("text-shadow", "#fff 1px 1px 1px");
 
             // first inner card drawing
             let specialClassDiv = document.createElement("div");
@@ -374,7 +380,9 @@ function deck(divId, hidden) {
           case 11:
             // Reverse
             cardDiv.classList.add("reverse");
-            cardSpanInner.append("_"); // how to insert space here?
+            cardSpanInner.append("_");
+            $(cardSpanInner).css("color", "white");
+            $(cardSpanInner).css("text-shadow", "#fff 1px 1px 1px");
 
             // left arrow drawing
             let aspecialClassDiv = document.createElement("div");
@@ -404,7 +412,9 @@ function deck(divId, hidden) {
           case 12:
             // Skip
             cardDiv.classList.add("skip");
-            cardSpanInner.append("_"); // how to insert space here?
+            cardSpanInner.append("_");
+            $(cardSpanInner).css("color", "white");
+            $(cardSpanInner).css("text-shadow", "#fff 1px 1px 1px");
 
             // first inner card drawing
             let zspecialClassDiv = document.createElement("div");
