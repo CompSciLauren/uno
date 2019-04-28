@@ -515,6 +515,10 @@ function drawACard() {
   }
 }
 
+$(drawCardPile).click(function () {
+  drawACard();
+});
+
 /**
  * Changes the global card object to random color/value assignment
  */
