@@ -464,7 +464,11 @@ function deck(divId, hidden) {
           cardDiv.classList.add("yellow");
         }
       } else {
-        cardDiv.style.backgroundColor = "#000000";
+        cardDiv.classList.add("black");
+        cardSpanInner.append("_");
+        $(cardSpanInner).css("color", "#c72a18");
+        $(cardSpanInner).css("background-color", "#c72a18");
+        $(cardSpanInner).css("text-shadow", "#c72a18 1px 1px 1px");
         if (i >= 7) {
           cardDiv.style.display = "none";
         }
