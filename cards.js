@@ -167,8 +167,10 @@ function deck(divId, hidden) {
         location.reload();
         return;
       }
-    } else {
+    } else if(!players[gameTurn].isBot) {
       this.cardInvalid(c);
+      return false;
+    } else{
       return false;
     }
 
@@ -254,6 +256,7 @@ function drawACard() {
   if (drawStack.stackAmt != 0) {
     let drawTimes = drawStack.cardType * drawStack.stackAmt;
     let i = 0;
+    drawStack.clearVisual();
     for (i = 0; i < drawTimes; i++) {
       players[gameTurn].playerDeck.drawCard();
     }
