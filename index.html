@@ -57,20 +57,24 @@
         <div id="LeftSeatID"></div>
         <div id="LeftSeat" class="sideHand"></div>
       </div>
-      <div class="col-md-8 custom-border" align="center">
-        <div id="drawBG" class="card">
-          <div id="drawCardPile"></div>
+      <div class="col-md-8 custom-border center-card-hands" align="center">
+        <div class="row">
+          <div id="drawBG" class="card">
+            <div id="drawCardPile"></div>
+          </div>
+          <h1>
+            <div id="discardDeckDiv"></div> <!-- Travis -->
+          </h1>
+          <div id="playfieldHand"></div>
         </div>
-        <h1>
-          <div id="discardDeckDiv"></div> <!-- Travis -->
-        </h1>
-        <div id="playfieldHand"></div>
-        <form>
-          <button type="button" onclick="initializeWindow()" onclick="newPlayfieldCard()">
-            <!-- call refreshPlayfieldCardVisual() too -->
-            New Playfield Card
-          </button>
-        </form>
+        <div class="row">
+          <form>
+            <button type="button" onclick="initializeWindow()" onclick="newPlayfieldCard()">
+              <!-- call refreshPlayfieldCardVisual() too -->
+              New Playfield Card
+            </button>
+          </form>
+        </div>
       </div>
       <div class="col-md-2">
         <div id="RightSeatID"></div>
