@@ -168,7 +168,7 @@ function deck(divId, hidden) {
         return;
       }
     } else {
-      this.cardInvalid();
+      this.cardInvalid(c);
       return false;
     }
 
@@ -231,9 +231,11 @@ function deck(divId, hidden) {
     return false;
   }; //end of check card to playfield
 
-  this.cardInvalid = function () {
+  this.cardInvalid = function (c) {
     let audio = new Audio("error.mp3");
     audio.play();
+    players[gameTurn].playerDeck.hand.childNodes[c].classList.add("invalid");
+    setTimeout(function(){players[gameTurn].playerDeck.hand.childNodes[c].classList.remove("invalid");},500);
   };
 }
 
