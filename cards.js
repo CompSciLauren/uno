@@ -465,6 +465,9 @@ function deck(divId, hidden) {
         }
       } else {
         cardDiv.style.backgroundColor = "#000000";
+        if (i >= 7) {
+          cardDiv.style.display = "none";
+        }
       }
     }
   };
