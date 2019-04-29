@@ -406,6 +406,7 @@ function deck(divId, hidden) {
             let ainnerSpecialClassDiv = document.createElement("div");
             aspecialClassDiv.append(ainnerSpecialClassDiv);
             ainnerSpecialClassDiv.classList.add("arrow-body");
+            $(".arrow-body").css("background", fixColorOfInnerSpecialCards);
 
             let aevenInnerSpan = document.createElement("span");
             ainnerSpecialClassDiv.append(aevenInnerSpan);
@@ -418,10 +419,13 @@ function deck(divId, hidden) {
             let binnerSpecialClassDiv = document.createElement("div");
             bspecialClassDiv.append(binnerSpecialClassDiv);
             binnerSpecialClassDiv.classList.add("arrow-body2");
+            $(".arrow-body2").css("background", fixColorOfInnerSpecialCards);
 
             let bevenInnerSpan = document.createElement("span");
             binnerSpecialClassDiv.append(bevenInnerSpan);
             bevenInnerSpan.classList.add("arrow-head");
+
+            $(".arrow-head").css("border-left", `23px solid ${fixColorOfInnerSpecialCards}`);
 
             break;
           case 12:
