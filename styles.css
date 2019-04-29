@@ -17,6 +17,7 @@
     padding: 0;
     overflow: show;
     background-color: #000;
+    cursor: pointer;
 }
 
 #drawCardPile{
