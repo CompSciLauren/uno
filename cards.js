@@ -48,6 +48,19 @@ function deck(divId, hidden) {
     this.amtCards = this.cards.length;
   };
 
+
+/**
+   * Gives player a specific card for cheat code
+   */
+  this.drawSpecificCard = function (cardColor, cardValue) {
+    let tempCardColor = cardColor;
+    let tempCardValue = cardValue;
+
+    let tempCard = new card(tempCardColor, tempCardValue);
+    this.addCard(tempCard);
+    this.reloadHand();
+  }
+
   /**
    * Gives player a random card
    */
@@ -56,7 +69,19 @@ function deck(divId, hidden) {
     let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
     let randValue = Math.floor(Math.random() * 13);
     if (randColor == "Special") {
-      randValue = randValue % 2;
+      //Pick random number between 1 and 3, if 1 or 2 make Wildcard, else regular card
+      let randNum = Math.round((Math.random()*2)+1);
+      //console.log("Rand num: " + randNum);
+      if (randNum == 1 || randNum == 2)
+      {
+        randValue = randValue % 2;
+      }
+      else
+      {
+        //array of colors minus "Special" option
+        randColor = colorArray[Math.floor(Math.random() * (colorArray.length-1))];
+        randValue = Math.floor(Math.random() * 13);
+      }
     }
     let tempCard = new card(randColor, randValue);
     this.addCard(tempCard);
@@ -133,9 +158,9 @@ function deck(divId, hidden) {
       }
       else
       {
-        console.log("Player called Uno");
+        //console.log("Player called Uno");
       }
-      console.log(this.getCard(c).color + " " + this.getCard(c).value);
+      //console.log(this.getCard(c).color + " " + this.getCard(c).value);
 
       let cardBeingPlayed = this.cards[c];
 
@@ -230,6 +255,9 @@ function deck(divId, hidden) {
     if (cardNumber == discardPile.cards[discardPile.cards.length - 1].value) {
       return true;
     }
+    console.log("Played card: " + cardColor + " " + cardNumber);
+    console.log("Playfield card card: " + discardPile.cards[discardPile.cards.length - 1].color + " " + discardPile.cards[discardPile.cards.length - 1].value);
+
     return false;
   }; //end of check card to playfield
 
@@ -247,6 +275,31 @@ function deck(divId, hidden) {
 function useCard(cardIndex) {
   //Play card
   players[gameTurn].playerDeck.playCard(cardIndex);
+}
+
+/**
+ * Function draws a specific card for cheat
+ */
+function drawSpecificCard(cardColor, cardValue) {
+  players[gameTurn].playerDeck.drawSpecificCard(cardColor, cardValue);
+}
+
+/**
+ * Function draws a specific card for cheat code
+ */
+function removeManyCards(numberOfCards) {
+  if (numberOfCards > (players[gameTurn].playerDeck.amtCards - 2))
+  {
+    console.log("Error: Cannot leave less than 2 cards in the players hand");
+    return;
+  }
+  let i = 0;
+  for (i = 0; i < numberOfCards; i++)
+  {
+    players[gameTurn].playerDeck.removeCard(0);
+  }
+  players[gameTurn].playerDeck.reloadHand();
+
 }
 
 /**
@@ -272,6 +325,17 @@ function drawACard() {
   else {
     players[gameTurn].playerDeck.drawCard();
   }
+}
+
+/**
+ * Function draws a specific number of cards and adds them to playerhand for console cheat
+ */
+function drawManyCard(numCards) {
+    let drawTimes = numCards;
+    let i = 0;
+    for (i = 0; i < drawTimes; i++) {
+      players[gameTurn].playerDeck.drawCard();
+    }
 }
 
 /**
