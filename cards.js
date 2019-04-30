@@ -210,21 +210,6 @@ function deck(divId, hidden) {
 
       cardDiv.append();
 
-      let fixColorOfInnerSpecialCards = "";
-      switch (this.getCard(i).color) {
-        case "Red":
-          fixColorOfInnerSpecialCards = "#c72a18";
-          break;
-        case "Yellow":
-          fixColorOfInnerSpecialCards = "#e6ca1e";
-          break;
-        case "Blue":
-          fixColorOfInnerSpecialCards = "#0063b3";
-          break;
-        case "Green":
-          fixColorOfInnerSpecialCards = "#18a849";
-      }
-
       if (!this.isHidden) {
         switch (this.getCard(i).value) {
           case 0:
@@ -406,7 +391,6 @@ function deck(divId, hidden) {
             let ainnerSpecialClassDiv = document.createElement("div");
             aspecialClassDiv.append(ainnerSpecialClassDiv);
             ainnerSpecialClassDiv.classList.add("arrow-body");
-            $(".arrow-body").css("background", fixColorOfInnerSpecialCards);
 
             let aevenInnerSpan = document.createElement("span");
             ainnerSpecialClassDiv.append(aevenInnerSpan);
@@ -419,13 +403,10 @@ function deck(divId, hidden) {
             let binnerSpecialClassDiv = document.createElement("div");
             bspecialClassDiv.append(binnerSpecialClassDiv);
             binnerSpecialClassDiv.classList.add("arrow-body2");
-            $(".arrow-body2").css("background", fixColorOfInnerSpecialCards);
 
             let bevenInnerSpan = document.createElement("span");
             binnerSpecialClassDiv.append(bevenInnerSpan);
             bevenInnerSpan.classList.add("arrow-head");
-
-            $(".arrow-head").css("border-left", `23px solid ${fixColorOfInnerSpecialCards}`);
 
             break;
           case 12:
@@ -440,8 +421,6 @@ function deck(divId, hidden) {
             cardSpanInner.append(zspecialClassDiv);
             zspecialClassDiv.classList.add("cardsInInnerSkip");
             zspecialClassDiv.classList.add("no-symbol");
-            $(".no-symbol").css("border-color", fixColorOfInnerSpecialCards);
-            $(".no-symbol").css("background", `linear-gradient(135deg,transparent 45%,${fixColorOfInnerSpecialCards} 45%,${fixColorOfInnerSpecialCards} 55%,transparent 55%)`);
 
             let zevenInnerSpan = document.createElement("span");
             zspecialClassDiv.append(zevenInnerSpan);
