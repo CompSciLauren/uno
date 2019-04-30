@@ -192,8 +192,10 @@ function deck(divId, hidden) {
         location.reload();
         return;
       }
-    } else {
-      this.cardInvalid();
+    } else if(!players[gameTurn].isBot) {
+      this.cardInvalid(c);
+      return false;
+    } else{
       return false;
     }
 
@@ -259,9 +261,11 @@ function deck(divId, hidden) {
     return false;
   }; //end of check card to playfield
 
-  this.cardInvalid = function () {
+  this.cardInvalid = function (c) {
     let audio = new Audio("error.mp3");
     audio.play();
+    players[gameTurn].playerDeck.hand.childNodes[c].classList.add("invalid");
+    setTimeout(function(){players[gameTurn].playerDeck.hand.childNodes[c].classList.remove("invalid");},500);
   };
 }
 
@@ -305,6 +309,7 @@ function drawACard() {
   if (drawStack.stackAmt != 0) {
     let drawTimes = drawStack.cardType * drawStack.stackAmt;
     let i = 0;
+    drawStack.clearVisual();
     for (i = 0; i < drawTimes; i++) {
       players[gameTurn].playerDeck.drawCard();
     }

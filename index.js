@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $(document).on("click", ".card", function () {
+  $(document).on("click", ".my-card", function () {
     let cardIndex = $('.my-card').index(this);
     console.log("index: " + cardIndex);
     useCard(cardIndex);
@@ -31,7 +31,13 @@ let initialDraw = true;
 let drawStack = {
   cardValue: 0,
   stackAmt: 0,
-  cardType: 2 // either 2 or 4
+  cardType: 2, // either 2 or 4
+  updateStack: function(){
+    document.getElementById("drawCardPile").innerHTML = "+" + (this.cardType*this.stackAmt);
+  },
+  clearVisual: function(){
+    document.getElementById("drawCardPile").innerHTML = "";
+  }
 };
 
 /**
@@ -198,12 +204,14 @@ function play() {
       }
       document.getElementById(players[gameTurn].playerDeck.hand.id + "ID").childNodes[0].classList.add("activePlayer");
       players[gameTurn].botLogic();
-    }, 1500);
+    }, 1000);
   }else{
+    setTimeout(function () {
       for(let i = 0; i < players.length; i++){
         document.getElementById(players[i].playerDeck.hand.id + "ID").childNodes[0].classList.remove("activePlayer");
       }
       document.getElementById(players[gameTurn].playerDeck.hand.id + "ID").childNodes[0].classList.add("activePlayer");
+    }, 1000);
   }
 }
 
