@@ -1,9 +1,3 @@
-#drawBG{
-    padding: 0;
-    overflow: show;
-    background-color: #000;
-}
-
 #drawCardPile{
   overflow: visible;
   width: 500px;
