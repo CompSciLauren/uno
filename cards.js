@@ -48,6 +48,19 @@ function deck(divId, hidden) {
     this.amtCards = this.cards.length;
   };
 
+
+/**
+   * Gives player a specific card for cheat code
+   */
+  this.drawSpecificCard = function (cardColor, cardValue) {
+    let tempCardColor = cardColor;
+    let tempCardValue = cardValue;
+
+    let tempCard = new card(tempCardColor, tempCardValue);
+    this.addCard(tempCard);
+    this.reloadHand();
+  }
+
   /**
    * Gives player a random card
    */
@@ -261,6 +274,31 @@ function useCard(cardIndex) {
 }
 
 /**
+ * Function draws a specific card for cheat
+ */
+function drawSpecificCard(cardColor, cardValue) {
+  players[gameTurn].playerDeck.drawSpecificCard(cardColor, cardValue);
+}
+
+/**
+ * Function draws a specific card for cheat code
+ */
+function removeManyCards(numberOfCards) {
+  if (numberOfCards > (players[gameTurn].playerDeck.amtCards - 2))
+  {
+    console.log("Error: Cannot leave less than 2 cards in the players hand");
+    return;
+  }
+  let i = 0;
+  for (i = 0; i < numberOfCards; i++)
+  {
+    players[gameTurn].playerDeck.removeCard(0);
+  }
+  players[gameTurn].playerDeck.reloadHand();
+
+}
+
+/**
  * Function draws cards and adds them to playerhand
  */
 function drawACard() {
@@ -282,6 +320,17 @@ function drawACard() {
   else {
     players[gameTurn].playerDeck.drawCard();
   }
+}
+
+/**
+ * Function draws a specific number of cards and adds them to playerhand for console cheat
+ */
+function drawManyCard(numCards) {
+    let drawTimes = numCards;
+    let i = 0;
+    for (i = 0; i < drawTimes; i++) {
+      players[gameTurn].playerDeck.drawCard();
+    }
 }
 
 /**
