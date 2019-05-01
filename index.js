@@ -7,7 +7,7 @@ $(document).ready(function () {
 });
 
 // Global Playfield Card
-let discardPile = new deck(discardDeckDiv, false);
+let discardPile = new deck("discardDeckDiv", false);
 
 //Creates a Global array to store players  --  TRAVIS
 let players = [];
@@ -154,13 +154,5 @@ function checkUno(){
 }
 
 function refreshPlayfieldCardVisual() {
-  let pfcDiv = document.getElementById("discardDeckDiv");
-  pfcDiv.innerHTML = " ";
-  for (let i = 0; i < discardPile.cards.length; i++){
-    let cardDiv = document.createElement("div");
-    pfcDiv.append(cardDiv);
-    cardDiv.classList.add("card");
-    cardDiv.innerHTML = discardPile.cards[i].value;
-    cardDiv.style.backgroundColor = discardPile.cards[i].getColorValue();
-  }
+    discardPile.reloadHand();
 }

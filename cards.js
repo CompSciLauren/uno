@@ -429,7 +429,11 @@ function deck(divId, hidden) {
             break;
         }
 
-        cardDiv.classList.add("my-card");
+        //prevents the discardDeckDiv from being counted as playable cards
+        if(this.hand.id != "discardDeckDiv"){
+            cardDiv.classList.add("my-card");
+        }
+          
         if (this.getCard(i).getColorValue() == "#0000FF") {
           cardDiv.classList.add("blue");
         }
