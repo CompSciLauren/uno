@@ -828,12 +828,12 @@ function drawACard() {
     drawStack.stackAmt = 0;
     rotatePlayers();
     play();
-  }/*
+  }
   else if (forcePlay()) {
     let audio = new Audio("error.mp3");
 
     audio.play();
-  }*/
+  }
   else {
     players[gameTurn].playerDeck.drawCard();
   }
