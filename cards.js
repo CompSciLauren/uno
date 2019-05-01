@@ -48,6 +48,19 @@ function deck(divId, hidden) {
     this.amtCards = this.cards.length;
   };
 
+
+/**
+   * Gives player a specific card for cheat code
+   */
+  this.drawSpecificCard = function (cardColor, cardValue) {
+    let tempCardColor = cardColor;
+    let tempCardValue = cardValue;
+
+    let tempCard = new card(tempCardColor, tempCardValue);
+    this.addCard(tempCard);
+    this.reloadHand();
+  }
+
   /**
    * Gives player a random card
    */
@@ -378,7 +391,6 @@ function deck(divId, hidden) {
         }
         drawCardContainerBack.classList.add("drawCardBackHidden");
       }
-      
 
 
       let thisObject = this;
@@ -392,7 +404,6 @@ function deck(divId, hidden) {
     }
 
     //Draw Card Animation End
-
     console.log(
       players[gameTurn].playerID + " Drew a " + randColor + " " + randValue
     ); //testing
@@ -409,21 +420,15 @@ function deck(divId, hidden) {
       //Check if second to last card & Uno call protection
       if (players[gameTurn].playerDeck.amtCards == 2 && players[gameTurn].unoCall != true) {
         console.log("Player failed to call Uno before playing second to last card. Penalty 2 cards");
+        document.getElementById("unoButton").classList.add("unoButton");
+        setTimeout(function() {document.getElementById("unoButton").classList.remove("unoButton")}, 500);
         players[gameTurn].playerDeck.drawCard();
         players[gameTurn].playerDeck.drawCard();
       }
-      else {
-        //console.log("Player called Uno");
-      }
-      //console.log(this.getCard(c).color + " " + this.getCard(c).value);
 
       let cardBeingPlayed = this.cards[c];
 
-      //Set playfield card to validated 'played' card
-      //playFieldCard.color = cardBeingPlayed.color;
-      //playFieldCard.value = cardBeingPlayed.value;
       discard(cardBeingPlayed);
-
       refreshPlayfieldCardVisual();
 
       if (cardBeingPlayed.color == "Special") {
@@ -447,8 +452,10 @@ function deck(divId, hidden) {
         location.reload();
         return;
       }
-    } else {
-      this.cardInvalid();
+    } else if(!players[gameTurn].isBot) {
+      this.cardInvalid(c);
+      return false;
+    } else{
       return false;
     }
 
@@ -764,9 +771,12 @@ function deck(divId, hidden) {
     return false;
   }; //end of check card to playfield
 
-  this.cardInvalid = function () {
+  this.cardInvalid = function (c) {
     let audio = new Audio("error.mp3");
-    audio.play();
+    if (players[gameTurn].isBot == false)
+      audio.play();
+    players[gameTurn].playerDeck.hand.childNodes[c].classList.add("invalid");
+    setTimeout(function(){players[gameTurn].playerDeck.hand.childNodes[c].classList.remove("invalid");},500);
   };
 }
 
@@ -779,12 +789,38 @@ function useCard(cardIndex) {
 }
 
 /**
+ * Function draws a specific card for cheat
+ */
+function drawSpecificCard(cardColor, cardValue) {
+  players[gameTurn].playerDeck.drawSpecificCard(cardColor, cardValue);
+}
+
+/**
+ * Function draws a specific card for cheat code
+ */
+function removeManyCards(numberOfCards) {
+  if (numberOfCards > (players[gameTurn].playerDeck.amtCards - 2))
+  {
+    console.log("Error: Cannot leave less than 2 cards in the players hand");
+    return;
+  }
+  let i = 0;
+  for (i = 0; i < numberOfCards; i++)
+  {
+    players[gameTurn].playerDeck.removeCard(0);
+  }
+  players[gameTurn].playerDeck.reloadHand();
+
+}
+
+/**
  * Function draws cards and adds them to playerhand
  */
 function drawACard() {
   if (drawStack.stackAmt != 0) {
     let drawTimes = drawStack.cardType * drawStack.stackAmt;
     let i = 0;
+    drawStack.clearVisual();
     for (i = 0; i < drawTimes; i++) {
       players[gameTurn].playerDeck.drawCard();
     }
@@ -795,6 +831,7 @@ function drawACard() {
   }/*
   else if (forcePlay()) {
     let audio = new Audio("error.mp3");
+
     audio.play();
   }*/
   else {
@@ -805,6 +842,17 @@ function drawACard() {
 $(drawCardPile).click(function () {
   drawACard();
 });
+
+/**
+ * Function draws a specific number of cards and adds them to playerhand for console cheat
+ */
+function drawManyCard(numCards) {
+    let drawTimes = numCards;
+    let i = 0;
+    for (i = 0; i < drawTimes; i++) {
+      players[gameTurn].playerDeck.drawCard();
+    }
+}
 
 /**
  * Changes the global card object to random color/value assignment

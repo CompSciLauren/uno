@@ -66,6 +66,7 @@ function cardDraw2() {
   drawStack.stackAmt++;
   drawStack.cardType = 2;
   drawStack.cardValue = 10;
+  drawStack.updateStack();
 }
 
 /**
@@ -76,5 +77,6 @@ function cardDraw4() {
   drawStack.stackAmt++;
   drawStack.cardType = 4;
   drawStack.cardValue = 1;
+  drawStack.updateStack();
   cardWild();
 }
