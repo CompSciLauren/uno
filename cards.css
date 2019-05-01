@@ -4,7 +4,8 @@
   width: 116px;
   height: 178px;
   float: left;
-  background: #fff;
+  background-image: url("uno card back.png");
+  background-size: contain;
   border-radius: 5px;
   box-sizing: border-box;
   padding: 5px;
