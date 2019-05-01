@@ -9,6 +9,10 @@
   margin-top: -7px;
 }
 
+.drawCardContainer{
+  display: inline-block;
+}
+
 @keyframes cardDrawBack {
   0% {transform: scale(1,1)}
   30% {transform: scale(1.5,1.5) rotateY(0)}
