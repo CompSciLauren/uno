@@ -73,23 +73,32 @@ function deck(divId, hidden) {
 
     //Draw Card Animation Start
     if (!initialDraw) {
+      //obtains drawPile div
       let drawPile = document.getElementById("drawCardPile");
+      
+      //create Containers for the cards and adds class
       let drawCardContainer = document.createElement("div");
+      let drawCardContainerBack = document.createElement("div");
       drawCardContainer.classList.add("drawCardContainer");
-       let drawCardContainerBack = document.createElement("div");
       drawCardContainerBack.classList.add("drawCardContainer");
+      
+      //append containers to drawpile div
       drawPile.append(drawCardContainer);
       drawPile.append(drawCardContainerBack);
       
+      //create Card Visuals
       let cardDivBack = document.createElement("div");
       let cardDiv = document.createElement("div");
       
+      //apend cards into containers
       drawCardContainer.append(cardDiv);
       drawCardContainerBack.append(cardDivBack);
       
+      //add class card to card divs
       cardDiv.classList.add("card");
       cardDivBack.classList.add("card");
-
+      
+      //creates the inside of the cards
       let cardSpan = document.createElement("span");
       cardDiv.append(cardSpan);
       cardSpan.classList.add("inner");
@@ -106,8 +115,6 @@ function deck(divId, hidden) {
       cardSpanBack.append(cardSpanInner);
       cardSpanInnerBack.classList.add("mark");
 
-      cardDiv.append();
-      cardDivBack.append();
 
         switch (randValue) {
           case 0:
@@ -348,8 +355,6 @@ function deck(divId, hidden) {
       
       
       if (this.hand.id == "BottomSeat") {
-        cardDiv.innerHTML = tempCard.value;
-        cardDiv.style.backgroundColor = tempCard.getColorValue();
         drawCardContainer.classList.add("drawCardAnimationFrontDown");
         drawCardContainerBack.classList.add("drawCardAnimationBack");
       } else {
