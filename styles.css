@@ -1,11 +1,11 @@
 #drawCardPile{
   overflow: visible;
-  width: 500px;
-  height: 140px;
+  width: 116px;
+  height: 178px;
   margin-left: -207px;
 }
 
-#drawCardPile > .card{
+#drawCardPile > .card {
   margin-top: -7px;
 }
 
