@@ -1,5 +1,43 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:900);
 
+.cardNotForPlaying {
+  width: 116px;
+  height: 178px;
+  float: left;
+  background: #fff;
+  border-radius: 5px;
+  display: table;
+  box-sizing: border-box;
+  padding: 5px;
+  margin: 10px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 100px;
+  text-shadow: 1px 1px 0 #000000, -1px -1px 0 #000000, -1px 1px 0 #000000,
+    1px -1px 0 #000000, 1px 0 0 #000000, -1px 0 0 #000000, 0 -1px 0 #000000,
+    0 1px 0 #000000, 4px 4px 0 #000000;
+  box-shadow: 0 0 10px #777777;
+  text-align: center;
+  position: relative;
+  margin-left: -25px;
+  margin-right: -25px;
+}
+.cardNotForPlaying .inner {
+  display: table-cell;
+  vertical-align: middle;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.cardNotForPlaying .mark {
+  display: inline-block;
+  vertical-align: middle;
+  background: #ffffff;
+  margin: auto;
+  padding: 0 26px;
+  border-radius: 100px 60px / 120px 60px;
+  line-height: 1.4;
+}
+
 .card {
   width: 116px;
   height: 178px;
@@ -97,6 +135,10 @@
 
 .card.black .inner {
   background: #000000;
+}
+
+.cardNotForPlaying.black .inner {
+  background: #000;
 }
 
 .cardsInInnerPlus4.black {
