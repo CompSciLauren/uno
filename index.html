@@ -23,7 +23,7 @@
   <link href="styles.css" rel="stylesheet" type="text/css" />
   <link href="cards.css" rel="stylesheet" type="text/css" />
 </head>
-
+  
 <body>
   <div id="setupGame" class="container">
     <form class="text-center">
@@ -57,24 +57,12 @@
         <div id="LeftSeatID"></div>
         <div id="LeftSeat" class="sideHand"></div>
       </div>
-      <div class="col-md-8 custom-border center-card-hands" align="center">
-          <div class="row">
-            <div class="cardNotForPlaying black">
-              <div id="drawCardPile"></div>
-            </div>
-          </div>
-          <div class="row">
-            <div id="discardDeckDiv"></div>
-            <div id="playfieldHand"></div>
-        </div>
-        <div class="row">
-          <form>
-            <button type="button" onclick="initializeWindow()" onclick="newPlayfieldCard()">
-              <!-- call refreshPlayfieldCardVisual() too -->
-              New Playfield Card
-            </button>
-          </form>
-        </div>
+      <div class="col-md-8 custom-border" align="center">
+        <div id="drawBG" class="card" onclick="drawACard()"><div id="drawCardPile"></div></div>
+        <h1>
+          <div id="discardDeckDiv"></div>
+        </h1>
+        <div id="playfieldHand"></div>
       </div>
       <div class="col-md-2">
         <div id="RightSeatID"></div>
@@ -83,12 +71,17 @@
     </div>
 
     <div class="row">
-      <div class="col center-card-hands" align="center">
-        <div id="BottomSeatID"></div>
-        <div id="BottomSeat"></div>
-        <div id="player1Hand"></div>
-      </div>
-    </div>
+        <div class="col"  align="center">
+          <div id="BottomSeatID"></div>
+          <div id="BottomSeat"></div>
+          <button id="unoButton" onclick="callUno()">Uno!</button>
+          <br>*Reminder, you must call Uno BEFORE playing your second-to-last card!
+          <div id="button">
+              <input type="button" value="Rules & Info"
+              onclick="window.open('rules.html')">
+        </div>
+      </h3>
+      <div id="player1Hand"></div>
 
     <div class="row">
       <div class="col" align="center">

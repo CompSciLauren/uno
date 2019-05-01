@@ -1,3 +1,25 @@
+.card{
+    width: 100px;
+    height: 140px;
+    margin: 10px 2px;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 50px;
+    border-radius: 6px;
+    border: 7px solid #fff;
+    margin-left: -25px;
+    margin-right: -25px;
+}
+
+#drawBG{
+    padding: 0;
+    overflow: show;
+    background-color: #000;
+    cursor: pointer;
+}
+
 #drawCardPile{
   overflow: visible;
   width: 500px;
@@ -49,6 +71,19 @@
   100% {transform: scale(1.5,1.5); top: -200px; opacity: 0;}
 }
 
+
+@keyframes unoButtonInvalid {
+  0%   {background-color: none}
+  50%  {background-color: red}
+  100% {background-color: none}
+}
+
+@keyframes shakeHorizontal {
+  0% {left: 0}
+  33% {left: 5px}
+  66% {left: -5px}
+  100% {left: 0}
+}
 
 
 
@@ -115,6 +150,11 @@
     animation-duration: 1.2s;
 }
 
+.invalid{
+  animation-name: shakeHorizontal;
+  animation-duration: .1s;
+  animation-iteration-count: 5;
+}
 
 
 
@@ -165,8 +205,8 @@ h3{
   color: gray;
 }
 
- li{ 
-     margin-bottom: 5px; 
+ li{
+     margin-bottom: 5px;
 }
 
 .center-card-hands {
@@ -175,3 +215,8 @@ h3{
   justify-content: center;
   align-items: center;
 }
+
+.unoButton{
+  animation-name: unoButtonInvalid;
+  animation-duration: 0.5s;
+
