@@ -6,7 +6,7 @@
 function card(color, value) {
   this.color = color;
   this.value = value;
-  this.getColorValue = function () {
+  this.getColorValue = function() {
     if (this.color == "Red") {
       return "#A60000";
     } else if (this.color == "Blue") {
@@ -35,7 +35,7 @@ function deck(divId, hidden) {
   /**
    * Adds a card to the cards array
    */
-  this.addCard = function (c) {
+  this.addCard = function(c) {
     this.cards.push(c);
     this.amtCards = this.cards.length;
   };
@@ -43,41 +43,40 @@ function deck(divId, hidden) {
   /**
    * removes a card from card array
    */
-  this.removeCard = function (c) {
+  this.removeCard = function(c) {
     this.cards.splice(c, 1);
     this.amtCards = this.cards.length;
   };
 
-
-/**
+  /**
    * Gives player a specific card for cheat code
    */
-  this.drawSpecificCard = function (cardColor, cardValue) {
+  this.drawSpecificCard = function(cardColor, cardValue) {
     let tempCardColor = cardColor;
     let tempCardValue = cardValue;
 
     let tempCard = new card(tempCardColor, tempCardValue);
     this.addCard(tempCard);
     this.reloadHand();
-  }
+  };
 
   /**
    * Gives player a random card
    */
-  this.drawCard = function () {
+  this.drawCard = function() {
     let colorArray = ["Red", "Green", "Blue", "Yellow", "Special"];
     let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
     let randValue = Math.floor(Math.random() * 13);
     if (randColor == "Special") {
       //Pick random number between 1 and 3, if 1 or 2 make Wildcard, else regular card
-      let randNum = Math.round((Math.random() * 2) + 1);
+      let randNum = Math.round(Math.random() * 2 + 1);
       //console.log("Rand num: " + randNum);
       if (randNum == 1 || randNum == 2) {
         randValue = randValue % 2;
-      }
-      else {
+      } else {
         //array of colors minus "Special" option
-        randColor = colorArray[Math.floor(Math.random() * (colorArray.length - 1))];
+        randColor =
+          colorArray[Math.floor(Math.random() * (colorArray.length - 1))];
         randValue = Math.floor(Math.random() * 13);
       }
     }
@@ -88,29 +87,29 @@ function deck(divId, hidden) {
     if (!initialDraw) {
       //obtains drawPile div
       let drawPile = document.getElementById("drawCardPile");
-      
+
       //create Containers for the cards and adds class
       let drawCardContainer = document.createElement("div");
       let drawCardContainerBack = document.createElement("div");
       drawCardContainer.classList.add("drawCardContainer");
       drawCardContainerBack.classList.add("drawCardContainer");
-      
+
       //append containers to drawpile div
       drawPile.append(drawCardContainer);
       drawPile.append(drawCardContainerBack);
-      
+
       //create Card Visuals
       let cardDivBack = document.createElement("div");
       let cardDiv = document.createElement("div");
-      
+
       //apend cards into containers
       drawCardContainer.append(cardDiv);
       drawCardContainerBack.append(cardDivBack);
-      
+
       //add class card to card divs
       cardDiv.classList.add("card");
       cardDivBack.classList.add("card");
-      
+
       //creates the inside of the cards
       let cardSpan = document.createElement("span");
       cardDiv.append(cardSpan);
@@ -119,7 +118,7 @@ function deck(divId, hidden) {
       let cardSpanInner = document.createElement("span");
       cardSpan.append(cardSpanInner);
       cardSpanInner.classList.add("mark");
-      
+
       let cardSpanBack = document.createElement("span");
       cardDivBack.append(cardSpanBack);
       cardSpanBack.classList.add("inner");
@@ -127,16 +126,15 @@ function deck(divId, hidden) {
       let cardSpanInnerBack = document.createElement("span");
       cardSpanBack.append(cardSpanInnerBack);
       cardSpanInnerBack.classList.add("mark");
-      
+
       cardDiv.append();
       cardDivBack.append();
-      
+
       cardDivBack.classList.add("black");
       cardSpanInnerBack.append("_");
       $(cardSpanInnerBack).css("color", "#c72a18");
       $(cardSpanInnerBack).css("background-color", "#c72a18");
       $(cardSpanInnerBack).css("text-shadow", "#c72a18 1px 1px 1px");
-
 
       if (this.hand.id == "BottomSeat") {
         switch (randValue) {
@@ -145,8 +143,7 @@ function deck(divId, hidden) {
               // regular 0 card
               cardDiv.classList.add("num-0");
               cardSpanInner.append("0");
-            }
-            else {
+            } else {
               // Wild card
               cardDiv.classList.add("wild");
               cardDiv.classList.add("black");
@@ -191,8 +188,7 @@ function deck(divId, hidden) {
               // regular 1 card
               cardDiv.classList.add("num-1");
               cardSpanInner.append("1");
-            }
-            else {
+            } else {
               // wild +4 card
               cardDiv.classList.add("plus-4");
               cardDiv.classList.add("black");
@@ -356,7 +352,7 @@ function deck(divId, hidden) {
 
             break;
         }
-          
+
         if (randColor == "Blue") {
           cardDiv.classList.add("blue");
         }
@@ -369,17 +365,16 @@ function deck(divId, hidden) {
         if (randColor == "Yellow") {
           cardDiv.classList.add("yellow");
         }
-        
+
         drawCardContainer.classList.add("drawCardAnimationFrontDown");
         drawCardContainerBack.classList.add("drawCardAnimationBack");
-        
-      }else{
+      } else {
         cardDiv.classList.add("black");
         cardSpanInner.append("_");
         $(cardSpanInner).css("color", "#c72a18");
         $(cardSpanInner).css("background-color", "#c72a18");
         $(cardSpanInner).css("text-shadow", "#c72a18 1px 1px 1px");
-        
+
         if (this.hand.id == "TopSeat") {
           drawCardContainer.classList.add("drawCardAnimationHiddenUp");
         } else if (this.hand.id == "RightSeat") {
@@ -392,9 +387,8 @@ function deck(divId, hidden) {
         drawCardContainerBack.classList.add("drawCardBackHidden");
       }
 
-
       let thisObject = this;
-      setTimeout(function () {
+      setTimeout(function() {
         drawPile.removeChild(drawPile.childNodes[0]);
         drawPile.removeChild(drawPile.childNodes[0]);
         thisObject.reloadHand();
@@ -415,13 +409,20 @@ function deck(divId, hidden) {
   /**
    * removes card from hand and reloads hand (post-validation of good move)
    */
-  this.playCard = function (c) {
+  this.playCard = function(c) {
     if (this.isValid(c)) {
       //Check if second to last card & Uno call protection
-      if (players[gameTurn].playerDeck.amtCards == 2 && players[gameTurn].unoCall != true) {
-        console.log("Player failed to call Uno before playing second to last card. Penalty 2 cards");
+      if (
+        players[gameTurn].playerDeck.amtCards == 2 &&
+        players[gameTurn].unoCall != true
+      ) {
+        console.log(
+          "Player failed to call Uno before playing second to last card. Penalty 2 cards"
+        );
         document.getElementById("unoButton").classList.add("unoButton");
-        setTimeout(function() {document.getElementById("unoButton").classList.remove("unoButton")}, 500);
+        setTimeout(function() {
+          document.getElementById("unoButton").classList.remove("unoButton");
+        }, 500);
         players[gameTurn].playerDeck.drawCard();
         players[gameTurn].playerDeck.drawCard();
       }
@@ -448,14 +449,14 @@ function deck(divId, hidden) {
       //Remove played card from hand
       this.removeCard(c);
       if (this.cards.length == 0) {
-        alert("You win!");
+        alert(players[gameTurn].playerID + " wins!");
         location.reload();
         return;
       }
-    } else if(!players[gameTurn].isBot) {
+    } else if (!players[gameTurn].isBot) {
       this.cardInvalid(c);
       return false;
-    } else{
+    } else {
       return false;
     }
 
@@ -468,14 +469,14 @@ function deck(divId, hidden) {
   /**
    * Returns card at index c
    */
-  this.getCard = function (c) {
+  this.getCard = function(c) {
     return this.cards[c];
   };
 
   /**
    * Reloads the player hand to have the most recent cards in player hand
    */
-  this.reloadHand = function () {
+  this.reloadHand = function() {
     this.hand.innerHTML = "";
     let i = 0;
     for (i = 0; i < this.amtCards; i++) {
@@ -500,8 +501,7 @@ function deck(divId, hidden) {
               // regular 0 card
               cardDiv.classList.add("num-0");
               cardSpanInner.append("0");
-            }
-            else {
+            } else {
               // Wild card
               cardDiv.classList.add("wild");
               cardDiv.classList.add("black");
@@ -546,8 +546,7 @@ function deck(divId, hidden) {
               // regular 1 card
               cardDiv.classList.add("num-1");
               cardSpanInner.append("1");
-            }
-            else {
+            } else {
               // wild +4 card
               cardDiv.classList.add("plus-4");
               cardDiv.classList.add("black");
@@ -713,10 +712,10 @@ function deck(divId, hidden) {
         }
 
         //prevents the discardDeckDiv from being counted as playable cards
-        if(this.hand.id != "discardDeckDiv"){
-            cardDiv.classList.add("my-card");
+        if (this.hand.id != "discardDeckDiv") {
+          cardDiv.classList.add("my-card");
         }
-          
+
         if (this.getCard(i).getColorValue() == "#0000FF") {
           cardDiv.classList.add("blue");
         }
@@ -743,7 +742,7 @@ function deck(divId, hidden) {
   };
 
   //Compare selected card to playfield card
-  this.isValid = function (c) {
+  this.isValid = function(c) {
     //Get in the value by element ID
     let cardColor = this.cards[c].color;
     let cardNumber = this.cards[c].value;
@@ -759,24 +758,35 @@ function deck(divId, hidden) {
       }
     }
 
-    if (cardColor == discardPile.cards[discardPile.cards.length - 1].color || cardColor == "Special") {
+    if (
+      cardColor == discardPile.cards[discardPile.cards.length - 1].color ||
+      cardColor == "Special"
+    ) {
       return true;
     }
     if (cardNumber == discardPile.cards[discardPile.cards.length - 1].value) {
       return true;
     }
     console.log("Played card: " + cardColor + " " + cardNumber);
-    console.log("Playfield card card: " + discardPile.cards[discardPile.cards.length - 1].color + " " + discardPile.cards[discardPile.cards.length - 1].value);
+    console.log(
+      "Playfield card card: " +
+        discardPile.cards[discardPile.cards.length - 1].color +
+        " " +
+        discardPile.cards[discardPile.cards.length - 1].value
+    );
 
     return false;
   }; //end of check card to playfield
 
-  this.cardInvalid = function (c) {
+  this.cardInvalid = function(c) {
     let audio = new Audio("error.mp3");
-    if (players[gameTurn].isBot == false)
-      audio.play();
+    if (players[gameTurn].isBot == false) audio.play();
     players[gameTurn].playerDeck.hand.childNodes[c].classList.add("invalid");
-    setTimeout(function(){players[gameTurn].playerDeck.hand.childNodes[c].classList.remove("invalid");},500);
+    setTimeout(function() {
+      players[gameTurn].playerDeck.hand.childNodes[c].classList.remove(
+        "invalid"
+      );
+    }, 500);
   };
 }
 
@@ -799,18 +809,15 @@ function drawSpecificCard(cardColor, cardValue) {
  * Function draws a specific card for cheat code
  */
 function removeManyCards(numberOfCards) {
-  if (numberOfCards > (players[gameTurn].playerDeck.amtCards - 2))
-  {
+  if (numberOfCards > players[gameTurn].playerDeck.amtCards - 2) {
     console.log("Error: Cannot leave less than 2 cards in the players hand");
     return;
   }
   let i = 0;
-  for (i = 0; i < numberOfCards; i++)
-  {
+  for (i = 0; i < numberOfCards; i++) {
     players[gameTurn].playerDeck.removeCard(0);
   }
   players[gameTurn].playerDeck.reloadHand();
-
 }
 
 /**
@@ -828,18 +835,16 @@ function drawACard() {
     drawStack.stackAmt = 0;
     rotatePlayers();
     play();
-  }
-  else if (forcePlay()) {
+  } else if (forcePlay()) {
     let audio = new Audio("error.mp3");
 
     audio.play();
-  }
-  else {
+  } else {
     players[gameTurn].playerDeck.drawCard();
   }
 }
 
-$(drawCardPile).click(function () {
+$(drawCardPile).click(function() {
   drawACard();
 });
 
@@ -847,11 +852,11 @@ $(drawCardPile).click(function () {
  * Function draws a specific number of cards and adds them to playerhand for console cheat
  */
 function drawManyCard(numCards) {
-    let drawTimes = numCards;
-    let i = 0;
-    for (i = 0; i < drawTimes; i++) {
-      players[gameTurn].playerDeck.drawCard();
-    }
+  let drawTimes = numCards;
+  let i = 0;
+  for (i = 0; i < drawTimes; i++) {
+    players[gameTurn].playerDeck.drawCard();
+  }
 }
 
 /**
@@ -868,14 +873,12 @@ function SelectPlayfieldCard() {
 
 function discard(card) {
   discardPile.addCard(card);
-  if (discardPile.cards.length > 5)
-    discardPile.removeCard(0);
+  if (discardPile.cards.length > 5) discardPile.removeCard(0);
 }
 
 function forcePlay() {
   for (let i = 0; i < players[gameTurn].playerDeck.cards.length; i++) {
-    if (players[gameTurn].playerDeck.isValid(i))
-      return true;
+    if (players[gameTurn].playerDeck.isValid(i)) return true;
   }
   return false;
 }
