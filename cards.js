@@ -114,8 +114,21 @@ function deck(divId, hidden) {
       let cardSpanInnerBack = document.createElement("span");
       cardSpanBack.append(cardSpanInner);
       cardSpanInnerBack.classList.add("mark");
+      
+      cardDiv.classList.add("black");
+      cardSpanInner.append("_");
+      $(cardSpanInner).css("color", "#c72a18");
+      $(cardSpanInner).css("background-color", "#c72a18");
+      $(cardSpanInner).css("text-shadow", "#c72a18 1px 1px 1px");
+      
+      cardDivBack.classList.add("black");
+      cardSpanInnerBack.append("_");
+      $(cardSpanInnerBack).css("color", "#c72a18");
+      $(cardSpanInnerBack).css("background-color", "#c72a18");
+      $(cardSpanInnerBack).css("text-shadow", "#c72a18 1px 1px 1px");
 
 
+      if (this.hand.id == "BottomSeat") {
         switch (randValue) {
           case 0:
             if (randColor != "Special") {
@@ -346,18 +359,12 @@ function deck(divId, hidden) {
         if (tempCard.getColorValue() == "#e5bf00") {
           cardDiv.classList.add("yellow");
         }
-      
-        cardDivBack.classList.add("black");
-        cardSpanInnerBack.append("_");
-        $(cardSpanInnerBack).css("color", "#c72a18");
-        $(cardSpanInnerBack).css("background-color", "#c72a18");
-        $(cardSpanInnerBack).css("text-shadow", "#c72a18 1px 1px 1px");
-      
-      
-      if (this.hand.id == "BottomSeat") {
+        
         drawCardContainer.classList.add("drawCardAnimationFrontDown");
         drawCardContainerBack.classList.add("drawCardAnimationBack");
-      } else {
+        
+      }else{
+        
         if (this.hand.id == "TopSeat") {
           drawCardContainer.classList.add("drawCardAnimationHiddenUp");
         } else if (this.hand.id == "RightSeat") {
@@ -369,6 +376,7 @@ function deck(divId, hidden) {
         }
         drawCardContainerBack.classList.add("drawCardBackHidden");
       }
+      
 
 
       let thisObject = this;
