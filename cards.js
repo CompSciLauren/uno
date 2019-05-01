@@ -121,18 +121,15 @@ function deck(divId, hidden) {
       cardSpanInner.classList.add("mark");
       
       let cardSpanBack = document.createElement("span");
-      cardDivBack.append(cardSpan);
+      cardDivBack.append(cardSpanBack);
       cardSpanBack.classList.add("inner");
 
       let cardSpanInnerBack = document.createElement("span");
-      cardSpanBack.append(cardSpanInner);
+      cardSpanBack.append(cardSpanInnerBack);
       cardSpanInnerBack.classList.add("mark");
       
-      cardDiv.classList.add("black");
-      cardSpanInner.append("_");
-      $(cardSpanInner).css("color", "#c72a18");
-      $(cardSpanInner).css("background-color", "#c72a18");
-      $(cardSpanInner).css("text-shadow", "#c72a18 1px 1px 1px");
+      cardDiv.append();
+      cardDivBack.append();
       
       cardDivBack.classList.add("black");
       cardSpanInnerBack.append("_");
@@ -360,16 +357,16 @@ function deck(divId, hidden) {
             break;
         }
           
-        if (tempCard.getColorValue() == "#0000FF") {
+        if (randColor == "Blue") {
           cardDiv.classList.add("blue");
         }
-        if (tempCard.getColorValue() == "#A60000") {
+        if (randColor == "Red") {
           cardDiv.classList.add("red");
         }
-        if (tempCard.getColorValue() == "#004f19") {
+        if (randColor == "Green") {
           cardDiv.classList.add("green");
         }
-        if (tempCard.getColorValue() == "#e5bf00") {
+        if (randColor == "Yellow") {
           cardDiv.classList.add("yellow");
         }
         
@@ -377,6 +374,11 @@ function deck(divId, hidden) {
         drawCardContainerBack.classList.add("drawCardAnimationBack");
         
       }else{
+        cardDiv.classList.add("black");
+        cardSpanInner.append("_");
+        $(cardSpanInner).css("color", "#c72a18");
+        $(cardSpanInner).css("background-color", "#c72a18");
+        $(cardSpanInner).css("text-shadow", "#c72a18 1px 1px 1px");
         
         if (this.hand.id == "TopSeat") {
           drawCardContainer.classList.add("drawCardAnimationHiddenUp");
