@@ -23,12 +23,16 @@
 #drawCardPile{
   overflow: visible;
   width: 500px;
-  height: 140px;
-  margin-left: -207px;
+  height: 178px;
+  margin-left: -192px;
 }
 
-#drawCardPile > .card{
+#drawCardPile > .card {
   margin-top: -7px;
+}
+
+.drawCardContainer{
+  display: inline-block;
 }
 
 @keyframes cardDrawBack {
@@ -205,7 +209,14 @@ h3{
      margin-bottom: 5px;
 }
 
+.center-card-hands {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .unoButton{
   animation-name: unoButtonInvalid;
   animation-duration: 0.5s;
-}
+
