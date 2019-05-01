@@ -15,24 +15,24 @@
 
   <link href="styles.css" rel="stylesheet" type="text/css" />
 </head>
-
+  
 <body>
   <div id="setupGame" class="container">
-      <form class="text-center">
-          <div class="form-group mt-5">
-            <label for="playerName">Player Name:</label>
-            <input type="text" class="form-control" id="playerName" placeholder="eg. TheLegend27">
-          </div>
-        <div class="form-group">
-            <label for="amtPlayers">How many Players</label>
-            <select class="form-control" id="amtPlayers">
-              <option value="2" selected="selected">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-        </div>
-          <button class="btn btn-primary center-block" type="button" onclick="startGame()">Start Game</button>
-      </form>
+    <form class="text-center">
+      <div class="form-group mt-5">
+        <label for="playerName">Player Name:</label>
+        <input type="text" class="form-control" id="playerName" placeholder="eg. TheLegend27">
+      </div>
+      <div class="form-group">
+        <label for="amtPlayers">How many Players</label>
+        <select class="form-control" id="amtPlayers">
+          <option value="2" selected="selected">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+      <button class="btn btn-primary center-block" type="button" onclick="startGame()">Start Game</button>
+    </form>
 
   </div>
 
@@ -50,17 +50,11 @@
         <div id="LeftSeat" class="sideHand"></div>
       </div>
       <div class="col-md-8 custom-border" align="center">
-        <div id="drawBG" class="card"><div id="drawCardPile"></div></div>
+        <div id="drawBG" class="card" onclick="drawACard()"><div id="drawCardPile"></div></div>
         <h1>
           <div id="discardDeckDiv"></div>
         </h1>
         <div id="playfieldHand"></div>
-        <form>
-          <button type="button" onclick="initializeWindow()" onclick="newPlayfieldCard()">
-            New Playfield Card
-          </button>
-        </form>
-        <button onclick="drawACard()">Draw Card</button>
       </div>
       <div class="col-md-2">
         <div id="RightSeatID"></div>

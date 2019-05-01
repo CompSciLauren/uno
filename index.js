@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $(document).on("click", ".card", function () {
+  $(document).on("click", ".my-card", function () {
     let cardIndex = $('.my-card').index(this);
     console.log("index: " + cardIndex);
     useCard(cardIndex);
@@ -31,7 +31,13 @@ let initialDraw = true;
 let drawStack = {
   cardValue: 0,
   stackAmt: 0,
-  cardType: 2 // either 2 or 4
+  cardType: 2, // either 2 or 4
+  updateStack: function(){
+    document.getElementById("drawCardPile").innerHTML = "+" + (this.cardType*this.stackAmt);
+  },
+  clearVisual: function(){
+    document.getElementById("drawCardPile").innerHTML = "";
+  }
 };
 
 /**
@@ -41,6 +47,81 @@ function initializeWindow() {
   //Reassign global card value to random values
   SelectPlayfieldCard();
   refreshPlayfieldCardVisual();
+}
+
+/**
+ * Cheat console command. 
+ * Gives a new playfield card
+ */
+ function newPlayfieldCard() {
+  initializeWindow();
+}
+
+
+/**
+ * Cheat console command. 
+ * Gives player a specific card (input from console)
+ */
+function giveMeABreak(cardColor, cardValue) {
+  if (cardColor == "Special" && cardValue > 1 || cardValue < 0)
+  {
+    console.log("Invalid wild card selection: " + cardColor + " " + cardValue);
+    return;
+  } else if (cardValue > 12)
+  {
+    console.log("Invalid card selection: " + cardColor + " " + cardValue);
+    return;
+  } else
+  {
+    drawSpecificCard(cardColor, cardValue);
+  }
+}
+
+/**
+ * Cheat console command. 
+ * Gives player a specific number of cards
+ */
+function forceDraw(numCards) {
+  if (numCards > 0)
+  {
+    drawManyCard(numCards);
+  }
+  else
+  {
+    console.log("Invalid number of cards: " + numCards);
+  }
+}
+
+/**
+ * Cheat console command. 
+ * Removes a specific number of cards from players hand
+ */
+function forceRemove(numCards) {
+  if (numCards > 0)
+  {
+    removeManyCards(numCards)
+  }
+  else
+  {
+    console.log("Invalid number of cards: " + numCards);
+  }
+}
+
+/**
+* Cheat console command. 
+* Lists cheatcode in console
+*/
+function showMeCheats() {
+  console.log("newPlayfieldCard() -- Adds a new playfield card to top of stack");
+  console.log(" ");
+  console.log('giveMeABreak("Color", Value) -- Adds a specific card to players hand');
+  console.log("     Possible card colors: Red, Green, Blue, Yellow, Special");
+  console.log("     Possible card values for R-G-B-Y: 0-9, 10 (for draw 2), 11 (for reverse), 12 (for skip)");
+  console.log("     Possible card values for 'Special': 0 (for Wild), 1 (for Wild + Draw 4)");
+  console.log(" ");
+  console.log("forceDraw(number) -- Draws the specific number of cards from the deck and adds to the player's hand");
+  console.log(" ");
+  console.log("forceRemove(number) -- Removes the specific number of cards (Must leave 2 or more) from the player's hand starting at the leftmost card");
 }
 
 //All players created  -- TRAVIS
@@ -123,12 +204,14 @@ function play() {
       }
       document.getElementById(players[gameTurn].playerDeck.hand.id + "ID").childNodes[0].classList.add("activePlayer");
       players[gameTurn].botLogic();
-    }, 1500);
+    }, 1000);
   }else{
+    setTimeout(function () {
       for(let i = 0; i < players.length; i++){
         document.getElementById(players[i].playerDeck.hand.id + "ID").childNodes[0].classList.remove("activePlayer");
       }
       document.getElementById(players[gameTurn].playerDeck.hand.id + "ID").childNodes[0].classList.add("activePlayer");
+    }, 1000);
   }
 }
 
