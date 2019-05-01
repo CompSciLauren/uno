@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $(document).on("click", ".card", function () {
+  $(document).on("click", ".my-card", function () {
     let cardIndex = $('.my-card').index(this);
     console.log("index: " + cardIndex);
     useCard(cardIndex);
@@ -7,7 +7,7 @@ $(document).ready(function () {
 });
 
 // Global Playfield Card
-let discardPile = new deck(discardDeckDiv, false);
+let discardPile = new deck("discardDeckDiv", false);
 
 //Creates a Global array to store players  --  TRAVIS
 let players = [];
@@ -31,7 +31,13 @@ let initialDraw = true;
 let drawStack = {
   cardValue: 0,
   stackAmt: 0,
-  cardType: 2 // either 2 or 4
+  cardType: 2, // either 2 or 4
+  updateStack: function(){
+    document.getElementById("drawCardPile").innerHTML = "+" + (this.cardType*this.stackAmt);
+  },
+  clearVisual: function(){
+    document.getElementById("drawCardPile").innerHTML = "";
+  }
 };
 
 /**
@@ -141,16 +147,16 @@ function initializePlayers() {
     let tempIndex = players.length - 1;
 
     let isBot = false;
-    
+
     let botIndex = Math.floor(Math.random() * botNames.length);
     let botName = botNames[botIndex];
-    
+
     if (players.length != 0 || tempID == "Bot") {
       tempID = botName;
       botNames.splice(botIndex, 1);
       isBot = true;
     }
-    
+
     document.getElementById(playerHandLabel).innerHTML = "<h3>" + tempID + "</h3>";
 
     let tempPlayer = new player(tempDeck, tempID, tempIndex, isBot, false);
@@ -165,7 +171,7 @@ function initializePlayers() {
   }
 
   initialDraw = false;
-  
+
   play();
 }
 
@@ -198,12 +204,14 @@ function play() {
       }
       document.getElementById(players[gameTurn].playerDeck.hand.id + "ID").childNodes[0].classList.add("activePlayer");
       players[gameTurn].botLogic();
-    }, 1500);
+    }, 1000);
   }else{
+    setTimeout(function () {
       for(let i = 0; i < players.length; i++){
         document.getElementById(players[i].playerDeck.hand.id + "ID").childNodes[0].classList.remove("activePlayer");
       }
       document.getElementById(players[gameTurn].playerDeck.hand.id + "ID").childNodes[0].classList.add("activePlayer");
+    }, 1000);
   }
 }
 
@@ -214,7 +222,9 @@ function callUno(){
   //console.log("Amt of cards: " + players[gameTurn].playerDeck.amtCards);
   if (players[gameTurn].playerDeck.amtCards > 2)
   {
-    console.log("Player called Uno too early");
+    console.log("Player called Uno too early.  Penalty 2 cards.");
+    players[gameTurn].playerDeck.drawCard();
+    players[gameTurn].playerDeck.drawCard();
   }
   else
   {
@@ -229,13 +239,5 @@ function checkUno(){
 }
 
 function refreshPlayfieldCardVisual() {
-  let pfcDiv = document.getElementById("discardDeckDiv");
-  pfcDiv.innerHTML = " ";
-  for (let i = 0; i < discardPile.cards.length; i++){
-    let cardDiv = document.createElement("div");
-    pfcDiv.append(cardDiv);
-    cardDiv.classList.add("card");
-    cardDiv.innerHTML = discardPile.cards[i].value;
-    cardDiv.style.backgroundColor = discardPile.cards[i].getColorValue();
-  }
+    discardPile.reloadHand();
 }
