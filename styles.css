@@ -1,7 +1,8 @@
 #drawCardPile{
   overflow: visible;
-  width: 116px;
+  width: 500px;
   height: 178px;
+  margin-left: -192px;
 }
 
 #drawCardPile > .card {
