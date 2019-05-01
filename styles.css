@@ -67,13 +67,19 @@
   100% {transform: scale(1.5,1.5); top: -200px; opacity: 0;}
 }
 
+
+@keyframes unoButtonInvalid {
+  0%   {background-color: none}
+  50%  {background-color: red}
+  100% {background-color: none}
+}
+
 @keyframes shakeHorizontal {
   0% {left: 0}
   33% {left: 5px}
   66% {left: -5px}
   100% {left: 0}
 }
-
 
 
 
@@ -195,7 +201,11 @@ h3{
   color: gray;
 }
 
- li{ 
-     margin-bottom: 5px; 
+ li{
+     margin-bottom: 5px;
 }
 
+.unoButton{
+  animation-name: unoButtonInvalid;
+  animation-duration: 0.5s;
+}

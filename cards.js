@@ -85,20 +85,20 @@ function deck(divId, hidden) {
     }
     let tempCard = new card(randColor, randValue);
     this.addCard(tempCard);
-    
+
     //Draw Card Animation Start
     if(!initialDraw){
       let drawPile = document.getElementById("drawCardPile");
 
       let cardDiv = document.createElement("div");
       let cardDivBack = document.createElement("div");
-      
+
       drawPile.append(cardDiv);
       drawPile.append(cardDivBack);
-      
+
       cardDiv.classList.add("card");
       cardDivBack.classList.add("card");
-      
+
       cardDiv.style.backgroundColor = "#000";
       cardDivBack.style.backgroundColor = "#000";
       if(this.hand.id == "BottomSeat"){
@@ -114,12 +114,12 @@ function deck(divId, hidden) {
         }else if(this.hand.id == "LeftSeat"){
           cardDiv.classList.add("drawCardAnimationHiddenLeft");
         }else{
-          cardDiv.classList.add("drawCardAnimationFront");         
+          cardDiv.classList.add("drawCardAnimationFront");
         }
         cardDivBack.classList.add("drawCardBackHidden");
       }
-      
-      
+
+
       let thisObject = this;
       setTimeout(function () {
         drawPile.removeChild(drawPile.childNodes[0]);
@@ -129,13 +129,13 @@ function deck(divId, hidden) {
     }else{
       this.reloadHand();
     }
-    
-    //Draw Card Animation End
-    
-    
 
-    
-    
+    //Draw Card Animation End
+
+
+
+
+
     console.log(
       players[gameTurn].playerID + " Drew a " + randColor + " " + randValue
     ); //testing
@@ -153,22 +153,15 @@ function deck(divId, hidden) {
       if (players[gameTurn].playerDeck.amtCards == 2 && players[gameTurn].unoCall != true)
       {
         console.log("Player failed to call Uno before playing second to last card. Penalty 2 cards");
+        document.getElementById("unoButton").classList.add("unoButton");
+        setTimeout(function() {document.getElementById("unoButton").classList.remove("unoButton")}, 500);
         players[gameTurn].playerDeck.drawCard();
         players[gameTurn].playerDeck.drawCard();
       }
-      else
-      {
-        //console.log("Player called Uno");
-      }
-      //console.log(this.getCard(c).color + " " + this.getCard(c).value);
 
       let cardBeingPlayed = this.cards[c];
 
-      //Set playfield card to validated 'played' card
-      //playFieldCard.color = cardBeingPlayed.color;
-      //playFieldCard.value = cardBeingPlayed.value;
       discard(cardBeingPlayed);
-
       refreshPlayfieldCardVisual();
 
       if (cardBeingPlayed.color == "Special") {
@@ -263,7 +256,8 @@ function deck(divId, hidden) {
 
   this.cardInvalid = function (c) {
     let audio = new Audio("error.mp3");
-    audio.play();
+    if (players[gameTurn].isBot == false)
+      audio.play();
     players[gameTurn].playerDeck.hand.childNodes[c].classList.add("invalid");
     setTimeout(function(){players[gameTurn].playerDeck.hand.childNodes[c].classList.remove("invalid");},500);
   };
@@ -320,7 +314,8 @@ function drawACard() {
   }
   else if (forcePlay()) {
     let audio = new Audio("error.mp3");
-    audio.play();
+    if (players[gameTurn].isBot == false)
+      audio.play();
   }
   else {
     players[gameTurn].playerDeck.drawCard();
