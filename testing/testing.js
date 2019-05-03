@@ -16,7 +16,7 @@ function indexTests()
     console.log("\n$ * * * * All tests for index.js * * * *");
     console.log("$ Total tests for start() - 3. Passed: " + startTestNum + ". Failed: " + (3 - startTestNum));
     console.log("$ Total tests for callUno() - 2. Passed: " + callUnoTestNum + ". Failed: " + (2 - callUnoTestNum));
-    console.log("$ Total tests for all cheats - 4. Passed: " + cheatTestNum + ". Failed: " + (2 - cheatTestNum));
+    console.log("$ Total tests for all cheats - 4. Passed: " + cheatTestNum + ". Failed: " + (4 - cheatTestNum));
     return (startTestNum + callUnoTestNum + cheatTestNum);
 }
 
@@ -33,7 +33,7 @@ function startGameTests()
         console.log("$ **PASSED**");
     }else
     {
-        console.log("$ ~~FAILED~~");
+        console.log("$ ~~FAILED~~\n     Did you close and reopen the html file?");
     }
 
     console.log ("$ Test 2: Valid name input marks form as valid");
@@ -42,7 +42,7 @@ function startGameTests()
         console.log("$ **PASSED**");
     }else
     {
-        console.log("$ ~~FAILED~~");
+        console.log("$ ~~FAILED~~\n     Did you close and reopen the html file?");
     }
 
     console.log ("$ Test 3: Selecting player number in HTML correctly passes in value");
@@ -51,7 +51,7 @@ function startGameTests()
         console.log("$ **PASSED**");
     }else
     {
-        console.log("$ ~~FAILED~~");
+        console.log("$ ~~FAILED~~\n     Did you close and reopen the html file?");
     }
     //return sum of tests. 1 = pass, 0 = fail
     return (test1 + test2 + test3);
@@ -89,7 +89,7 @@ function cheatTests()
     let test1 = cheatTest1();   //Cheat: newPlayfieldCard(), gives new playfield card
     let test2 = cheatTest2();   //Cheat: giveMeABreak("Color", Value), adds correct card to player's hand
     let test3 = cheatTest3();   //Cheat: forceDraw(number), adds correct number of cards to players hand
-    //let test4 = cheatTest4();   //Cheat: forceRemove(number), removes correct number of cards to players hand
+    let test4 = cheatTest4();   //Cheat: forceRemove(number), removes correct number of cards to players hand
     console.log("\n$ ~~~~~~ Cheat tests ~~~~~~");
     console.log ("$ Test 1: Cheat: newPlayfieldCard(), gives new playfield card");
     console.log("$ ^^ Testing Note ^^: It's possible the new card drawn will match the previous card as card selection is random. May run test multiple times, should be majority passed")
@@ -118,8 +118,17 @@ function cheatTests()
     {
         console.log("$ ~~FAILED~~");
     }
+
+    console.log ("$ Test 4: Cheat: forceRemove(number), removes correct number of cards from players hand");
+    if (test4 == 1)
+    {
+        console.log("$ **PASSED**");
+    }else
+    {
+        console.log("$ ~~FAILED~~");
+    }
     //return sum of tests. 1 = pass, 0 = fail
-    return (test1 + test2 + test3);
+    return (test1 + test2 + test3 + test4);
 }
 
 
@@ -127,7 +136,7 @@ function cheatTests()
 //startGame tests
 function startTest1()
 {
-    //location.reload();
+
     startGame();
 
     let name = document.getElementById("playerName");
@@ -145,7 +154,7 @@ function startTest1()
 
 function startTest2()
 {
-    //location.reload();
+
     document.getElementById("playerName").value = "Test";
     startGame();
 
@@ -164,7 +173,7 @@ function startTest2()
 
 function startTest3()
 {
-    //location.reload();
+
     //Default value: 2;
     startGame();
     let playerNum = document.getElementById("amtPlayers");
@@ -197,7 +206,7 @@ function startTest3()
 
 function callUnoTest1()
 {
-    //location.reload();
+
     //Initialize game with valid input
     let name = document.getElementById("playerName");
     name.value = "Test"
@@ -216,7 +225,7 @@ function callUnoTest1()
 
 function callUnoTest2()
 {
-    //location.reload();
+
     //Initialize game with valid input
     let name = document.getElementById("playerName");
     name.value = "Test"
@@ -239,7 +248,7 @@ function callUnoTest2()
 //cheat tests
 function cheatTest1()
 {
-    //location.reload();
+
     //Initialize game with valid input
     let name = document.getElementById("playerName");
     name.value = "Test"
@@ -263,7 +272,7 @@ function cheatTest1()
 
 function cheatTest2()
 {
-    //location.reload();
+
     //Initialize game with valid input
     let name = document.getElementById("playerName");
     name.value = "Test"
@@ -286,7 +295,7 @@ function cheatTest2()
 
 function cheatTest3()
 {
-    //location.reload();
+
     //Initialize game with valid input
     let name = document.getElementById("playerName");
     name.value = "Test"
@@ -298,6 +307,28 @@ function cheatTest3()
 
     //Validate the correct number of cards
     if (newLength == (initialLength + 5))
+    {
+        return true;
+    }else
+    {
+        return false;
+    }
+}
+
+function cheatTest4()
+{
+
+    //Initialize game with valid input
+    let name = document.getElementById("playerName");
+    name.value = "Test"
+    startGame();
+    //Run function, starting hand minus 3 cards
+    let initialLength = players[gameTurn].playerDeck.cards.length;
+    forceRemove(3);
+    let newLength = players[gameTurn].playerDeck.cards.length;
+
+    //Validate the correct number of cards
+    if (newLength == (initialLength - 3))
     {
         return true;
     }else
