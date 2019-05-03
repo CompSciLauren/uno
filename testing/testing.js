@@ -1,23 +1,23 @@
 function allTests()
 {
-    console.log("Running all tests");
+    console.log("$ Running all tests");
     let indexTestNum = indexTests();   //teting index.js functions
 
     let totalTests = indexTestNum;
-    console.log("\n~ ~ ~ ~ Testing Summary ~ ~ ~ ~\nAll ran tests for Uno game project - 999. Passed: " 
-                        + totalTests + ". Failed: " + (999 - totalTests));
+    console.log("\n$ ~ ~ ~ ~ Testing Summary ~ ~ ~ ~\n$ All ran tests for Uno game project - 9. Passed: " 
+                        + totalTests + ". Failed: " + (9 - totalTests));
 }
 
 function indexTests()
 {
-    // let startTestNum = startGameTests();   //testing the startGame function
-    // let callUnoTestNum = callUnoTests();    //testing the callUno function
+    let startTestNum = startGameTests();   //testing the startGame function
+    let callUnoTestNum = callUnoTests();    //testing the callUno function
     let cheatTestNum = cheatTests();
-    console.log("\n* * * * All tests for index.js * * * *");
-    // console.log("Total tests for start() - 3. Passed: " + startTestNum + ". Failed: " + (3 - startTestNum));
-    // console.log("Total tests for callUno() - 2. Passed: " + callUnoTestNum + ". Failed: " + (2 - callUnoTestNum));
-    console.log("Total tests for all cheats - 2. Passed: " + cheatTestNum + ". Failed: " + (2 - cheatTestNum));
-    return 666;
+    console.log("\n$ * * * * All tests for index.js * * * *");
+    console.log("$ Total tests for start() - 3. Passed: " + startTestNum + ". Failed: " + (3 - startTestNum));
+    console.log("$ Total tests for callUno() - 2. Passed: " + callUnoTestNum + ". Failed: " + (2 - callUnoTestNum));
+    console.log("$ Total tests for all cheats - 4. Passed: " + cheatTestNum + ". Failed: " + (2 - cheatTestNum));
+    return (startTestNum + callUnoTestNum + cheatTestNum);
 }
 
 //Testing the startGame function
@@ -26,32 +26,32 @@ function startGameTests()
     let test1 = startTest1();   //running function w/o proper input
     let test2 = startTest2();   //running function w/ proper input
     let test3 = startTest3();   //Selecting player number in HTML correctly passes in value
-    console.log("\n~~~~~~ startGame() tests ~~~~~~");
-    console.log ("Test 1: No valid name input marks form as invalid");
+    console.log("\n$ ~~~~~~ startGame() tests ~~~~~~");
+    console.log ("$ Test 1: No valid name input marks form as invalid");
     if (test1 == 1)
     {
-        console.log("**PASSED**");
+        console.log("$ **PASSED**");
     }else
     {
-        console.log("~~FAILED~~");
+        console.log("$ ~~FAILED~~");
     }
 
-    console.log ("Test 2: Valid name input marks form as valid");
+    console.log ("$ Test 2: Valid name input marks form as valid");
     if (test2 == 1)
     {
-        console.log("**PASSED**");
+        console.log("$ **PASSED**");
     }else
     {
-        console.log("~~FAILED~~");
+        console.log("$ ~~FAILED~~");
     }
 
-    console.log ("Test 3: Selecting player number in HTML correctly passes in value");
+    console.log ("$ Test 3: Selecting player number in HTML correctly passes in value");
     if (test3 == 1)
     {
-        console.log("**PASSED**");
+        console.log("$ **PASSED**");
     }else
     {
-        console.log("~~FAILED~~");
+        console.log("$ ~~FAILED~~");
     }
     //return sum of tests. 1 = pass, 0 = fail
     return (test1 + test2 + test3);
@@ -62,23 +62,23 @@ function callUnoTests()
 {
     let test1 = callUnoTest1();   //Calling uno with more than 2 cards considered invalid
     let test2 = callUnoTest2();   //Calling uno with only 2 cards considered valid
-    console.log("\n~~~~~~ callUno() tests ~~~~~~");
-    console.log ("Test 1: Calling uno with more than 2 cards considered invalid");
+    console.log("\n$ ~~~~~~ callUno() tests ~~~~~~");
+    console.log ("$ Test 1: Calling uno with more than 2 cards considered invalid");
     if (test1 == 1)
     {
-        console.log("**PASSED**");
+        console.log("$ **PASSED**");
     }else
     {
-        console.log("~~FAILED~~");
+        console.log("$ ~~FAILED~~");
     }
 
-    console.log ("Test 2: Calling uno with only 2 cards considered valid");
+    console.log ("$ Test 2: Calling uno with only 2 cards considered valid");
     if (test2 == 1)
     {
-        console.log("**PASSED**");
+        console.log("$ **PASSED**");
     }else
     {
-        console.log("~~FAILED~~");
+        console.log("$ ~~FAILED~~");
     }
     //return sum of tests. 1 = pass, 0 = fail
     return (test1 + test2);
@@ -90,33 +90,33 @@ function cheatTests()
     let test2 = cheatTest2();   //Cheat: giveMeABreak("Color", Value), adds correct card to player's hand
     let test3 = cheatTest3();   //Cheat: forceDraw(number), adds correct number of cards to players hand
     //let test4 = cheatTest4();   //Cheat: forceRemove(number), removes correct number of cards to players hand
-    console.log("\n~~~~~~ Cheat tests ~~~~~~");
-    console.log ("Test 1: Cheat: newPlayfieldCard(), gives new playfield card");
-    console.log("$$$ Testing Note $$$ It's possible the new card drawn will match the previous card as card selection is random. May run test multiple times, should be majority passed")
+    console.log("\n$ ~~~~~~ Cheat tests ~~~~~~");
+    console.log ("$ Test 1: Cheat: newPlayfieldCard(), gives new playfield card");
+    console.log("$ ^^ Testing Note ^^: It's possible the new card drawn will match the previous card as card selection is random. May run test multiple times, should be majority passed")
     if (test1 == 1)
     {
-        console.log("**PASSED**");
+        console.log("$ **PASSED**");
     }else
     {
-        console.log("~~FAILED~~");
+        console.log("$ ~~FAILED~~");
     }
 
-    console.log ("Test 2: Cheat: giveMeABreak('Color', Value), adds correct card to players hand");
+    console.log ("$ Test 2: Cheat: giveMeABreak('Color', Value), adds correct card to players hand");
     if (test2 == 1)
     {
-        console.log("**PASSED**");
+        console.log("$ **PASSED**");
     }else
     {
-        console.log("~~FAILED~~");
+        console.log("$ ~~FAILED~~");
     }
 
-    console.log ("Test 3: Cheat: forceDraw(number), adds correct number of cards to players hand");
+    console.log ("$ Test 3: Cheat: forceDraw(number), adds correct number of cards to players hand");
     if (test3 == 1)
     {
-        console.log("**PASSED**");
+        console.log("$ **PASSED**");
     }else
     {
-        console.log("~~FAILED~~");
+        console.log("$ ~~FAILED~~");
     }
     //return sum of tests. 1 = pass, 0 = fail
     return (test1 + test2 + test3);
@@ -127,6 +127,7 @@ function cheatTests()
 //startGame tests
 function startTest1()
 {
+    //location.reload();
     startGame();
 
     let name = document.getElementById("playerName");
@@ -144,6 +145,7 @@ function startTest1()
 
 function startTest2()
 {
+    //location.reload();
     document.getElementById("playerName").value = "Test";
     startGame();
 
@@ -162,6 +164,7 @@ function startTest2()
 
 function startTest3()
 {
+    //location.reload();
     //Default value: 2;
     startGame();
     let playerNum = document.getElementById("amtPlayers");
@@ -194,6 +197,7 @@ function startTest3()
 
 function callUnoTest1()
 {
+    //location.reload();
     //Initialize game with valid input
     let name = document.getElementById("playerName");
     name.value = "Test"
@@ -212,6 +216,7 @@ function callUnoTest1()
 
 function callUnoTest2()
 {
+    //location.reload();
     //Initialize game with valid input
     let name = document.getElementById("playerName");
     name.value = "Test"
@@ -234,6 +239,7 @@ function callUnoTest2()
 //cheat tests
 function cheatTest1()
 {
+    //location.reload();
     //Initialize game with valid input
     let name = document.getElementById("playerName");
     name.value = "Test"
@@ -257,6 +263,7 @@ function cheatTest1()
 
 function cheatTest2()
 {
+    //location.reload();
     //Initialize game with valid input
     let name = document.getElementById("playerName");
     name.value = "Test"
@@ -279,6 +286,7 @@ function cheatTest2()
 
 function cheatTest3()
 {
+    //location.reload();
     //Initialize game with valid input
     let name = document.getElementById("playerName");
     name.value = "Test"
