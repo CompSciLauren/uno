@@ -6,8 +6,8 @@ function allTests()
     let cardsTestNum = cardsTests();   //teting index.js functions
 
     let totalTests = indexTestNum + cardsTestNum;
-    console.log("\n$ ~ ~ ~ ~ Testing Summary ~ ~ ~ ~\n$ All ran tests for Uno game project - 999. Passed: " 
-                        + totalTests + ". Failed: " + (999 - totalTests));
+    console.log("\n$ ~ ~ ~ ~ Testing Summary ~ ~ ~ ~\n$ All ran tests for Uno game project - 13. Passed: " 
+                        + totalTests + ". Failed: " + (13 - totalTests));
 }
 
 //Tests ordered by file
@@ -26,11 +26,14 @@ function indexTests()
 
 function cardsTests()
 {
-    let isValidNum = isValidTests();   //testing the startGame function
+    let isValidNum = isValidTests();   //testing the isValid function
+    let playCardNum = playCardTests();   //testing the playCard function
+
     console.log("\n$ * * * * All tests for cards.js * * * *");
     console.log("$ Total tests for isValid() - 2. Passed: " + isValidNum + ". Failed: " + (2 - isValidNum));
+    console.log("$ Total tests for playCard() - 2. Passed: " + playCardNum + ". Failed: " + (2 - playCardNum));
     console.log("\n$ * * * * End tests for cards.js * * * *");
-    return (isValidNum);
+    return (isValidNum + playCardNum);
 }
 
 //File-specific tests
@@ -173,6 +176,32 @@ function isValidTests()
     return (test1 + test2);
 }
 
+function playCardTests()
+{
+    let test1 = playCardTest1();   //Test if playCard correctly validates and plays a valid card
+    let test2 = playCardTest2();   //Test if playCard correctly validates and rejects an invalid card
+
+    console.log("\n$ ~~~~~~ playCard tests ~~~~~~");
+    console.log ("$ Test 1: Test if playCard correctly validates and plays a valid card");
+    if (test1 == 1)
+    {
+        console.log("$ **PASSED**");
+    }else
+    {
+        console.log("$ ~~FAILED~~");
+    }
+
+    console.log ("$ Test 2: Test if playCard correctly validates and rejects an invalid card");
+    if (test2 == 1)
+    {
+        console.log("$ **PASSED**");
+    }else
+    {
+        console.log("$ ~~FAILED~~");
+    }
+    //return sum of tests. 1 = pass, 0 = fail
+    return (test1 + test2);
+}
 
 //---------------- Testing functions ----------------
 //startGame tests
@@ -404,7 +433,6 @@ function isValidTest1()
     }
 }
 
-//this.isValid tests
 function isValidTest2()
 {
     //Initialize game with valid input
@@ -415,8 +443,53 @@ function isValidTest2()
     //add non-matching card to player's hand
     giveMeABreak("Orange", 999);
 
-    //Validate the most recent card is valid. Expected: True
+    //Validate the most recent card is valid. Expected: false
     if (players[gameTurn].playerDeck.isValid(players[gameTurn].playerDeck.cards.length - 1) != true)
+    {
+        return true;
+    }else
+    {
+        return false;
+    }
+}
+
+//this.playCard tests
+function playCardTest1()
+{
+    //Initialize game with valid input
+    let name = document.getElementById("playerName");
+    name.value = "Test"
+    startGame();
+
+    //Store value of playfield card
+    let playfieldCardColor = discardPile.cards[discardPile.cards.length - 1].color;
+    let playfieldCardValue = discardPile.cards[discardPile.cards.length - 1].value;
+
+    //add matching card to player's hand
+    giveMeABreak(playfieldCardColor, playfieldCardValue);
+
+    //Validate the most recent card is valid. Expected: True
+    if (players[gameTurn].playerDeck.playCard(players[gameTurn].playerDeck.cards.length - 1) == true)
+    {
+        return true;
+    }else
+    {
+        return false;
+    }
+}
+
+function playCardTest2()
+{
+    //Initialize game with valid input
+    let name = document.getElementById("playerName");
+    name.value = "Test"
+    startGame();
+
+    //add non-matching card to player's hand
+    drawSpecificCard("Orange", 999);
+
+    //Validate the most recent card is valid. Expected: false
+    if (players[gameTurn].playerDeck.playCard(players[gameTurn].playerDeck.cards.length - 1) != true)
     {
         return true;
     }else
