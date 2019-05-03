@@ -1,13 +1,16 @@
+//All tests for Project 4
 function allTests()
 {
     console.log("$ Running all tests");
     let indexTestNum = indexTests();   //teting index.js functions
+    let cardsTestNum = cardsTests();   //teting index.js functions
 
-    let totalTests = indexTestNum;
-    console.log("\n$ ~ ~ ~ ~ Testing Summary ~ ~ ~ ~\n$ All ran tests for Uno game project - 9. Passed: " 
-                        + totalTests + ". Failed: " + (9 - totalTests));
+    let totalTests = indexTestNum + cardsTestNum;
+    console.log("\n$ ~ ~ ~ ~ Testing Summary ~ ~ ~ ~\n$ All ran tests for Uno game project - 999. Passed: " 
+                        + totalTests + ". Failed: " + (999 - totalTests));
 }
 
+//Tests ordered by file
 function indexTests()
 {
     let startTestNum = startGameTests();   //testing the startGame function
@@ -17,8 +20,20 @@ function indexTests()
     console.log("$ Total tests for start() - 3. Passed: " + startTestNum + ". Failed: " + (3 - startTestNum));
     console.log("$ Total tests for callUno() - 2. Passed: " + callUnoTestNum + ". Failed: " + (2 - callUnoTestNum));
     console.log("$ Total tests for all cheats - 4. Passed: " + cheatTestNum + ". Failed: " + (4 - cheatTestNum));
+    console.log("\n$ * * * * End tests for index.js * * * *");
     return (startTestNum + callUnoTestNum + cheatTestNum);
 }
+
+function cardsTests()
+{
+    let isValidNum = isValidTests();   //testing the startGame function
+    console.log("\n$ * * * * All tests for cards.js * * * *");
+    console.log("$ Total tests for isValid() - 2. Passed: " + isValidNum + ". Failed: " + (2 - isValidNum));
+    console.log("\n$ * * * * End tests for cards.js * * * *");
+    return (isValidNum);
+}
+
+//File-specific tests
 
 //Testing the startGame function
 function startGameTests()
@@ -129,6 +144,33 @@ function cheatTests()
     }
     //return sum of tests. 1 = pass, 0 = fail
     return (test1 + test2 + test3 + test4);
+}
+
+function isValidTests()
+{
+    let test1 = isValidTest1();   //Test if returns true on valid card
+    let test2 = isValidTest1();   //Test if returns false on invalid card
+
+    console.log("\n$ ~~~~~~ isValid tests ~~~~~~");
+    console.log ("$ Test 1: Checks if valid card played is accepted by discard pile");
+    if (test1 == 1)
+    {
+        console.log("$ **PASSED**");
+    }else
+    {
+        console.log("$ ~~FAILED~~");
+    }
+
+    console.log ("$ Test 2: Checks if invalid card played is rejected by discard pile");
+    if (test2 == 1)
+    {
+        console.log("$ **PASSED**");
+    }else
+    {
+        console.log("$ ~~FAILED~~");
+    }
+    //return sum of tests. 1 = pass, 0 = fail
+    return (test1 + test2);
 }
 
 
@@ -329,6 +371,52 @@ function cheatTest4()
 
     //Validate the correct number of cards
     if (newLength == (initialLength - 3))
+    {
+        return true;
+    }else
+    {
+        return false;
+    }
+}
+
+//this.isValid tests
+function isValidTest1()
+{
+    //Initialize game with valid input
+    let name = document.getElementById("playerName");
+    name.value = "Test"
+    startGame();
+
+    //Store value of playfield card
+    let playfieldCardColor = discardPile.cards[discardPile.cards.length - 1].color;
+    let playfieldCardValue = discardPile.cards[discardPile.cards.length - 1].value;
+
+    //add matching card to player's hand
+    giveMeABreak(playfieldCardColor, playfieldCardValue);
+
+    //Validate the most recent card is valid. Expected: True
+    if (players[gameTurn].playerDeck.isValid(players[gameTurn].playerDeck.cards.length - 1) == true)
+    {
+        return true;
+    }else
+    {
+        return false;
+    }
+}
+
+//this.isValid tests
+function isValidTest2()
+{
+    //Initialize game with valid input
+    let name = document.getElementById("playerName");
+    name.value = "Test"
+    startGame();
+
+    //add non-matching card to player's hand
+    giveMeABreak("Orange", 999);
+
+    //Validate the most recent card is valid. Expected: True
+    if (players[gameTurn].playerDeck.isValid(players[gameTurn].playerDeck.cards.length - 1) != true)
     {
         return true;
     }else
