@@ -87,12 +87,12 @@ function callUnoTests()
 function cheatTests()
 {
     let test1 = cheatTest1();   //Cheat: newPlayfieldCard(), gives new playfield card
-    //let test2 = cheatTest2();   //Cheat: giveMeABreak("Color", Value), adds correct card to player's hand
-    //let test3 = cheatTest3();   //Cheat: forceDraw(number), adds correct number of cards to players hand
+    let test2 = cheatTest2();   //Cheat: giveMeABreak("Color", Value), adds correct card to player's hand
+    let test3 = cheatTest3();   //Cheat: forceDraw(number), adds correct number of cards to players hand
     //let test4 = cheatTest4();   //Cheat: forceRemove(number), removes correct number of cards to players hand
     console.log("\n~~~~~~ Cheat tests ~~~~~~");
     console.log ("Test 1: Cheat: newPlayfieldCard(), gives new playfield card");
-    console.log("*** Testing Note: It's possible the new card drawn will match the previous card as card selection is random. May run test multiple times, should be majority passed")
+    console.log("$$$ Testing Note $$$ It's possible the new card drawn will match the previous card as card selection is random. May run test multiple times, should be majority passed")
     if (test1 == 1)
     {
         console.log("**PASSED**");
@@ -100,8 +100,26 @@ function cheatTests()
     {
         console.log("~~FAILED~~");
     }
+
+    console.log ("Test 2: Cheat: giveMeABreak('Color', Value), adds correct card to players hand");
+    if (test2 == 1)
+    {
+        console.log("**PASSED**");
+    }else
+    {
+        console.log("~~FAILED~~");
+    }
+
+    console.log ("Test 3: Cheat: forceDraw(number), adds correct number of cards to players hand");
+    if (test3 == 1)
+    {
+        console.log("**PASSED**");
+    }else
+    {
+        console.log("~~FAILED~~");
+    }
     //return sum of tests. 1 = pass, 0 = fail
-    return (test1);
+    return (test1 + test2 + test3);
 }
 
 
@@ -235,4 +253,47 @@ function cheatTest1()
         return true;
     }
 
+}
+
+function cheatTest2()
+{
+    //Initialize game with valid input
+    let name = document.getElementById("playerName");
+    name.value = "Test"
+    startGame();
+    //Run function, selection Blue 5
+    giveMeABreak("Blue", 5);
+    //Get value of most recently added card
+    let newCardColor = players[gameTurn].playerDeck.cards[players[gameTurn].playerDeck.cards.length - 1].color;
+    let newCardValue = players[gameTurn].playerDeck.cards[players[gameTurn].playerDeck.cards.length - 1].value;
+    //Validate card is in player's hand
+    if (newCardColor == "Blue" && newCardValue == 5)
+    {
+        return true;
+    }else
+    {
+        return false;
+    }
+
+}
+
+function cheatTest3()
+{
+    //Initialize game with valid input
+    let name = document.getElementById("playerName");
+    name.value = "Test"
+    startGame();
+    //Run function, starting hand + 5 cards (9 + 5 = 14)
+    let initialLength = players[gameTurn].playerDeck.cards.length;
+    forceDraw(5);
+    let newLength = players[gameTurn].playerDeck.cards.length;
+
+    //Validate the correct number of cards
+    if (newLength == (initialLength + 5))
+    {
+        return true;
+    }else
+    {
+        return false;
+    }
 }
