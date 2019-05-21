@@ -1,58 +1,104 @@
 <html>
 
 <head>
-    <title> Playfield Compare </title>
-    <link href="styles.css" rel="stylesheet" type="text/css">
+  <title>Playfield Compare</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+
+
+  <link href="styles.css" rel="stylesheet" type="text/css" />
+  <link href="cards.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-  <div id="wildColor"></div>
-    <div>
-        <h1 id="Playfield">Playfield card: <div id=PlayfieldCardColor></div>
-            <div id=PlayfieldCardValue></div>
-        </h1>
-        <form>
-            <!-- Enter a card color("Red", "Green", "Yellow", "Blue"):<br>
-            <input id="cardColor" type="text" name="cardColor"><br>
-            Enter a card number(0 - 9):<br>
-            <input id="cardNumber" type="number" name="cardNumber"><br>
-            //<button type="button" onclick="checkPlayerCardToPlayfield()">Compare Cards</button> -->
-            <button type="button" onclick="initializeWindow()">New Playfield Card</button>
+  <div id="setupGame" class="container">
+    <form class="text-center">
+      <div class="form-group mt-5">
+        <label for="playerName">Player Name:</label>
+        <input type="text" class="form-control" id="playerName" placeholder="eg. TheLegend27">
+      </div>
+      <div class="form-group">
+        <label for="amtPlayers">How many Players</label>
+        <select class="form-control" id="amtPlayers">
+          <option value="2" selected="selected">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+      <button class="btn btn-primary center-block" type="button" onclick="startGame()">Start Game</button>
+    </form>
 
-        </form>
-        <div id="Current Player ID">Current Player: <div id="playerID"></div><br></div>
-        <form>
-            Enter a card index to play that card:<br>
-            <input id="cardIndex" type="number" name="cardIndex"><br>
-            <button type="button" onclick="clickEvent();">Play Card</button>  <!-- useCard() originally included before playerTurn-->
+  </div>
 
-        </form>
+  <div id="playingField" class="container mt-5 d-none">
+    <div class="row">
+      <div class="col center-card-hands" align="center">
+        <div id="TopSeatID"></div>
+        <div id="TopSeat"></div>
+      </div>
     </div>
 
-        <div id="player1Hand">
-        </div>
-        <div id="player2Hand">
-        </div>
-        <button onclick="drawACard()">Draw Card</button>
+    <div class="row">
+      <div class="col-md-2">
+        <div id="LeftSeatID"></div>
+        <div id="LeftSeat" class="sideHand"></div>
+      </div>
+      <div class="col-md-8 custom-border center-card-hands" align="center">
+          <div class="row">
+            <div class="cardNotForPlaying black"><div id="drawCardPile"></div></div>
+          </div>
+          <div class="row">
+            <div id="discardDeckDiv"></div>
+            <div id="playfieldHand"></div>
+          </div>
+      </div>
+      <div class="col-md-2">
+        <div id="RightSeatID"></div>
+        <div id="RightSeat" class="sideHand"></div>
+      </div>
+    </div>
 
-        <script type="text/javascript" src="index.js"></script>
-<!--        <script src="index.js"></script>-->
-        <div id="rules">
-            <h4>Rule and Information:</h4>
-            <ul>
-            <li>This is a modified game of Uno, matching color or card value</li>
-            <li>Cards with value 10 are Draw 2</li>
-            <li>Cards with value 11 are Reverse Play Order</li>
-            <li>Cards with value 12 are Skip next Player's Turn</li>
-            <li>Cards can be Red, Green, Blue, or Yellow. 0-9, +2, switch directions, and skips for each color</li>
-            <li>To play a card simply enter the index of the card starting at the leftmost card at 0 (0, 1, 2, 3, ... )</li>
-            <li>You do not have to directly call Uno, to win you simply play your final card</li>
-            <li>If you do not have a valid card to play you must draw until you get one you can play</li>
-            <li>There are no special rules in this version (e.g swap decks)</li>
-            <li>Bots play by the same rules as you do</li>
-            <li>Bots require some time to "think"</li>
-            </ul>
+    <div class="row">
+      <div class="col center-card-hands" align="center">
+        <div id="BottomSeatID"></div>
+        <div id="BottomSeat"></div>
+        <div id="player1Hand"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col" align="center">
+        <br />
+        <button id="unoButton" onclick="callUno()">Uno!</button>
+        <br>*Reminder, you must call Uno BEFORE playing your second-to-last card!
+        <div id="button">
+          <input type="button" value="Rules & Info" onclick="window.open('rules.html')">
         </div>
+        </h3>
+      </div>
+    </div>
+
+
+    <div id="wildColor"></div>
+
+    <script type="text/javascript" src="cards.js"></script>
+    <script type="text/javascript" src="special-cards.js"></script>
+    <script type="text/javascript" src="players.js"></script>
+    <script type="text/javascript" src="index.js"></script>
 </body>
 
 </html>
