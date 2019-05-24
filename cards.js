@@ -70,7 +70,6 @@ function deck(divId, hidden) {
     if (randColor == "Special") {
       //Pick random number between 1 and 3, if 1 or 2 make Wildcard, else regular card
       let randNum = Math.round(Math.random() * 2 + 1);
-      //console.log("Rand num: " + randNum);
       if (randNum == 1 || randNum == 2) {
         randValue = randValue % 2;
       } else {
