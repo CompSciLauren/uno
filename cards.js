@@ -738,7 +738,7 @@ function deck(divId, hidden) {
           cardDiv.style.display = "none";
         }
       }
-    } // end of for loop
+    }
   };
 
   //Compare selected card to playfield card
@@ -776,7 +776,7 @@ function deck(divId, hidden) {
     );
 
     return false;
-  }; //end of check card to playfield
+  };
 
   this.cardInvalid = function(c) {
     let audio = new Audio("error.mp3");

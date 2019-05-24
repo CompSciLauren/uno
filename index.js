@@ -127,7 +127,6 @@ function showMeCheats() {
   );
 }
 
-//All players created  -- TRAVIS
 function initializePlayers() {
   //Fills the players array with 2-4 people or bots (future, currently only allows two players)
   let seats = ["BottomSeat", "RightSeat", "TopSeat", "LeftSeat"];
@@ -190,10 +189,8 @@ function initializePlayers() {
 
     let tempPlayer = new player(tempDeck, tempID, tempIndex, isBot, false);
 
-    //adds the player to the game
     players.push(tempPlayer);
 
-    //Automatically gives the player initial cards
     for (let i = 0; i < initialCards; i++) {
       players[players.length - 1].playerDeck.drawCard();
     }
@@ -256,7 +253,6 @@ function play() {
  * Player's uno call button. Must be pressed BEFORE playing second to last card
  */
 function callUno() {
-  //console.log("Amt of cards: " + players[gameTurn].playerDeck.amtCards);
   if (players[gameTurn].playerDeck.amtCards > 2) {
     console.log("Player called Uno too early.  Penalty 2 cards.");
     players[gameTurn].playerDeck.drawCard();
