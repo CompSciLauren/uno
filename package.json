@@ -1,19 +1,19 @@
 {
-    "name": "uno",
-    "version": "1.0.0",
-    "description": "Uno card game",
-    "main": "index.js",
-    "scripts": {
-        "documentation": "jsdoc -d documentation index.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/CompSciLauren/uno.git"
-    },
-    "author": "",
-    "license": "ISC",
-    "homepage": "https://github.com/CompSciLauren/uno#readme",
-    "devDependencies": {
-        "jsdoc": "^3.5.5"
-    }
+  "name": "uno",
+  "version": "1.0.0",
+  "description": "Uno card game",
+  "main": "index.js",
+  "scripts": {
+    "documentation": "jsdoc -d documentation index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CompSciLauren/uno.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://github.com/CompSciLauren/uno#readme",
+  "devDependencies": {
+    "jsdoc": "^3.5.5"
+  }
 }

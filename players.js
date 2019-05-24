@@ -12,14 +12,13 @@ function player(deck, id, index, bot, unoCall) {
   this.playerID = id;
   this.playerIndex = index;
   this.playerUnoCall = unoCall;
-  this.botLogic = function () {
+  this.botLogic = function() {
     let numBotCards = this.playerDeck.amtCards;
 
     //Standard bot behavior
     for (let i = 0; i < numBotCards; i++) {
       if (players[gameTurn].playerDeck.isValid(i)) {
-        if (players[gameTurn].playerDeck.amtCards == 2)
-        {
+        if (players[gameTurn].playerDeck.amtCards == 2) {
           players[gameTurn].unoCall = true;
         }
         players[gameTurn].playerDeck.playCard(i);

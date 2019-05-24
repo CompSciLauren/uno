@@ -863,11 +863,11 @@ function drawManyCard(numCards) {
  * Function draws a specific number of cards and adds them to playerhand for console cheat
  */
 function drawManyCard(numCards) {
-    let drawTimes = numCards;
-    let i = 0;
-    for (i = 0; i < drawTimes; i++) {
-      players[gameTurn].playerDeck.drawCard();
-    }
+  let drawTimes = numCards;
+  let i = 0;
+  for (i = 0; i < drawTimes; i++) {
+    players[gameTurn].playerDeck.drawCard();
+  }
 }
 
 /**

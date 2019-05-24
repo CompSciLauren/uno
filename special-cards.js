@@ -1,5 +1,3 @@
-/* Special Card Implementations */
-
 /**
  * Reverses the direction of player rotation
  */
@@ -34,17 +32,16 @@ function cardWild() {
 
     refreshPlayfieldCardVisual();
   } else {
-    let isColorSelected = false;
     let wildUI = document.createElement("div");
     document.getElementById("wildColor").append(wildUI);
     wildUI.classList.add("wildStyle");
-    //Runs html allowing user to choose one of 4 correct colors  --  TRAVIS
+
     wildUI.innerHTML =
       "<form name='colorPick' id='myForm'> Enter the Color you want to switch to<br> <input type='radio' name='color' value='Red'>Red<br><input type='radio' name='color' value='Yellow'>Yellow<br><input type='radio' name='color' value='Blue'>Blue<br><input type='radio' name='color' value='Green'>Green<br><input type='button' id='colorButton' value='Pick'></form>";
     document.getElementById("colorButton").onclick = function() {
-      discardPile.cards[discardPile.cards.length - 1].color = document.querySelector(
-        'input[name="color"]:checked'
-      ).value;
+      discardPile.cards[
+        discardPile.cards.length - 1
+      ].color = document.querySelector('input[name="color"]:checked').value;
       discardPile.cards[discardPile.cards.length - 1].value = -1;
       document.getElementById("wildColor").innerHTML = "";
       refreshPlayfieldCardVisual();
@@ -56,7 +53,7 @@ function cardWild() {
     gameTurn = gameTurn - gameDirection;
   }
   return true;
-} //end of cardWild
+}
 
 /**
  * Draws 2 cards
