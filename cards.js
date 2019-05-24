@@ -6,7 +6,7 @@
 function card(color, value) {
   this.color = color;
   this.value = value;
-  this.getColorValue = function() {
+  this.getColorValue = function () {
     if (this.color == "Red") {
       return "#A60000";
     } else if (this.color == "Blue") {
@@ -35,7 +35,7 @@ function deck(divId, hidden) {
   /**
    * Adds a card to the cards array
    */
-  this.addCard = function(c) {
+  this.addCard = function (c) {
     this.cards.push(c);
     this.amtCards = this.cards.length;
   };
@@ -43,7 +43,7 @@ function deck(divId, hidden) {
   /**
    * removes a card from card array
    */
-  this.removeCard = function(c) {
+  this.removeCard = function (c) {
     this.cards.splice(c, 1);
     this.amtCards = this.cards.length;
   };
@@ -51,7 +51,7 @@ function deck(divId, hidden) {
   /**
    * Gives player a specific card for cheat code
    */
-  this.drawSpecificCard = function(cardColor, cardValue) {
+  this.drawSpecificCard = function (cardColor, cardValue) {
     let tempCardColor = cardColor;
     let tempCardValue = cardValue;
 
@@ -63,7 +63,7 @@ function deck(divId, hidden) {
   /**
    * Gives player a random card
    */
-  this.drawCard = function() {
+  this.drawCard = function () {
     let colorArray = ["Red", "Green", "Blue", "Yellow", "Special"];
     let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
     let randValue = Math.floor(Math.random() * 13);
@@ -303,52 +303,12 @@ function deck(divId, hidden) {
           case 11:
             // Reverse
             cardDiv.classList.add("reverse");
-            cardSpanInner.append("_");
-            $(cardSpanInner).css("color", "white");
-            $(cardSpanInner).css("text-shadow", "#fff 1px 1px 1px");
-
-            // left arrow drawing
-            let aspecialClassDiv = document.createElement("div");
-            cardSpanInner.append(aspecialClassDiv);
-            aspecialClassDiv.classList.add("left-arrow-container");
-            let ainnerSpecialClassDiv = document.createElement("div");
-            aspecialClassDiv.append(ainnerSpecialClassDiv);
-            ainnerSpecialClassDiv.classList.add("arrow-body");
-
-            let aevenInnerSpan = document.createElement("span");
-            ainnerSpecialClassDiv.append(aevenInnerSpan);
-            aevenInnerSpan.classList.add("arrow-head");
-
-            // right arrow drawing
-            let bspecialClassDiv = document.createElement("div");
-            cardSpanInner.append(bspecialClassDiv);
-            bspecialClassDiv.classList.add("right-arrow-container");
-            let binnerSpecialClassDiv = document.createElement("div");
-            bspecialClassDiv.append(binnerSpecialClassDiv);
-            binnerSpecialClassDiv.classList.add("arrow-body2");
-
-            let bevenInnerSpan = document.createElement("span");
-            binnerSpecialClassDiv.append(bevenInnerSpan);
-            bevenInnerSpan.classList.add("arrow-head");
-
+            cardSpanInner.append("⇄");
             break;
           case 12:
             // Skip
             cardDiv.classList.add("skip");
-            cardSpanInner.append("_");
-            $(cardSpanInner).css("color", "white");
-            $(cardSpanInner).css("text-shadow", "#fff 1px 1px 1px");
-
-            // first inner card drawing
-            let zspecialClassDiv = document.createElement("div");
-            cardSpanInner.append(zspecialClassDiv);
-            zspecialClassDiv.classList.add("cardsInInnerSkip");
-            zspecialClassDiv.classList.add("no-symbol");
-
-            let zevenInnerSpan = document.createElement("span");
-            zspecialClassDiv.append(zevenInnerSpan);
-            zevenInnerSpan.classList.add("inner");
-
+            cardSpanInner.append("Ø");
             break;
         }
 
@@ -387,7 +347,7 @@ function deck(divId, hidden) {
       }
 
       let thisObject = this;
-      setTimeout(function() {
+      setTimeout(function () {
         drawPile.removeChild(drawPile.childNodes[0]);
         drawPile.removeChild(drawPile.childNodes[0]);
         thisObject.reloadHand();
@@ -408,7 +368,7 @@ function deck(divId, hidden) {
   /**
    * removes card from hand and reloads hand (post-validation of good move)
    */
-  this.playCard = function(c) {
+  this.playCard = function (c) {
     if (this.isValid(c)) {
       //Check if second to last card & Uno call protection
       if (
@@ -419,7 +379,7 @@ function deck(divId, hidden) {
           "Player failed to call Uno before playing second to last card. Penalty 2 cards"
         );
         document.getElementById("unoButton").classList.add("unoButton");
-        setTimeout(function() {
+        setTimeout(function () {
           document.getElementById("unoButton").classList.remove("unoButton");
         }, 500);
         players[gameTurn].playerDeck.drawCard();
@@ -468,14 +428,14 @@ function deck(divId, hidden) {
   /**
    * Returns card at index c
    */
-  this.getCard = function(c) {
+  this.getCard = function (c) {
     return this.cards[c];
   };
 
   /**
    * Reloads the player hand to have the most recent cards in player hand
    */
-  this.reloadHand = function() {
+  this.reloadHand = function () {
     this.hand.innerHTML = "";
     let i = 0;
     for (i = 0; i < this.amtCards; i++) {
@@ -659,54 +619,12 @@ function deck(divId, hidden) {
 
             break;
           case 11:
-            // Reverse
             cardDiv.classList.add("reverse");
-            cardSpanInner.append("_");
-            $(cardSpanInner).css("color", "white");
-            $(cardSpanInner).css("text-shadow", "#fff 1px 1px 1px");
-
-            // left arrow drawing
-            let aspecialClassDiv = document.createElement("div");
-            cardSpanInner.append(aspecialClassDiv);
-            aspecialClassDiv.classList.add("left-arrow-container");
-            let ainnerSpecialClassDiv = document.createElement("div");
-            aspecialClassDiv.append(ainnerSpecialClassDiv);
-            ainnerSpecialClassDiv.classList.add("arrow-body");
-
-            let aevenInnerSpan = document.createElement("span");
-            ainnerSpecialClassDiv.append(aevenInnerSpan);
-            aevenInnerSpan.classList.add("arrow-head");
-
-            // right arrow drawing
-            let bspecialClassDiv = document.createElement("div");
-            cardSpanInner.append(bspecialClassDiv);
-            bspecialClassDiv.classList.add("right-arrow-container");
-            let binnerSpecialClassDiv = document.createElement("div");
-            bspecialClassDiv.append(binnerSpecialClassDiv);
-            binnerSpecialClassDiv.classList.add("arrow-body2");
-
-            let bevenInnerSpan = document.createElement("span");
-            binnerSpecialClassDiv.append(bevenInnerSpan);
-            bevenInnerSpan.classList.add("arrow-head");
-
+            cardSpanInner.append("⇄");
             break;
           case 12:
-            // Skip
             cardDiv.classList.add("skip");
-            cardSpanInner.append("_");
-            $(cardSpanInner).css("color", "white");
-            $(cardSpanInner).css("text-shadow", "#fff 1px 1px 1px");
-
-            // first inner card drawing
-            let zspecialClassDiv = document.createElement("div");
-            cardSpanInner.append(zspecialClassDiv);
-            zspecialClassDiv.classList.add("cardsInInnerSkip");
-            zspecialClassDiv.classList.add("no-symbol");
-
-            let zevenInnerSpan = document.createElement("span");
-            zspecialClassDiv.append(zevenInnerSpan);
-            zevenInnerSpan.classList.add("inner");
-
+            cardSpanInner.append("⊘");
             break;
         }
 
@@ -741,7 +659,7 @@ function deck(divId, hidden) {
   };
 
   //Compare selected card to playfield card
-  this.isValid = function(c) {
+  this.isValid = function (c) {
     //Get in the value by element ID
     let cardColor = this.cards[c].color;
     let cardNumber = this.cards[c].value;
@@ -769,19 +687,19 @@ function deck(divId, hidden) {
     console.log("Played card: " + cardColor + " " + cardNumber);
     console.log(
       "Playfield card card: " +
-        discardPile.cards[discardPile.cards.length - 1].color +
-        " " +
-        discardPile.cards[discardPile.cards.length - 1].value
+      discardPile.cards[discardPile.cards.length - 1].color +
+      " " +
+      discardPile.cards[discardPile.cards.length - 1].value
     );
 
     return false;
   };
 
-  this.cardInvalid = function(c) {
+  this.cardInvalid = function (c) {
     let audio = new Audio("error.mp3");
     if (players[gameTurn].isBot == false) audio.play();
     players[gameTurn].playerDeck.hand.childNodes[c].classList.add("invalid");
-    setTimeout(function() {
+    setTimeout(function () {
       players[gameTurn].playerDeck.hand.childNodes[c].classList.remove(
         "invalid"
       );
@@ -843,7 +761,7 @@ function drawACard() {
   }
 }
 
-$(drawCardPile).click(function() {
+$(drawCardPile).click(function () {
   drawACard();
 });
 

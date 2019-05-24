@@ -280,7 +280,7 @@
 
 .card.skip:before,
 .card.skip:after {
-  content: "S";
+  content: "⊘";
 }
 
 .card.wild:before,
@@ -290,7 +290,7 @@
 
 .card.reverse:before,
 .card.reverse:after {
-  content: "R";
+  content: "⇄";
 }
 
 .cardsInInnerPlus4 {
@@ -379,23 +379,6 @@
   z-index: 0.1;
 }
 
-.no-symbol {
-  position: absolute;
-  left: 9px;
-  top: 40px;
-  border: 10px solid #000;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    transparent 45%,
-    #000 45%,
-    #000 55%,
-    transparent 55%
-  );
-}
-
 /* Wild Card Circle */
 .circle-container {
   width: 94px;
@@ -436,42 +419,4 @@
   border-bottom-right-radius: 200px;
   background: #18a849;
   float: right;
-}
-
-/* Reverse Card Arrow */
-.left-arrow-container {
-  position: absolute;
-  left: 30px;
-  top: -25px;
-}
-
-.right-arrow-container {
-  position: absolute;
-  left: 40px;
-  top: -10px;
-}
-
-.arrow-body {
-  transform: rotate(310deg);
-  width: 50px;
-  height: 15px;
-  background: #000;
-  margin: 100px auto;
-}
-
-.arrow-body2 {
-  transform: rotate(130deg);
-  width: 50px;
-  height: 15px;
-  background: #000;
-  margin: 100px auto;
-}
-
-.arrow-head {
-  border-top: 18px solid transparent;
-  border-bottom: 18px solid transparent;
-  border-left: 23px solid #000;
-  float: right;
-  margin-top: -13px;
-  margin-right: -21px;
 }
