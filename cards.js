@@ -3,7 +3,7 @@
  * @param {*} color
  * @param {*} value
  */
-function card(color, value) {
+function Card(color, value) {
   this.color = color;
   this.value = value;
   this.getColorValue = function () {
@@ -55,7 +55,7 @@ function deck(divId, hidden) {
     let tempCardColor = cardColor;
     let tempCardValue = cardValue;
 
-    let tempCard = new card(tempCardColor, tempCardValue);
+    let tempCard = new Card(tempCardColor, tempCardValue);
     this.addCard(tempCard);
     this.reloadHand();
   };
@@ -79,7 +79,7 @@ function deck(divId, hidden) {
         randValue = Math.floor(Math.random() * 13);
       }
     }
-    let tempCard = new card(randColor, randValue);
+    let tempCard = new Card(randColor, randValue);
     this.addCard(tempCard);
 
     //Draw Card Animation Start
@@ -794,7 +794,7 @@ function SelectPlayfieldCard() {
   let colorArray = ["Red", "Green", "Blue", "Yellow"];
   let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
   let randValue = Math.floor(Math.random() * 10);
-  let tempCard = new card(randColor, randValue);
+  let tempCard = new Card(randColor, randValue);
 
   discard(tempCard);
 }

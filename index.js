@@ -1,5 +1,5 @@
-$(document).ready(function() {
-  $(document).on("click", ".my-card", function() {
+$(document).ready(function () {
+  $(document).on("click", ".my-card", function () {
     let cardIndex = $(".my-card").index(this);
     console.log("index: " + cardIndex);
     useCard(cardIndex);
@@ -32,11 +32,11 @@ let drawStack = {
   cardValue: 0,
   stackAmt: 0,
   cardType: 2, // either 2 or 4
-  updateStack: function() {
+  updateStack: function () {
     document.getElementById("drawCardPile").innerHTML =
       "+" + this.cardType * this.stackAmt;
   },
-  clearVisual: function() {
+  clearVisual: function () {
     document.getElementById("drawCardPile").innerHTML = "";
   }
 };
@@ -187,7 +187,7 @@ function initializePlayers() {
     document.getElementById(playerHandLabel).innerHTML =
       "<h3>" + tempID + "</h3>";
 
-    let tempPlayer = new player(tempDeck, tempID, tempIndex, isBot, false);
+    let tempPlayer = new Player(tempDeck, tempID, tempIndex, isBot, false);
 
     players.push(tempPlayer);
 
@@ -224,7 +224,7 @@ function startGame() {
  */
 function play() {
   if (players[gameTurn].isBot) {
-    setTimeout(function() {
+    setTimeout(function () {
       for (let i = 0; i < players.length; i++) {
         document
           .getElementById(players[i].playerDeck.hand.id + "ID")
@@ -236,7 +236,7 @@ function play() {
       players[gameTurn].botLogic();
     }, 1000);
   } else {
-    setTimeout(function() {
+    setTimeout(function () {
       for (let i = 0; i < players.length; i++) {
         document
           .getElementById(players[i].playerDeck.hand.id + "ID")

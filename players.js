@@ -6,13 +6,13 @@
  * @param {*} bot
  * @param {*} unoCall
  */
-function player(deck, id, index, bot, unoCall) {
+function Player(deck, id, index, bot, unoCall) {
   this.isBot = bot;
   this.playerDeck = deck;
   this.playerID = id;
   this.playerIndex = index;
   this.playerUnoCall = unoCall;
-  this.botLogic = function() {
+  this.botLogic = function () {
     let numBotCards = this.playerDeck.amtCards;
 
     //Standard bot behavior
