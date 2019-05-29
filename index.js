@@ -7,7 +7,7 @@ $(document).ready(function () {
 });
 
 // Global Playfield Card
-let discardPile = new deck("discardDeckDiv", false);
+let discardPile = new Deck("discardDeckDiv", false);
 
 //Creates a Global array to store players  --  TRAVIS
 let players = [];
@@ -164,9 +164,9 @@ function initializePlayers() {
     let tempDeck;
 
     if (players.length == 0) {
-      tempDeck = new deck(playerHandDiv, false);
+      tempDeck = new Deck(playerHandDiv, false);
     } else {
-      tempDeck = new deck(playerHandDiv, true); //set to true to blackout
+      tempDeck = new Deck(playerHandDiv, true); //set to true to blackout
     }
 
     let tempID = document.getElementById("playerName").value;

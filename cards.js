@@ -26,7 +26,7 @@ function Card(color, value) {
  * @param {*} divId
  * @param {*} hidden
  */
-function deck(divId, hidden) {
+function Deck(divId, hidden) {
   this.cards = [];
   this.amtCards = 0;
   this.hand = document.getElementById(divId);
@@ -87,7 +87,7 @@ function deck(divId, hidden) {
       //obtains drawPile div
       let drawPile = document.getElementById("drawCardPile");
 
-      //create Containers for the cards and adds class
+      //create containers for the cards and add class
       let drawCardContainer = document.createElement("div");
       let drawCardContainerBack = document.createElement("div");
       drawCardContainer.classList.add("drawCardContainer");
@@ -97,7 +97,7 @@ function deck(divId, hidden) {
       drawPile.append(drawCardContainer);
       drawPile.append(drawCardContainerBack);
 
-      //create Card Visuals
+      //create card visuals
       let cardDivBack = document.createElement("div");
       let cardDiv = document.createElement("div");
 
@@ -308,7 +308,7 @@ function deck(divId, hidden) {
           case 12:
             // Skip
             cardDiv.classList.add("skip");
-            cardSpanInner.append("Ø");
+            cardSpanInner.append("⊘");
             break;
         }
 
@@ -361,7 +361,7 @@ function deck(divId, hidden) {
       players[gameTurn].playerID + " Drew a " + randColor + " " + randValue
     ); //testing
 
-    //If drawing a card, player CANNOT have Uno
+    //If drawing a card, player cannot have Uno
     players[gameTurn].unoCall = false;
   };
 
@@ -730,8 +730,8 @@ function removeManyCards(numberOfCards) {
     console.log("Error: Cannot leave less than 2 cards in the players hand");
     return;
   }
-  let i = 0;
-  for (i = 0; i < numberOfCards; i++) {
+
+  for (let i = 0; i < numberOfCards; i++) {
     players[gameTurn].playerDeck.removeCard(0);
   }
   players[gameTurn].playerDeck.reloadHand();
@@ -743,9 +743,8 @@ function removeManyCards(numberOfCards) {
 function drawACard() {
   if (drawStack.stackAmt != 0) {
     let drawTimes = drawStack.cardType * drawStack.stackAmt;
-    let i = 0;
     drawStack.clearVisual();
-    for (i = 0; i < drawTimes; i++) {
+    for (let i = 0; i < drawTimes; i++) {
       players[gameTurn].playerDeck.drawCard();
     }
 
@@ -770,8 +769,7 @@ $(drawCardPile).click(function () {
  */
 function drawManyCard(numCards) {
   let drawTimes = numCards;
-  let i = 0;
-  for (i = 0; i < drawTimes; i++) {
+  for (let i = 0; i < drawTimes; i++) {
     players[gameTurn].playerDeck.drawCard();
   }
 }
