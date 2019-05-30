@@ -278,6 +278,10 @@
   content: "+2";
 }
 
+.card.skip {
+  font-size: 55px;
+}
+
 .card.skip:before,
 .card.skip:after {
   content: "⊘";
@@ -288,9 +292,18 @@
   content: "W";
 }
 
+.card.reverse {
+  font-size: 73px;
+}
+
+.card.reverse .mark {
+  transform: rotate(-45deg);
+}
+
 .card.reverse:before,
 .card.reverse:after {
   content: "⇄";
+  transform: rotate(-45deg);
 }
 
 .cardsInInnerPlus4 {
