@@ -157,11 +157,7 @@ function Deck(divId, hidden) {
         drawCardContainer.classList.add("drawCardAnimationFrontDown");
         drawCardContainerBack.classList.add("drawCardAnimationBack");
       } else {
-        cardDiv.classList.add("black");
-        cardSpanInner.append("_");
-        $(cardSpanInner).css("color", "#c72a18");
-        $(cardSpanInner).css("background-color", "#c72a18");
-        $(cardSpanInner).css("text-shadow", "#c72a18 1px 1px 1px");
+        addCSSDesignToBackOfCard(cardDiv, cardSpanInner);
 
         if (this.hand.id == "TopSeat") {
           drawCardContainer.classList.add("drawCardAnimationHiddenUp");
@@ -306,11 +302,7 @@ function Deck(divId, hidden) {
           default:
         }
       } else {
-        cardDiv.classList.add("black");
-        cardSpanInner.append("_");
-        $(cardSpanInner).css("color", "#c72a18");
-        $(cardSpanInner).css("background-color", "#c72a18");
-        $(cardSpanInner).css("text-shadow", "#c72a18 1px 1px 1px");
+        addCSSDesignToBackOfCard(cardDiv, cardSpanInner);
         if (i >= 7) {
           cardDiv.style.display = "none";
         }
@@ -466,6 +458,14 @@ function forcePlay() {
     if (players[gameTurn].playerDeck.isValid(i)) return true;
   }
   return false;
+}
+
+function addCSSDesignToBackOfCard(cardDiv, cardSpanInner) {
+  cardDiv.classList.add("black");
+  cardSpanInner.append("_");
+  $(cardSpanInner).css("color", "#c72a18");
+  $(cardSpanInner).css("background-color", "#c72a18");
+  $(cardSpanInner).css("text-shadow", "#c72a18 1px 1px 1px");
 }
 
 function addCSSDesignToCard(cardDiv, cardSpanInner, cardValue, cardColor) {
