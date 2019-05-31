@@ -138,7 +138,7 @@ function Deck(divId, hidden) {
         cardSkip();
       }
 
-      //Remove played card from hand
+      // remove played card from hand
       this.removeCard(card);
       if (this.cards.length == 0) {
         alert(players[gameTurn].playerID + " wins!");
@@ -159,7 +159,7 @@ function Deck(divId, hidden) {
   };
 
   /**
-   * Returns card at index c
+   * Returns card at index card
    */
   this.getCard = function (card) {
     return this.cards[card];
@@ -189,7 +189,7 @@ function Deck(divId, hidden) {
       if (!this.isHidden) {
         addCSSDesignToCard(cardDiv, cardSpanInner, this.getCard(i).value, this.getCard(i).color);
 
-        //prevents the discardDeckDiv from being counted as playable cards
+        // prevents the discardDeckDiv from being counted as playable cards
         if (this.hand.id != "discardDeckDiv") {
           cardDiv.classList.add("my-card");
         }
@@ -218,13 +218,13 @@ function Deck(divId, hidden) {
     }
   };
 
-  //Compare selected card to playfield card
+  // compare selected card to playfield card
   this.isValid = function (card) {
     //Get in the value by element ID
     let cardColor = this.cards[card].color;
     let cardNumber = this.cards[card].value;
 
-    //Will run if there is a stackable card played, +2 or +4
+    // will run if there is a stackable card played, +2 or +4
     if (drawStack.stackAmt != 0) {
       if (cardNumber != drawStack.cardValue) {
         return false;
@@ -384,7 +384,7 @@ function addCSSDesignToCard(cardDiv, cardSpanInner, cardValue, cardColor) {
         cardDiv.classList.add("num-0");
         cardSpanInner.append("0");
       } else {
-        // Wild card
+        // wild card
         cardDiv.classList.add("wild");
         cardDiv.classList.add("black");
         cardSpanInner.append("_");
@@ -514,7 +514,7 @@ function addCSSDesignToCard(cardDiv, cardSpanInner, cardValue, cardColor) {
       cardSpanInner.append("9");
       break;
     case 10:
-      // Draw 2
+      // draw 2
       cardDiv.classList.add("draw2");
       cardSpanInner.append("_");
       $(cardSpanInner).css("color", "white");
@@ -553,24 +553,24 @@ function addCSSDesignToCard(cardDiv, cardSpanInner, cardValue, cardColor) {
 }
 
 function drawCardAnimation(thisHandId, randValue, randColor, thisObject) {
-  //obtains drawPile div
+  // obtain drawPile div
   let drawPile = document.getElementById("drawCardPile");
 
-  //create containers for the cards and add class
+  // create containers for the cards and add class
   let drawCardContainer = document.createElement("div");
   let drawCardContainerBack = document.createElement("div");
   drawCardContainer.classList.add("drawCardContainer");
   drawCardContainerBack.classList.add("drawCardContainer");
 
-  //append containers to drawpile div
+  // append containers to drawpile div
   drawPile.append(drawCardContainer);
   drawPile.append(drawCardContainerBack);
 
-  //create card visuals
+  // create card visuals
   let cardDivBack = document.createElement("div");
   let cardDiv = document.createElement("div");
 
-  //apend cards into containers
+  // append cards into containers
   drawCardContainer.append(cardDiv);
   drawCardContainerBack.append(cardDivBack);
 
@@ -578,7 +578,7 @@ function drawCardAnimation(thisHandId, randValue, randColor, thisObject) {
   cardDiv.classList.add("card");
   cardDivBack.classList.add("card");
 
-  //creates the inside of the cards
+  // create the inside of the cards
   let cardSpan = document.createElement("span");
   cardDiv.append(cardSpan);
   cardSpan.classList.add("inner");
