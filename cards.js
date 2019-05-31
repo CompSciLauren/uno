@@ -130,11 +130,7 @@ function Deck(divId, hidden) {
       cardDiv.append();
       cardDivBack.append();
 
-      cardDivBack.classList.add("black");
-      cardSpanInnerBack.append("_");
-      $(cardSpanInnerBack).css("color", "#c72a18");
-      $(cardSpanInnerBack).css("background-color", "#c72a18");
-      $(cardSpanInnerBack).css("text-shadow", "#c72a18 1px 1px 1px");
+      addCSSDesignToBackOfCard(cardDivBack, cardSpanInnerBack);
 
       if (this.hand.id == "BottomSeat") {
         addCSSDesignToCard(cardDiv, cardSpanInner, randValue, randColor);
