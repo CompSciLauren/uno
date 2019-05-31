@@ -36,16 +36,16 @@ function Deck(divId, hidden) {
   /**
    * Adds a card to the cards array
    */
-  this.addCard = function (c) {
-    this.cards.push(c);
+  this.addCard = function (card) {
+    this.cards.push(card);
     this.amtCards = this.cards.length;
   };
 
   /**
    * removes a card from card array
    */
-  this.removeCard = function (c) {
-    this.cards.splice(c, 1);
+  this.removeCard = function (card) {
+    this.cards.splice(card, 1);
     this.amtCards = this.cards.length;
   };
 
@@ -197,8 +197,8 @@ function Deck(divId, hidden) {
   /**
    * removes card from hand and reloads hand (post-validation of good move)
    */
-  this.playCard = function (c) {
-    if (this.isValid(c)) {
+  this.playCard = function (card) {
+    if (this.isValid(card)) {
       //Check if second to last card & Uno call protection
       if (
         players[gameTurn].playerDeck.amtCards == 2 &&
@@ -215,7 +215,7 @@ function Deck(divId, hidden) {
         players[gameTurn].playerDeck.drawCard();
       }
 
-      let cardBeingPlayed = this.cards[c];
+      let cardBeingPlayed = this.cards[card];
 
       discard(cardBeingPlayed);
       refreshPlayfieldCardVisual();
@@ -235,14 +235,14 @@ function Deck(divId, hidden) {
       }
 
       //Remove played card from hand
-      this.removeCard(c);
+      this.removeCard(card);
       if (this.cards.length == 0) {
         alert(players[gameTurn].playerID + " wins!");
         location.reload();
         return;
       }
     } else if (!players[gameTurn].isBot) {
-      this.cardInvalid(c);
+      this.cardInvalid(card);
       return false;
     } else {
       return false;
@@ -257,8 +257,8 @@ function Deck(divId, hidden) {
   /**
    * Returns card at index c
    */
-  this.getCard = function (c) {
-    return this.cards[c];
+  this.getCard = function (card) {
+    return this.cards[card];
   };
 
   /**
@@ -319,10 +319,10 @@ function Deck(divId, hidden) {
   };
 
   //Compare selected card to playfield card
-  this.isValid = function (c) {
+  this.isValid = function (card) {
     //Get in the value by element ID
-    let cardColor = this.cards[c].color;
-    let cardNumber = this.cards[c].value;
+    let cardColor = this.cards[card].color;
+    let cardNumber = this.cards[card].value;
 
     //Will run if there is a stackable card played, +2 or +4
     if (drawStack.stackAmt != 0) {
@@ -354,12 +354,12 @@ function Deck(divId, hidden) {
     return false;
   };
 
-  this.cardInvalid = function (c) {
+  this.cardInvalid = function (card) {
     let audio = new Audio("error.mp3");
     if (players[gameTurn].isBot == false) audio.play();
-    players[gameTurn].playerDeck.hand.childNodes[c].classList.add("invalid");
+    players[gameTurn].playerDeck.hand.childNodes[card].classList.add("invalid");
     setTimeout(function () {
-      players[gameTurn].playerDeck.hand.childNodes[c].classList.remove(
+      players[gameTurn].playerDeck.hand.childNodes[card].classList.remove(
         "invalid"
       );
     }, 500);

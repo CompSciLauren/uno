@@ -131,18 +131,15 @@ function initializePlayers() {
   //Fills the players array with 2-4 people or bots (future, currently only allows two players)
   let seats = ["BottomSeat", "RightSeat", "TopSeat", "LeftSeat"];
   let botNames = [
-    "Justa Guye",
     "Homer Sapien",
     "Pierre Son",
     "Mist Tyre",
     "Jin Tellmin",
-    "Guy Pierreson",
     "Norm Hal",
     "Avery Mann",
     "Hugh Man",
     "Aver Ageman",
     "Amanda Skyzdazawoman",
-    "Guy Chapman",
     "Aman Justasyu",
     "Sivi Lian",
     "Norma Laedie",
@@ -154,7 +151,6 @@ function initializePlayers() {
     "Naeem Hiddon",
     "Aylov Peypul",
     "Jawl E. Goodfellow",
-    "Roger Otto Benjamin Olsen Tanner"
   ];
   while (players.length < amtPlayers) {
     let seatIndex = Math.round(4 / amtPlayers) * players.length;
