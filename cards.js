@@ -7,16 +7,17 @@ function Card(color, value) {
   this.color = color;
   this.value = value;
   this.getColorValue = function () {
-    if (this.color == "Red") {
-      return "#A60000";
-    } else if (this.color == "Blue") {
-      return "#0000FF";
-    } else if (this.color == "Green") {
-      return "#004f19";
-    } else if (this.color == "Yellow") {
-      return "#e5bf00";
-    } else {
-      return "#333333";
+    switch (this.color) {
+      case "Red":
+        return "#A60000";
+      case "Blue":
+        return "#0000FF";
+      case "Green":
+        return "#004f19";
+      case "Yellow":
+        return "#e5bf00";
+      default:
+        return "#333333";
     }
   };
 }
@@ -138,17 +139,19 @@ function Deck(divId, hidden) {
       if (this.hand.id == "BottomSeat") {
         addCSSDesignToCard(cardDiv, cardSpanInner, randValue, randColor);
 
-        if (randColor == "Blue") {
-          cardDiv.classList.add("blue");
-        }
-        if (randColor == "Red") {
-          cardDiv.classList.add("red");
-        }
-        if (randColor == "Green") {
-          cardDiv.classList.add("green");
-        }
-        if (randColor == "Yellow") {
-          cardDiv.classList.add("yellow");
+        switch (randColor) {
+          case "Blue":
+            cardDiv.classList.add("blue");
+            break;
+          case "Red":
+            cardDiv.classList.add("red");
+            break;
+          case "Green":
+            cardDiv.classList.add("green");
+            break;
+          case "Yellow":
+            cardDiv.classList.add("yellow");
+            break;
         }
 
         drawCardContainer.classList.add("drawCardAnimationFrontDown");
@@ -287,17 +290,20 @@ function Deck(divId, hidden) {
           cardDiv.classList.add("my-card");
         }
 
-        if (this.getCard(i).getColorValue() == "#0000FF") {
-          cardDiv.classList.add("blue");
-        }
-        if (this.getCard(i).getColorValue() == "#A60000") {
-          cardDiv.classList.add("red");
-        }
-        if (this.getCard(i).getColorValue() == "#004f19") {
-          cardDiv.classList.add("green");
-        }
-        if (this.getCard(i).getColorValue() == "#e5bf00") {
-          cardDiv.classList.add("yellow");
+        switch (this.getCard(i).getColorValue()) {
+          case "#0000FF":
+            cardDiv.classList.add("blue");
+            break;
+          case "#A60000":
+            cardDiv.classList.add("red");
+            break;
+          case "#004f19":
+            cardDiv.classList.add("green");
+            break;
+          case "#e5bf00":
+            cardDiv.classList.add("yellow");
+            break;
+          default:
         }
       } else {
         cardDiv.classList.add("black");
@@ -345,7 +351,6 @@ function Deck(divId, hidden) {
       " " +
       discardPile.cards[discardPile.cards.length - 1].value
     );
-
     return false;
   };
 
