@@ -9,7 +9,7 @@ $(document).ready(function () {
 // Global Playfield Card
 let discardPile = new Deck("discardDeckDiv", false);
 
-//Creates a Global array to store players  --  TRAVIS
+//Creates a Global array to store players
 let players = [];
 
 //Amount of players in the game
@@ -246,7 +246,7 @@ function play() {
 }
 
 /**
- * Player's uno call button. Must be pressed BEFORE playing second to last card
+ * Uno call button
  */
 function callUno() {
   if (players[gameTurn].playerDeck.amtCards > 2) {

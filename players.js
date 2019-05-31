@@ -29,11 +29,9 @@ function Player(deck, id, index, bot, unoCall) {
     if (drawStack.stackAmt != 0) {
       drawACard();
     } else {
-      //Draw a card, then check if that new card is a match. Should break loop if it is
-      //The 20 card limit is just for testing, keeps infinite decks from being made
+      //Draw a card and check if it is a match. Will break loop if hits 20 card limit (prevents infinite decks)
       while (!this.playerDeck.playCard(this.playerDeck.amtCards - 1)) {
         drawACard();
-        //setTimeout(drawACard(), 1000);
       }
     }
   };
@@ -42,8 +40,12 @@ function Player(deck, id, index, bot, unoCall) {
 function rotatePlayers() {
   gameTurn = gameTurn + gameDirection;
 
-  if (gameTurn == players.length) gameTurn = 0;
-  else if (gameTurn < 0) gameTurn = players.length - 1;
+  if (gameTurn == players.length) {
+    gameTurn = 0;
+  }
+  else if (gameTurn < 0) {
+    gameTurn = players.length - 1;
+  }
 
   console.log("rotatePlayers check, player: " + gameTurn);
 }
