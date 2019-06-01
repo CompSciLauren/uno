@@ -348,6 +348,7 @@ function drawCardAnimation(thisHandId, randValue, randColor, thisObject) {
   if (thisHandId == "BottomSeat") {
     addCSSDesignToCard(cardDiv, cardSpanInner, randValue, randColor);
 
+    // determines color of card drawn from the playfield deck
     switch (randColor) {
       case "Blue":
         cardDiv.classList.add("blue");
