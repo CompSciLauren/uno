@@ -1,5 +1,5 @@
 /**
- * Reverses the direction of player rotation
+ * Reverse the direction of player rotation
  */
 function cardReverse() {
   console.log("Reverse Card!");
@@ -11,7 +11,7 @@ function cardReverse() {
 }
 
 /**
- * Skips the next player in rotation
+ * Skip the next player in rotation
  */
 function cardSkip() {
   console.log("Skip Card!");
@@ -56,7 +56,7 @@ function cardWild() {
 }
 
 /**
- * Draws 2 cards
+ * Draw 2 cards
  */
 function cardDraw2() {
   console.log("Draw 2 Card!");
@@ -67,7 +67,7 @@ function cardDraw2() {
 }
 
 /**
- * Draws 4 cards
+ * Draw 4 cards
  */
 function cardDraw4() {
   console.log("Draw 4 Card!");

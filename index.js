@@ -6,28 +6,28 @@ $(document).ready(function () {
   });
 });
 
-// Global Playfield Card
+// global Playfield Card
 let discardPile = new Deck("discardDeckDiv", false);
 
-//Creates a Global array to store players
+// creates a Global array to store players
 let players = [];
 
-//Amount of players in the game
+// amount of players in the game
 let amtPlayers = 4;
 
-//Initial amount of cards for each player
+// initial amount of cards for each player
 let initialCards = 7;
 
-//Global Turn Tracker
+// global Turn Tracker
 let gameTurn = 0;
 
-//sets direction of game, 1 for forward, -1 for backward
+// sets direction of game, 1 for forward, -1 for backward
 let gameDirection = 1;
 
-//stores if initial draw
+// stores if initial draw
 let initialDraw = true;
 
-//Stores how many +2, or +4s are stacked
+// stores how many +2, or +4s are stacked
 let drawStack = {
   cardValue: 0,
   stackAmt: 0,
@@ -45,13 +45,13 @@ let drawStack = {
  * Changes the displayed text and calls function to randomize playfield card
  */
 function initializeWindow() {
-  //Reassign global card value to random values
-  SelectPlayfieldCard();
+  // re-assign global card value to random values
+  selectPlayfieldCard();
   refreshPlayfieldCardVisual();
 }
 
 function initializePlayers() {
-  //Fills the players array with 2-4 people or bots (future; currently only allows two players)
+  // fill the players array with 2-4 people or bots (future; currently only allows two players)
   let seats = ["BottomSeat", "RightSeat", "TopSeat", "LeftSeat"];
   let botNames = [
     "Homer Sapien",
@@ -86,7 +86,7 @@ function initializePlayers() {
     if (players.length == 0) {
       tempDeck = new Deck(playerHandDiv, false);
     } else {
-      tempDeck = new Deck(playerHandDiv, true); //set to true to blackout
+      tempDeck = new Deck(playerHandDiv, true); // set to true to blackout
     }
 
     let tempID = document.getElementById("playerName").value;
@@ -174,7 +174,7 @@ function play() {
  */
 function callUno() {
   if (players[gameTurn].playerDeck.amtCards > 2) {
-    console.log("Player called Uno too early.  Penalty 2 cards.");
+    console.log("Player called Uno too early. Penalty 2 cards.");
     players[gameTurn].playerDeck.drawCard();
     players[gameTurn].playerDeck.drawCard();
   } else {

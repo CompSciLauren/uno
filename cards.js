@@ -92,7 +92,7 @@ function drawManyCard(numCards) {
 /**
  * Changes the global card object to random color/value assignment
  */
-function SelectPlayfieldCard() {
+function selectPlayfieldCard() {
   let colorArray = ["Red", "Green", "Blue", "Yellow"];
   let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
   let randValue = Math.floor(Math.random() * 10);
