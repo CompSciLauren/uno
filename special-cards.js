@@ -2,7 +2,6 @@
  * Reverse the direction of player rotation
  */
 function cardReverse() {
-  console.log("Reverse Card!");
   if (players.length == 2) {
     rotatePlayers();
   } else {
@@ -14,7 +13,6 @@ function cardReverse() {
  * Skip the next player in rotation
  */
 function cardSkip() {
-  console.log("Skip Card!");
   rotatePlayers();
 }
 
@@ -22,7 +20,6 @@ function cardSkip() {
  * Card is wild
  */
 function cardWild() {
-  console.log("Wild Card!");
   if (players[gameTurn].isBot) {
     let colorArray = ["Red", "Green", "Blue", "Yellow"];
     let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
@@ -42,7 +39,6 @@ function cardWild() {
       ].color = document.querySelector('input[name="color"]:checked').value;
       discardPile.cards[discardPile.cards.length - 1].value = -1;
       document.getElementById("wildColor").innerHTML = "";
-      console.log(discardPile.cards[discardPile.cards.length - 1].color);
       isColorSelected = true;
       rotatePlayers();
       play();
@@ -56,7 +52,6 @@ function cardWild() {
  * Draw 2 cards
  */
 function cardDraw2() {
-  console.log("Draw 2 Card!");
   drawStack.stackAmt++;
   drawStack.cardType = 2;
   drawStack.cardValue = 10;
@@ -67,7 +62,6 @@ function cardDraw2() {
  * Draw 4 cards
  */
 function cardDraw4() {
-  console.log("Draw 4 Card!");
   drawStack.stackAmt++;
   drawStack.cardType = 4;
   drawStack.cardValue = 1;

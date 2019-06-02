@@ -174,11 +174,9 @@ function play() {
  */
 function callUno() {
   if (players[gameTurn].playerDeck.amtCards > 2) {
-    console.log("Player called Uno too early. Penalty 2 cards.");
     players[gameTurn].playerDeck.drawCard();
     players[gameTurn].playerDeck.drawCard();
   } else {
-    console.log("Successful Uno call protection");
     players[gameTurn].unoCall = true;
   }
 }

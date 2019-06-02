@@ -66,10 +66,6 @@ function Deck(divId, hidden) {
             this.reloadHand();
         }
 
-        console.log(
-            players[gameTurn].playerID + " Drew a " + randColor + " " + randValue
-        ); //testing
-
         // if drawing a card, player cannot have Uno
         players[gameTurn].unoCall = false;
     };
@@ -84,9 +80,6 @@ function Deck(divId, hidden) {
                 players[gameTurn].playerDeck.amtCards == 2 &&
                 players[gameTurn].unoCall != true
             ) {
-                console.log(
-                    "Player failed to call Uno before playing second to last card. Penalty 2 cards"
-                );
                 document.getElementById("unoButton").classList.add("unoButton");
                 setTimeout(function () {
                     document.getElementById("unoButton").classList.remove("unoButton");
@@ -220,13 +213,6 @@ function Deck(divId, hidden) {
         if (cardNumber == discardPile.cards[discardPile.cards.length - 1].value) {
             return true;
         }
-        console.log("Played card: " + cardColor + " " + cardNumber);
-        console.log(
-            "Playfield card card: " +
-            discardPile.cards[discardPile.cards.length - 1].color +
-            " " +
-            discardPile.cards[discardPile.cards.length - 1].value
-        );
         return false;
     };
 

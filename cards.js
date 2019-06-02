@@ -42,7 +42,6 @@ function drawSpecificCard(cardColor, cardValue) {
  */
 function removeManyCards(numberOfCards) {
   if (numberOfCards > players[gameTurn].playerDeck.amtCards - 2) {
-    console.log("Error: Cannot leave less than 2 cards in the players hand");
     return;
   }
 

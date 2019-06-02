@@ -46,6 +46,4 @@ function rotatePlayers() {
   else if (gameTurn < 0) {
     gameTurn = players.length - 1;
   }
-
-  console.log("rotatePlayers check, player: " + gameTurn);
 }
