@@ -2,32 +2,23 @@
  * Lists cheat functions in console
  */
 function showMeCheats() {
-    console.log(
-        "newPlayfieldCard() -- Adds a new playfield card to top of stack"
-    );
-    console.log(" ");
+    console.log("------------------------------------");
+    console.log("newPlayfieldCard() -- Add new card to the discard pile");
+    console.log("");
 
-    console.log(
-        'giveMeABreak("Color", Value) -- Adds a specific card to player\'s hand'
-    );
+    console.log('drawSpecificCard("Color", Value) -- Give yourself a specific card');
 
-    console.log("Possible card colors: Red, Green, Blue, Yellow, Special");
-    console.log(
-        "Possible card values for R-G-B-Y: 0-9, 10 (for draw 2), 11 (for reverse), 12 (for skip)"
-    );
-    console.log(
-        "Possible card values for 'Special': 0 (for Wild), 1 (for Wild + Draw 4)"
-    );
-    console.log(" ");
+    console.log("COLOR OPTIONS: Red, Green, Blue, Yellow, Special");
+    console.log("VALUE OPTIONS for R-G-B-Y: 0-9, 10 (for draw 2), 11 (for reverse), 12 (for skip)");
+    console.log("VALUE OPTIONS for 'Special': 13 for Wild, 14 for Wild Draw 4");
+    console.log("");
 
-    console.log(
-        "forceDraw(number) -- Draws specific number of cards from deck and adds to player's hand"
-    );
-    console.log(" ");
+    console.log("forceAdd(number) -- Give yourself any number of cards");
+    console.log("");
 
-    console.log(
-        "forceRemove(number) -- Removes specific number of cards (Must leave 2 or more) from player's hand starting at the leftmost card"
-    );
+    console.log("forceRemove(number) -- Remove any number of cards from your hand starting from left side");
+    console.log("NOTE: Must leave at least 2 cards in hand");
+    console.log("------------------------------------");
 }
 
 /**
@@ -40,7 +31,7 @@ function newPlayfieldCard() {
 /**
  * Gives player a specific number of cards
  */
-function forceDraw(numCards) {
+function forceAdd(numCards) {
     if (numCards > 0) {
         drawManyCard(numCards);
     } else {
@@ -62,7 +53,7 @@ function forceRemove(numCards) {
 /**
  * Gives player a specific card (input from console)
  */
-function giveMeABreak(cardColor, cardValue) {
+function drawSpecificCard(cardColor, cardValue) {
     if ((cardColor == "Special" && cardValue > 1) || cardValue < 0) {
         console.log("Invalid wild card selection: " + cardColor + " " + cardValue);
         return;
