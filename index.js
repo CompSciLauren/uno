@@ -8,7 +8,7 @@ $(document).ready(function () {
 // global Playfield Card
 let discardPile = new Deck("discardDeckDiv", false);
 
-// creates a Global array to store players
+// create a Global array to store players
 let players = [];
 
 // amount of players in the game
@@ -20,13 +20,13 @@ let initialCards = 7;
 // global Turn Tracker
 let gameTurn = 0;
 
-// sets direction of game, 1 for forward, -1 for backward
+// set direction of game, 1 for forward, -1 for backward
 let gameDirection = 1;
 
-// stores if initial draw
+// store if initial draw
 let initialDraw = true;
 
-// stores how many +2, or +4s are stacked
+// store how many +2, or +4s are stacked
 let drawStack = {
   cardValue: 0,
   stackAmt: 0,
@@ -41,7 +41,7 @@ let drawStack = {
 };
 
 /**
- * Changes the displayed text and calls function to randomize playfield card
+ * Change the displayed text and call function to randomize playfield card
  */
 function initializeWindow() {
   // re-assign global card value to random values
@@ -138,9 +138,6 @@ function startGame() {
   initializePlayers();
 }
 
-/**
- * Play
- */
 function play() {
   if (players[gameTurn].isBot) {
     setTimeout(function () {

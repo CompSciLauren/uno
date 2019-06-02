@@ -15,7 +15,7 @@ function Player(deck, id, index, bot, unoCall) {
   this.botLogic = function () {
     let numBotCards = this.playerDeck.amtCards;
 
-    //Standard bot behavior
+    // bot behavior
     for (let i = 0; i < numBotCards; i++) {
       if (players[gameTurn].playerDeck.isValid(i)) {
         if (players[gameTurn].playerDeck.amtCards == 2) {
@@ -29,7 +29,7 @@ function Player(deck, id, index, bot, unoCall) {
     if (drawStack.stackAmt != 0) {
       drawACard();
     } else {
-      //Draw a card and check if it is a match. Will break loop if hits 20 card limit (prevents infinite decks)
+      // draw a card and check if it is a match. Will break loop if hits 20 card limit (prevents infinite decks)
       while (!this.playerDeck.playCard(this.playerDeck.amtCards - 1)) {
         drawACard();
       }
@@ -37,6 +37,9 @@ function Player(deck, id, index, bot, unoCall) {
   };
 }
 
+/**
+ * End current player's turn and begin next player's turn
+ */
 function rotatePlayers() {
   gameTurn = gameTurn + gameDirection;
 

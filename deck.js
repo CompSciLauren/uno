@@ -10,7 +10,7 @@ function Deck(divId, hidden) {
     this.isHidden = hidden;
 
     /**
-     * Adds a card to the cards array
+     * Add a card to the cards array
      */
     this.addCard = function (card) {
         this.cards.push(card);
@@ -18,7 +18,7 @@ function Deck(divId, hidden) {
     };
 
     /**
-     * removes a card from card array
+     * Remove a card from card array
      */
     this.removeCard = function (card) {
         this.cards.splice(card, 1);
@@ -26,7 +26,7 @@ function Deck(divId, hidden) {
     };
 
     /**
-     * Gives player a specific card for cheat code
+     * Give player a specific card for cheat code
      */
     this.drawSpecificCard = function (cardColor, cardValue) {
         let tempCardColor = cardColor;
@@ -38,7 +38,7 @@ function Deck(divId, hidden) {
     };
 
     /**
-     * Gives player a random card
+     * Give player a random card
      */
     this.drawCard = function () {
         let colorArray = ["Red", "Green", "Blue", "Yellow", "Special"];
@@ -56,7 +56,7 @@ function Deck(divId, hidden) {
                     randValue = 14;
                 }
             } else {
-                //array of colors minus "Special" option
+                // array of colors minus "Special" option
                 randColor =
                     colorArray[Math.floor(Math.random() * (colorArray.length - 1))];
                 randValue = Math.floor(Math.random() * 13);
@@ -77,11 +77,11 @@ function Deck(divId, hidden) {
     };
 
     /**
-     * removes card from hand and reloads hand (post-validation of good move)
+     * Remove card from hand and reload hand (post-validation of good move)
      */
     this.playCard = function (card) {
         if (this.isValid(card)) {
-            //Check if second to last card & Uno call protection
+            // check if second to last card & Uno call protection
             if (
                 players[gameTurn].playerDeck.amtCards == 2 &&
                 players[gameTurn].unoCall != true
@@ -138,14 +138,14 @@ function Deck(divId, hidden) {
     };
 
     /**
-     * Returns card at index card
+     * Return card at index card
      */
     this.getCard = function (card) {
         return this.cards[card];
     };
 
     /**
-     * Reloads the player hand to have the most recent cards in player hand
+     * Reload the player hand to have the most recent cards in player hand
      */
     this.reloadHand = function () {
         this.hand.innerHTML = "";
@@ -165,7 +165,7 @@ function Deck(divId, hidden) {
             cardDiv.append();
 
             if (!this.isHidden) {
-                addCSSDesignToCard(cardDiv, cardSpanInner, this.getCard(i).value, this.getCard(i).color);
+                addCSSDesignToCard(cardDiv, cardSpanInner, this.getCard(i).value);
 
                 // prevents the discardDeckDiv from being counted as playable cards
                 if (this.hand.id != "discardDeckDiv") {

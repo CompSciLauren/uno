@@ -16,9 +16,6 @@ function cardSkip() {
   rotatePlayers();
 }
 
-/**
- * Card is wild
- */
 function cardWild() {
   if (players[gameTurn].isBot) {
     let colorArray = ["Red", "Green", "Blue", "Yellow"];
@@ -46,9 +43,6 @@ function cardWild() {
   return true;
 }
 
-/**
- * Draw 2 cards
- */
 function cardDraw2() {
   drawStack.stackAmt++;
   drawStack.cardType = 2;
@@ -56,9 +50,6 @@ function cardDraw2() {
   drawStack.updateStack();
 }
 
-/**
- * Draw 4 cards
- */
 function cardDraw4() {
   drawStack.stackAmt++;
   drawStack.cardType = 4;
