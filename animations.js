@@ -1,3 +1,10 @@
+/**
+ * Animates the action of drawing a card from the playfield deck
+ * @param {*} thisHandId the player's hand
+ * @param {*} randValue the card value
+ * @param {*} randColor the card color
+ * @param {*} thisObject the deck
+ */
 function drawCardAnimation(thisHandId, randValue, randColor, thisObject) {
     // obtain drawPile div
     let drawPile = document.getElementById("drawCardPile");
@@ -47,7 +54,7 @@ function drawCardAnimation(thisHandId, randValue, randColor, thisObject) {
     addCSSDesignToBackOfCard(cardDivBack, cardSpanInnerBack);
 
     if (thisHandId == "BottomSeat") {
-        addCSSDesignToCard(cardDiv, cardSpanInner, randValue, randColor);
+        addCSSDesignToCard(cardDiv, cardSpanInner, randValue);
 
         // determines color of card drawn from the playfield deck
         switch (randColor) {

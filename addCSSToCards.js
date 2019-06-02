@@ -1,3 +1,8 @@
+/**
+ * Adds classes to create the CSS design for the back of the Uno cards
+ * @param {*} cardDiv
+ * @param {*} cardSpanInner
+ */
 function addCSSDesignToBackOfCard(cardDiv, cardSpanInner) {
     cardDiv.classList.add("black");
     cardSpanInner.append("_");
@@ -6,7 +11,13 @@ function addCSSDesignToBackOfCard(cardDiv, cardSpanInner) {
     $(cardSpanInner).css("text-shadow", "#c72a18 1px 1px 1px");
 }
 
-function addCSSDesignToCard(cardDiv, cardSpanInner, cardValue, cardColor) {
+/**
+ * Adds classes to create the CSS design for the front of the Uno cards
+ * @param {*} cardDiv 
+ * @param {*} cardSpanInner 
+ * @param {*} cardValue 
+ */
+function addCSSDesignToCard(cardDiv, cardSpanInner, cardValue) {
     switch (cardValue) {
         case 0:
             cardDiv.classList.add("num-0");
@@ -49,7 +60,6 @@ function addCSSDesignToCard(cardDiv, cardSpanInner, cardValue, cardColor) {
             cardSpanInner.append("9");
             break;
         case 10:
-            // draw 2
             cardDiv.classList.add("draw2");
             cardSpanInner.append("_");
             $(cardSpanInner).css("color", "white");
@@ -85,7 +95,6 @@ function addCSSDesignToCard(cardDiv, cardSpanInner, cardValue, cardColor) {
             cardSpanInner.append("⊘");
             break;
         case 13:
-            // wild card
             cardDiv.classList.add("wild");
             cardDiv.classList.add("black");
             cardSpanInner.append("_");
@@ -124,7 +133,6 @@ function addCSSDesignToCard(cardDiv, cardSpanInner, cardValue, cardColor) {
             zabevenInnerSpan.classList.add("inner");
             break;
         case 14:
-            // wild +4 card
             cardDiv.classList.add("plus-4");
             cardDiv.classList.add("black");
             cardSpanInner.append("_");
