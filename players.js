@@ -6,7 +6,7 @@
  * @param {*} bot
  * @param {*} unoCall
  */
-function player(deck, id, index, bot, unoCall) {
+function Player(deck, id, index, bot, unoCall) {
   this.isBot = bot;
   this.playerDeck = deck;
   this.playerID = id;
@@ -15,11 +15,10 @@ function player(deck, id, index, bot, unoCall) {
   this.botLogic = function () {
     let numBotCards = this.playerDeck.amtCards;
 
-    //Standard bot behavior
+    // bot behavior
     for (let i = 0; i < numBotCards; i++) {
       if (players[gameTurn].playerDeck.isValid(i)) {
-        if (players[gameTurn].playerDeck.amtCards == 2)
-        {
+        if (players[gameTurn].playerDeck.amtCards == 2) {
           players[gameTurn].unoCall = true;
         }
         players[gameTurn].playerDeck.playCard(i);
@@ -30,21 +29,24 @@ function player(deck, id, index, bot, unoCall) {
     if (drawStack.stackAmt != 0) {
       drawACard();
     } else {
-      //Draw a card, then check if that new card is a match. Should break loop if it is
-      //The 20 card limit is just for testing, keeps infinite decks from being made
+      // draw a card and check if it is a match. Will break loop if hits 20 card limit (prevents infinite decks)
       while (!this.playerDeck.playCard(this.playerDeck.amtCards - 1)) {
         drawACard();
-        //setTimeout(drawACard(), 1000);
       }
     }
   };
 }
 
+/**
+ * End current player's turn and begin next player's turn
+ */
 function rotatePlayers() {
   gameTurn = gameTurn + gameDirection;
 
-  if (gameTurn == players.length) gameTurn = 0;
-  else if (gameTurn < 0) gameTurn = players.length - 1;
-
-  console.log("rotatePlayers check, player: " + gameTurn);
+  if (gameTurn == players.length) {
+    gameTurn = 0;
+  }
+  else if (gameTurn < 0) {
+    gameTurn = players.length - 1;
+  }
 }

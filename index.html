@@ -5,8 +5,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-  <!-- Bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
@@ -19,9 +17,9 @@
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
 
-
   <link href="styles.css" rel="stylesheet" type="text/css" />
   <link href="cards.css" rel="stylesheet" type="text/css" />
+  <link href="animations.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -58,13 +56,15 @@
         <div id="LeftSeat" class="sideHand"></div>
       </div>
       <div class="col-md-8 custom-border center-card-hands" align="center">
-          <div class="row">
-            <div class="cardNotForPlaying black"><div id="drawCardPile"></div></div>
+        <div class="row">
+          <div class="cardNotForPlaying black">
+            <div id="drawCardPile"></div>
           </div>
-          <div class="row">
-            <div id="discardDeckDiv"></div>
-            <div id="playfieldHand"></div>
-          </div>
+        </div>
+        <div class="row">
+          <div id="discardDeckDiv"></div>
+          <div id="playfieldHand"></div>
+        </div>
       </div>
       <div class="col-md-2">
         <div id="RightSeatID"></div>
@@ -92,13 +92,16 @@
       </div>
     </div>
 
-
     <div id="wildColor"></div>
 
+    <script type="text/javascript" src="deck.js"></script>
     <script type="text/javascript" src="cards.js"></script>
     <script type="text/javascript" src="special-cards.js"></script>
+    <script type="text/javascript" src="addCSSToCards.js"></script>
+    <script type="text/javascript" src="animations.js"></script>
     <script type="text/javascript" src="players.js"></script>
     <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="cheats.js"></script>
 </body>
 
 </html>
