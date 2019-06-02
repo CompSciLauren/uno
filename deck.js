@@ -99,16 +99,22 @@ function Deck(divId, hidden) {
             discard(cardBeingPlayed);
             refreshPlayfieldCardVisual();
 
-            if (cardBeingPlayed.value == 10) {
-                cardDraw2();
-            } else if (cardBeingPlayed.value == 11) {
-                cardReverse();
-            } else if (cardBeingPlayed.value == 12) {
-                cardSkip();
-            } else if (cardBeingPlayed.value == 13) {
-                cardWild();
-            } else if (cardBeingPlayed.value == 14) {
-                cardDraw4();
+            switch (cardBeingPlayed.value) {
+                case 10:
+                    cardDraw2();
+                    break;
+                case 11:
+                    cardReverse();
+                    break;
+                case 12:
+                    cardSkip();
+                    break;
+                case 13:
+                    cardWild();
+                    break;
+                case 14:
+                    cardDraw4();
+                    break;
             }
 
             // remove played card from hand
