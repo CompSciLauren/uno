@@ -49,6 +49,12 @@ function Deck(divId, hidden) {
             let randNum = Math.round(Math.random() * 2 + 1);
             if (randNum == 1 || randNum == 2) {
                 randValue = randValue % 2;
+                if (randValue == 0) {
+                    randValue = 13;
+                }
+                else {
+                    randValue = 14;
+                }
             } else {
                 //array of colors minus "Special" option
                 randColor =
@@ -93,18 +99,16 @@ function Deck(divId, hidden) {
             discard(cardBeingPlayed);
             refreshPlayfieldCardVisual();
 
-            if (cardBeingPlayed.color == "Special") {
-                if (cardBeingPlayed.value == 0) {
-                    cardWild();
-                } else if (cardBeingPlayed.value == 1) {
-                    cardDraw4();
-                }
-            } else if (cardBeingPlayed.value == 10) {
+            if (cardBeingPlayed.value == 10) {
                 cardDraw2();
             } else if (cardBeingPlayed.value == 11) {
                 cardReverse();
             } else if (cardBeingPlayed.value == 12) {
                 cardSkip();
+            } else if (cardBeingPlayed.value == 13) {
+                cardWild();
+            } else if (cardBeingPlayed.value == 14) {
+                cardDraw4();
             }
 
             // remove played card from hand
