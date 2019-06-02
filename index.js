@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $(document).on("click", ".my-card", function () {
     let cardIndex = $(".my-card").index(this);
-    useCard(cardIndex);
+    players[gameTurn].playerDeck.playCard(cardIndex);
   });
 });
 
@@ -46,7 +46,7 @@ let drawStack = {
 function initializeWindow() {
   // re-assign global card value to random values
   selectPlayfieldCard();
-  refreshPlayfieldCardVisual();
+  discardPile.reloadHand();
 }
 
 function initializePlayers() {
@@ -178,8 +178,4 @@ function callUno() {
   } else {
     players[gameTurn].unoCall = true;
   }
-}
-
-function refreshPlayfieldCardVisual() {
-  discardPile.reloadHand();
 }

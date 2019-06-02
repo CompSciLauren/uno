@@ -33,9 +33,18 @@ function newPlayfieldCard() {
  */
 function forceAdd(numCards) {
     if (numCards > 0) {
-        drawManyCard(numCards);
+        drawCards(numCards);
     } else {
         console.log("Invalid number of cards: " + numCards);
+    }
+}
+
+/**
+ * Draws a specific number of cards and adds them to player's hand
+ */
+function drawCards(numCards) {
+    for (let i = 0; i < numCards; i++) {
+        players[gameTurn].playerDeck.drawCard();
     }
 }
 

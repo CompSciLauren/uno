@@ -97,7 +97,7 @@ function Deck(divId, hidden) {
             let cardBeingPlayed = this.cards[card];
 
             discard(cardBeingPlayed);
-            refreshPlayfieldCardVisual();
+            discardPile.reloadHand();
 
             switch (cardBeingPlayed.value) {
                 case 10:
