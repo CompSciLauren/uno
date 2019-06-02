@@ -70,7 +70,7 @@ function Deck(divId, hidden) {
             players[gameTurn].playerID + " Drew a " + randColor + " " + randValue
         ); //testing
 
-        //If drawing a card, player cannot have Uno
+        // if drawing a card, player cannot have Uno
         players[gameTurn].unoCall = false;
     };
 
@@ -146,8 +146,7 @@ function Deck(divId, hidden) {
      */
     this.reloadHand = function () {
         this.hand.innerHTML = "";
-        let i = 0;
-        for (i = 0; i < this.amtCards; i++) {
+        for (let i = 0; i < this.amtCards; i++) {
             let cardDiv = document.createElement("div");
             this.hand.append(cardDiv);
             cardDiv.classList.add("card");
@@ -184,6 +183,7 @@ function Deck(divId, hidden) {
                         cardDiv.classList.add("yellow");
                         break;
                     default:
+                        cardDiv.classList.add("black");
                 }
             } else {
                 addCSSDesignToBackOfCard(cardDiv, cardSpanInner);
