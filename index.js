@@ -1,7 +1,6 @@
 $(document).ready(function () {
   $(document).on("click", ".my-card", function () {
     let cardIndex = $(".my-card").index(this);
-    console.log("index: " + cardIndex);
     useCard(cardIndex);
   });
 });
@@ -179,10 +178,6 @@ function callUno() {
   } else {
     players[gameTurn].unoCall = true;
   }
-}
-
-function checkUno() {
-  console.log("Unocall: " + players[gameTurn].unoCall);
 }
 
 function refreshPlayfieldCardVisual() {

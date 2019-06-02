@@ -25,7 +25,6 @@ function cardWild() {
     let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
 
     discardPile.cards[discardPile.cards.length - 1].color = randColor;
-    discardPile.cards[discardPile.cards.length - 1].value = -1;
   } else {
     let wildUI = document.createElement("div");
     document.getElementById("wildColor").append(wildUI);
@@ -37,7 +36,6 @@ function cardWild() {
       discardPile.cards[
         discardPile.cards.length - 1
       ].color = document.querySelector('input[name="color"]:checked').value;
-      discardPile.cards[discardPile.cards.length - 1].value = -1;
       document.getElementById("wildColor").innerHTML = "";
       isColorSelected = true;
       rotatePlayers();
