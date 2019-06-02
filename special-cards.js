@@ -23,8 +23,8 @@ function cardWild() {
   if (players[gameTurn].isBot) {
     let colorArray = ["Red", "Green", "Blue", "Yellow"];
     let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
-
     discardPile.cards[discardPile.cards.length - 1].color = randColor;
+    alert("The color has been changed to " + randColor);
   } else {
     let wildUI = document.createElement("div");
     document.getElementById("wildColor").append(wildUI);
