@@ -167,9 +167,14 @@ function Deck(divId, hidden) {
             if (!this.isHidden) {
                 addCSSDesignToCard(cardDiv, cardSpanInner, this.getCard(i).value);
 
-                // prevents the discardDeckDiv from being counted as playable cards
+                // prevent the discardDeckDiv from being counted as playable cards
                 if (this.hand.id != "discardDeckDiv") {
                     cardDiv.classList.add("my-card");
+                }
+                if (this.hand.id == "discardDeckDiv") {
+                    if (cardDiv.classList.contains("wild")) {
+                        cardDiv.classList.add("new-wild-card-color");
+                    }
                 }
 
                 switch (this.getCard(i).getColorValue()) {

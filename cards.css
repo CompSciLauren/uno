@@ -433,3 +433,11 @@
   background: #18a849;
   float: right;
 }
+
+.new-wild-card-color {
+  color: darkmagenta; 
+}
+
+.new-wild-card-color .inner {
+  background: darkmagenta;
+}
