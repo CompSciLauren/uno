@@ -172,7 +172,7 @@ function Deck(divId, hidden) {
                     cardDiv.classList.add("my-card");
                 }
                 if (this.hand.id == "discardDeckDiv") {
-                    if (cardDiv.classList.contains("wild")) {
+                    if (cardDiv.classList.contains("wild") || cardDiv.classList.contains("plus-4")) {
                         cardDiv.classList.add("new-wild-card-color");
                     }
                 }
