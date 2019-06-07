@@ -172,26 +172,33 @@ function Deck(divId, hidden) {
                     cardDiv.classList.add("my-card");
                 }
                 if (this.hand.id == "discardDeckDiv") {
-                    if (cardDiv.classList.contains("wild") || cardDiv.classList.contains("plus-4")) {
-                        cardDiv.classList.add("new-wild-card-color");
+                    if (i == discardPile.cards.length - 1) {
+                        if (cardDiv.classList.contains("wild") || cardDiv.classList.contains("plus-4")) {
+                            cardDiv.classList.add("new-wild-card-color");
+                        }
                     }
                 }
 
                 switch (this.getCard(i).getColorValue()) {
                     case "#0000FF":
                         cardDiv.classList.add("blue");
+                        //alert("Blue");
                         break;
                     case "#A60000":
                         cardDiv.classList.add("red");
+                        //alert("Red");
                         break;
                     case "#004f19":
                         cardDiv.classList.add("green");
+                        //alert("Green");
                         break;
                     case "#e5bf00":
                         cardDiv.classList.add("yellow");
+                        //alert("Yellow");
                         break;
                     default:
                         cardDiv.classList.add("black");
+                    //alert("Black");
                 }
             } else {
                 addCSSDesignToBackOfCard(cardDiv, cardSpanInner);
