@@ -41,19 +41,7 @@ function cardWild() {
     let wildUI = document.createElement("div");
     document.getElementById("wildColor").append(wildUI);
     wildUI.classList.add("wildStyle");
-
-    wildUI.innerHTML =
-      "<form name='colorPick' id='myForm'> Enter the Color you want to switch to<br> <input type='radio' name='color' value='Red'>Red<br><input type='radio' name='color' value='Yellow'>Yellow<br><input type='radio' name='color' value='Blue'>Blue<br><input type='radio' name='color' value='Green'>Green<br><input type='button' id='colorButton' value='Pick'></form>";
-    document.getElementById("colorButton").onclick = function () {
-      discardPile.cards[
-        discardPile.cards.length - 1
-      ].color = document.querySelector('input[name="color"]:checked').value;
-      document.getElementById("wildColor").innerHTML = "";
-      isColorSelected = true;
-      rotatePlayers();
-      play();
-    };
-    gameTurn = gameTurn - gameDirection;
+    on();
   }
   return true;
 }
