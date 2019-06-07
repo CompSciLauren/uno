@@ -16,7 +16,7 @@ function cardSkip() {
   rotatePlayers();
 }
 
-function cardWild() {
+function cardWild(callback) {
   if (players[gameTurn].isBot) {
     let colorArray = ["Red", "Green", "Blue", "Yellow"];
     let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
@@ -38,12 +38,20 @@ function cardWild() {
     }
     $(".chosen-wild-card-color .inner").css("background", colorChoice);
   } else {
-    let wildUI = document.createElement("div");
-    document.getElementById("wildColor").append(wildUI);
-    wildUI.classList.add("wildStyle");
-    on();
+    document.getElementById("overlay").style.display = "block";
   }
   return true;
+}
+
+function off(color) {
+  discardPile.cards[
+    discardPile.cards.length - 1
+  ].color = color;
+  isColorSelected = true;
+  rotatePlayers();
+  play();
+  gameTurn = gameTurn - gameDirection;
+  document.getElementById("overlay").style.display = "none";
 }
 
 function cardDraw2() {

@@ -176,18 +176,3 @@ function callUno() {
     players[gameTurn].unoCall = true;
   }
 }
-
-function on() {
-  document.getElementById("overlay").style.display = "block";
-}
-
-function off(color) {
-  discardPile.cards[
-    discardPile.cards.length - 1
-  ].color = color;
-  isColorSelected = true;
-  rotatePlayers();
-  play();
-  gameTurn = gameTurn - gameDirection;
-  document.getElementById("overlay").style.display = "none";
-}

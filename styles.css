@@ -107,7 +107,6 @@ li {
 .size {
   width: 5vw;
   height: 5vw;
-  /* background-color: rgba(134, 70, 55, .5); */
   box-shadow: 2px 2px 3px black;
   margin: 2rem;
 }
@@ -115,23 +114,23 @@ li {
 .red-circle {
   background-color: #c72a18;
   border-radius: 50%;
-  border: 2px solid grey;
+  border: 2px solid #ffffff;
 }
 
 .blue-circle {
   background-color: #0063b3;
   border-radius: 50%;
-  border: 2px solid grey;
+  border: 2px solid #ffffff;
 }
 
 .yellow-circle {
   background-color: #e6ca1e;
   border-radius: 50%;
-  border: 2px solid grey;
+  border: 2px solid #ffffff;
 }
 
 .green-circle {
   background-color: #18a849;
   border-radius: 50%;
-  border: 2px solid grey;
+  border: 2px solid #ffffff;
 }
