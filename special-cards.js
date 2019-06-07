@@ -36,7 +36,7 @@ function cardWild() {
         colorChoice = "#e6ca1e";
         break;
     }
-    $(".new-wild-card-color .inner").css("background", colorChoice);
+    $(".chosen-wild-card-color .inner").css("background", colorChoice);
   } else {
     let wildUI = document.createElement("div");
     document.getElementById("wildColor").append(wildUI);

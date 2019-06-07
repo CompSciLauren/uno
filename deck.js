@@ -174,7 +174,7 @@ function Deck(divId, hidden) {
                 if (this.hand.id == "discardDeckDiv") {
                     if (i == discardPile.cards.length - 1) {
                         if (cardDiv.classList.contains("wild") || cardDiv.classList.contains("plus-4")) {
-                            cardDiv.classList.add("new-wild-card-color");
+                            cardDiv.classList.add("chosen-wild-card-color");
                         }
                     }
                 }
