@@ -21,7 +21,22 @@ function cardWild() {
     let colorArray = ["Red", "Green", "Blue", "Yellow"];
     let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
     discardPile.cards[discardPile.cards.length - 1].color = randColor;
-    alert("The color has been changed to " + randColor);
+    let colorChoice = "";
+    switch (randColor) {
+      case "Red":
+        colorChoice = "#c72a18";
+        break;
+      case "Green":
+        colorChoice = "#18a849";
+        break;
+      case "Blue":
+        colorChoice = "#0063b3";
+        break;
+      case "Yellow":
+        colorChoice = "#e6ca1e";
+        break;
+    }
+    $(".chosen-wild-card-color .inner").css("background", colorChoice);
   } else {
     let wildUI = document.createElement("div");
     document.getElementById("wildColor").append(wildUI);
