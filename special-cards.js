@@ -21,41 +21,23 @@ function cardWild() {
     let colorArray = ["Red", "Green", "Blue", "Yellow"];
     let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
     discardPile.cards[discardPile.cards.length - 1].color = randColor;
-    let colorChoice = "";
-    switch (randColor) {
-      case "Red":
-        colorChoice = "#c72a18";
-        break;
-      case "Green":
-        colorChoice = "#18a849";
-        break;
-      case "Blue":
-        colorChoice = "#0063b3";
-        break;
-      case "Yellow":
-        colorChoice = "#e6ca1e";
-        break;
-    }
+    let colorChoice = convertColorToHex(randColor);
     $(".chosen-wild-card-color .inner").css("background", colorChoice);
   } else {
-    let wildUI = document.createElement("div");
-    document.getElementById("wildColor").append(wildUI);
-    wildUI.classList.add("wildStyle");
-
-    wildUI.innerHTML =
-      "<form name='colorPick' id='myForm'> Enter the Color you want to switch to<br> <input type='radio' name='color' value='Red'>Red<br><input type='radio' name='color' value='Yellow'>Yellow<br><input type='radio' name='color' value='Blue'>Blue<br><input type='radio' name='color' value='Green'>Green<br><input type='button' id='colorButton' value='Pick'></form>";
-    document.getElementById("colorButton").onclick = function () {
-      discardPile.cards[
-        discardPile.cards.length - 1
-      ].color = document.querySelector('input[name="color"]:checked').value;
-      document.getElementById("wildColor").innerHTML = "";
-      isColorSelected = true;
-      rotatePlayers();
-      play();
-    };
-    gameTurn = gameTurn - gameDirection;
+    document.getElementById("overlay").style.display = "block";
   }
   return true;
+}
+
+function selectWildColor(color) {
+  discardPile.cards[
+    discardPile.cards.length - 1
+  ].color = color;
+  $(".chosen-wild-card-color .inner").css("background", convertColorToHex(color));
+  isColorSelected = true;
+  rotatePlayers();
+  play();
+  document.getElementById("overlay").style.display = "none";
 }
 
 function cardDraw2() {
@@ -71,4 +53,17 @@ function cardDraw4() {
   drawStack.cardValue = 1;
   drawStack.updateStack();
   cardWild();
+}
+
+function convertColorToHex(color) {
+  switch (color) {
+    case "Red":
+      return "#c72a18";
+    case "Green":
+      return "#18a849";
+    case "Blue":
+      return "#0063b3";
+    case "Yellow":
+      return "#e6ca1e";
+  }
 }

@@ -80,6 +80,7 @@ function Deck(divId, hidden) {
      * Remove card from hand and reload hand (post-validation of good move)
      */
     this.playCard = function (card) {
+        let wildColorMenuIsInactive = true;
         if (this.isValid(card)) {
             // check if second to last card & Uno call protection
             if (
@@ -111,9 +112,15 @@ function Deck(divId, hidden) {
                     break;
                 case 13:
                     cardWild();
+                    if (!players[gameTurn].isBot) {
+                        wildColorMenuIsInactive = false;
+                    }
                     break;
                 case 14:
                     cardDraw4();
+                    if (!players[gameTurn].isBot) {
+                        wildColorMenuIsInactive = false;
+                    }
                     break;
             }
 
@@ -132,8 +139,10 @@ function Deck(divId, hidden) {
         }
 
         this.reloadHand();
-        rotatePlayers();
-        play();
+        if (wildColorMenuIsInactive == true) {
+            rotatePlayers();
+            play();
+        }
         return true;
     };
 
@@ -182,23 +191,18 @@ function Deck(divId, hidden) {
                 switch (this.getCard(i).getColorValue()) {
                     case "#0000FF":
                         cardDiv.classList.add("blue");
-                        //alert("Blue");
                         break;
                     case "#A60000":
                         cardDiv.classList.add("red");
-                        //alert("Red");
                         break;
                     case "#004f19":
                         cardDiv.classList.add("green");
-                        //alert("Green");
                         break;
                     case "#e5bf00":
                         cardDiv.classList.add("yellow");
-                        //alert("Yellow");
                         break;
                     default:
                         cardDiv.classList.add("black");
-                    //alert("Black");
                 }
             } else {
                 addCSSDesignToBackOfCard(cardDiv, cardSpanInner);

@@ -1,4 +1,4 @@
-//All tests for Project 4
+//All tests
 function allTests() {
   console.log("$ Running all tests");
   let indexTestNum = indexTests(); //teting index.js functions
@@ -7,9 +7,9 @@ function allTests() {
   let totalTests = indexTestNum + cardsTestNum;
   console.log(
     "\n$ ~ ~ ~ ~ Testing Summary ~ ~ ~ ~\n$ All ran tests for Uno game project - 13. Passed: " +
-      totalTests +
-      ". Failed: " +
-      (13 - totalTests)
+    totalTests +
+    ". Failed: " +
+    (13 - totalTests)
   );
 }
 
@@ -21,21 +21,21 @@ function indexTests() {
   console.log("\n$ * * * * All tests for index.js * * * *");
   console.log(
     "$ Total tests for start() - 3. Passed: " +
-      startTestNum +
-      ". Failed: " +
-      (3 - startTestNum)
+    startTestNum +
+    ". Failed: " +
+    (3 - startTestNum)
   );
   console.log(
     "$ Total tests for callUno() - 2. Passed: " +
-      callUnoTestNum +
-      ". Failed: " +
-      (2 - callUnoTestNum)
+    callUnoTestNum +
+    ". Failed: " +
+    (2 - callUnoTestNum)
   );
   console.log(
     "$ Total tests for all cheats - 4. Passed: " +
-      cheatTestNum +
-      ". Failed: " +
-      (4 - cheatTestNum)
+    cheatTestNum +
+    ". Failed: " +
+    (4 - cheatTestNum)
   );
   console.log("\n$ * * * * End tests for index.js * * * *");
   return startTestNum + callUnoTestNum + cheatTestNum;
@@ -48,15 +48,15 @@ function cardsTests() {
   console.log("\n$ * * * * All tests for cards.js * * * *");
   console.log(
     "$ Total tests for isValid() - 2. Passed: " +
-      isValidNum +
-      ". Failed: " +
-      (2 - isValidNum)
+    isValidNum +
+    ". Failed: " +
+    (2 - isValidNum)
   );
   console.log(
     "$ Total tests for playCard() - 2. Passed: " +
-      playCardNum +
-      ". Failed: " +
-      (2 - playCardNum)
+    playCardNum +
+    ". Failed: " +
+    (2 - playCardNum)
   );
   console.log("\n$ * * * * End tests for cards.js * * * *");
   return isValidNum + playCardNum;
@@ -326,9 +326,9 @@ function cheatTest1() {
   //Expected: 1 (true)
   if (
     discardPile.cards[discardPile.cards.length - 1].value ==
-      oldPlayfieldCardValue &&
+    oldPlayfieldCardValue &&
     discardPile.cards[discardPile.cards.length - 1].color ==
-      oldPlayfieldCardColor
+    oldPlayfieldCardColor
   ) {
     return false;
   } else {

@@ -73,3 +73,64 @@ li {
   animation-name: unoButtonInvalid;
   animation-duration: 0.5s;
 }
+
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%;
+  height: 100%;
+  top: 0; 
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+}
+
+#text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+
+.main-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.size {
+  width: 5vw;
+  height: 5vw;
+  box-shadow: 2px 2px 3px black;
+  margin: 2rem;
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+.red-circle {
+  background-color: #c72a18;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+}
+
+.blue-circle {
+  background-color: #0063b3;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+}
+
+.yellow-circle {
+  background-color: #e6ca1e;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+}
+
+.green-circle {
+  background-color: #18a849;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+}
