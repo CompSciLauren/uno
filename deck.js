@@ -191,23 +191,18 @@ function Deck(divId, hidden) {
                 switch (this.getCard(i).getColorValue()) {
                     case "#0000FF":
                         cardDiv.classList.add("blue");
-                        //alert("Blue");
                         break;
                     case "#A60000":
                         cardDiv.classList.add("red");
-                        //alert("Red");
                         break;
                     case "#004f19":
                         cardDiv.classList.add("green");
-                        //alert("Green");
                         break;
                     case "#e5bf00":
                         cardDiv.classList.add("yellow");
-                        //alert("Yellow");
                         break;
                     default:
                         cardDiv.classList.add("black");
-                    //alert("Black");
                 }
             } else {
                 addCSSDesignToBackOfCard(cardDiv, cardSpanInner);
