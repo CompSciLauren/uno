@@ -21,7 +21,7 @@ function cardWild() {
     let colorArray = ["Red", "Green", "Blue", "Yellow"];
     let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
     discardPile.cards[discardPile.cards.length - 1].color = randColor;
-    let colorChoice = setColorInHex(randColor);
+    let colorChoice = convertColorToHex(randColor);
     $(".chosen-wild-card-color .inner").css("background", colorChoice);
   } else {
     document.getElementById("overlay").style.display = "block";
@@ -33,7 +33,7 @@ function selectWildColor(color) {
   discardPile.cards[
     discardPile.cards.length - 1
   ].color = color;
-  $(".chosen-wild-card-color .inner").css("background", setColorInHex(color));
+  $(".chosen-wild-card-color .inner").css("background", convertColorToHex(color));
   isColorSelected = true;
   rotatePlayers();
   play();
@@ -55,7 +55,7 @@ function cardDraw4() {
   cardWild();
 }
 
-function setColorInHex(color) {
+function convertColorToHex(color) {
   switch (color) {
     case "Red":
       return "#c72a18";
