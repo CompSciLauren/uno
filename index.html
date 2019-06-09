@@ -69,9 +69,20 @@
         <div id="LeftSeat" class="sideHand"></div>
       </div>
       <div class="col-md-8 center-card-hands" align="center">
-        <div class="row">
-          <div class="drawDeckOnPlayfield black">
-            <div id="drawCardPile"></div>
+        <div class="row" style="padding-top: 50px; padding-bottom: 50px">
+          <div class="col" style="padding-right: 200px">
+            <div class="drawDeckOnPlayfield black">
+              <div id="drawCardPile"></div>
+            </div>
+          </div>
+
+          <div class="col">
+            <br />
+            <div id="unoButton">
+              <button class="btn btn-primary center-block" type="button" onclick="callUno()">
+                <h2>Call Uno!</h2>
+              </button>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -90,14 +101,6 @@
         <div id="BottomSeatID"></div>
         <div id="BottomSeat"></div>
         <div id="player1Hand"></div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col" align="center">
-        <br />
-        <button id="unoButton" onclick="callUno()">Uno!</button>
-        <br>*Reminder, you must call Uno BEFORE playing your second-to-last card!
       </div>
     </div>
 
