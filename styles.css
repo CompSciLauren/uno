@@ -22,13 +22,8 @@
   height: 100vh;
 }
 
-.custom-border {
-  border-style: inset;
-  background-color: #87ceeb;
-}
-
 body {
-  background-color: #c9e9f6;
+  background: url(retina_wood.png);
 }
 
 .my-card {
