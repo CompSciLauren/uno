@@ -80,6 +80,7 @@ function Deck(divId, hidden) {
      * Remove card from hand and reload hand (post-validation of good move)
      */
     this.playCard = function (card) {
+        let canPlay = true;
         if (this.isValid(card)) {
             // check if second to last card & Uno call protection
             if (
@@ -111,6 +112,9 @@ function Deck(divId, hidden) {
                     break;
                 case 13:
                     cardWild();
+                    if (!players[gameTurn].isBot) {
+                        canPlay = false;
+                    }
                     break;
                 case 14:
                     cardDraw4();
@@ -132,8 +136,10 @@ function Deck(divId, hidden) {
         }
 
         this.reloadHand();
-        rotatePlayers();
-        play();
+        if (canPlay == true) {
+            rotatePlayers();
+            play();
+        }
         return true;
     };
 

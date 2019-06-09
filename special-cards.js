@@ -39,16 +39,6 @@ function cardWild() {
     $(".chosen-wild-card-color .inner").css("background", colorChoice);
   } else {
     document.getElementById("overlay").style.display = "block";
-    console.log("Hi");
-    // let decisionMade = false;
-    // while (!decisionMade) {
-    //   setTimeout(function () { console.log("Waiting 4 seconds"); }, 4000);
-    //   if (discardPile.cards[
-    //     discardPile.cards.length - 1
-    //   ].color != 'Special') {
-    //     decisionMade = true;
-    //   }
-    // }
   }
   return true;
 }
@@ -60,7 +50,7 @@ function off(color) {
   isColorSelected = true;
   rotatePlayers();
   play();
-  gameTurn = gameTurn - gameDirection;
+  //gameTurn = gameTurn - gameDirection;
   document.getElementById("overlay").style.display = "none";
 }
 
