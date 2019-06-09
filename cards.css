@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:900);
 
-.cardNotForPlaying {
+.drawDeckOnPlayfield {
   width: 116px;
   height: 178px;
   float: left;
@@ -22,14 +22,14 @@
   margin-right: -25px;
   transform: rotate(45deg);
 }
-.cardNotForPlaying .inner {
+.drawDeckOnPlayfield .inner {
   display: table-cell;
   vertical-align: middle;
   border-radius: 5px;
   overflow: hidden;
 }
 
-.cardNotForPlaying .mark {
+.drawDeckOnPlayfield .mark {
   display: inline-block;
   vertical-align: middle;
   background: #ffffff;
@@ -138,7 +138,7 @@
   background: #000000;
 }
 
-.cardNotForPlaying.black .inner {
+.drawDeckOnPlayfield.black .inner {
   background: #000;
 }
 
