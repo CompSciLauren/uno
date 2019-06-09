@@ -16,7 +16,7 @@ function cardSkip() {
   rotatePlayers();
 }
 
-function cardWild(callback) {
+function cardWild() {
   if (players[gameTurn].isBot) {
     let colorArray = ["Red", "Green", "Blue", "Yellow"];
     let randColor = colorArray[Math.floor(Math.random() * colorArray.length)];
@@ -39,6 +39,16 @@ function cardWild(callback) {
     $(".chosen-wild-card-color .inner").css("background", colorChoice);
   } else {
     document.getElementById("overlay").style.display = "block";
+    console.log("Hi");
+    // let decisionMade = false;
+    // while (!decisionMade) {
+    //   setTimeout(function () { console.log("Waiting 4 seconds"); }, 4000);
+    //   if (discardPile.cards[
+    //     discardPile.cards.length - 1
+    //   ].color != 'Special') {
+    //     decisionMade = true;
+    //   }
+    // }
   }
   return true;
 }
