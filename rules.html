@@ -4,30 +4,40 @@
 <head>
   <title>Rules</title>
   <link href="styles.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <div id="rules">
-    <h4>Rule and Information:</h4>
+  <h1>
+    <center>Rule and Information</center>
+  </h1>
+  <div style="width: 75%; font-size: 24px">
     <ul>
-      <li>This is a modified game of Uno, matching color or card value.</li>
+      <li>This is a modified version of the game of Uno.</li>
 
       <li>
-        The draw-4 cards can be stacked. This means if one player pays a draw-4, the other player can also play a draw-4
-        in order to force the next player to either play a draw-4 card or draw the total number of cards from the draw-4
-        cards already played. This same rule applies to the draw-2 card.
+        You must call uno before playing your second-to-last card. Penalty for not doing this is to draw 2 cards.
       </li>
 
       <li>
-        You must call uno BEFORE playing your second-to-last card. Failing to
-        do so will result in a card penalty.
+        If you do not have a valid card to play you must draw until you get one you can play.
       </li>
 
       <li>
-        If you do not have a valid card to play you must draw until you get
-        one you can play.
+        The draw-4 cards can be stacked. If a player plays a draw-4, the next player must play a
+        draw-4 or else draw the total number of cards from the deck. This same rule applies to the draw-2 card.
       </li>
     </ul>
+  </div>
+
+  <div class="form-group mt-5" style="text-align:center">
+    <button class="btn btn-primary center-block" type="button" onclick="window.open('index.html','_self')">
+      <h2>Return to Main Menu</h2>
+    </button>
   </div>
 </body>
 
