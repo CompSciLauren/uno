@@ -31,7 +31,7 @@
         </label>
         <input type="text" class="form-control form-size" id="playerName" value="TheLegend27">
       </div>
-      <div class="form-group">
+      <div class="form-group mt-5">
         <label for="amtPlayers">
           <h1>Number of Players</h1>
         </label>
@@ -41,9 +41,16 @@
           <option value="4">4</option>
         </select>
       </div>
-      <button class="btn btn-primary center-block" type="button" onclick="startGame()">
-        <h1>New Game</h1>
-      </button>
+      <div class="form-group mt-5">
+        <button class="btn btn-primary center-block" type="button" onclick="startGame()">
+          <h1>New Game</h1>
+        </button>
+      </div>
+      <div class="form-group mt-5">
+        <button class="btn btn-primary center-block" type="button" onclick="window.open('rules.html')">
+          <h1>Rules & Info</h1>
+        </button>
+      </div>
     </form>
 
   </div>
@@ -91,10 +98,6 @@
         <br />
         <button id="unoButton" onclick="callUno()">Uno!</button>
         <br>*Reminder, you must call Uno BEFORE playing your second-to-last card!
-        <div id="button">
-          <input type="button" value="Rules & Info" onclick="window.open('rules.html')">
-        </div>
-        </h3>
       </div>
     </div>
 
