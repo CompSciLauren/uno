@@ -43,14 +43,13 @@ function cardWild() {
   return true;
 }
 
-function off(color) {
+function selectWildColor(color) {
   discardPile.cards[
     discardPile.cards.length - 1
   ].color = color;
   isColorSelected = true;
   rotatePlayers();
   play();
-  //gameTurn = gameTurn - gameDirection;
   document.getElementById("overlay").style.display = "none";
 }
 
