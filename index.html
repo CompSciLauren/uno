@@ -26,18 +26,31 @@
   <div id="setupGame" class="container">
     <form class="text-center">
       <div class="form-group mt-5">
-        <label for="playerName">Player Name:</label>
-        <input type="text" class="form-control" id="playerName" placeholder="eg. TheLegend27">
+        <label for="playerName">
+          <h1>Player Name</h1>
+        </label>
+        <input type="text" class="form-control form-size" id="playerName" value="TheLegend27">
       </div>
-      <div class="form-group">
-        <label for="amtPlayers">How many Players</label>
-        <select class="form-control" id="amtPlayers">
+      <div class="form-group mt-5">
+        <label for="amtPlayers">
+          <h1>Number of Players</h1>
+        </label>
+        <select class="form-control form-size" id="amtPlayers">
           <option value="2" selected="selected">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
         </select>
       </div>
-      <button class="btn btn-primary center-block" type="button" onclick="startGame()">Start Game</button>
+      <div class="form-group mt-5">
+        <button class="btn btn-primary center-block" type="button" onclick="startGame()">
+          <h1>New Game</h1>
+        </button>
+      </div>
+      <div class="form-group mt-5">
+        <button class="btn btn-primary center-block" type="button" onclick="window.open('rules.html','_self')">
+          <h1>Rules & Info</h1>
+        </button>
+      </div>
     </form>
 
   </div>
@@ -55,10 +68,21 @@
         <div id="LeftSeatID"></div>
         <div id="LeftSeat" class="sideHand"></div>
       </div>
-      <div class="col-md-8 custom-border center-card-hands" align="center">
-        <div class="row">
-          <div class="cardNotForPlaying black">
-            <div id="drawCardPile"></div>
+      <div class="col-md-8 center-card-hands" align="center">
+        <div class="row" style="padding-top: 50px; padding-bottom: 50px">
+          <div class="col" style="padding-right: 200px">
+            <div class="drawDeckOnPlayfield black">
+              <div id="drawCardPile"></div>
+            </div>
+          </div>
+
+          <div class="col">
+            <br />
+            <div id="unoButton">
+              <button class="btn btn-primary center-block" type="button" onclick="callUno()">
+                <h2>Call Uno!</h2>
+              </button>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -77,18 +101,6 @@
         <div id="BottomSeatID"></div>
         <div id="BottomSeat"></div>
         <div id="player1Hand"></div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col" align="center">
-        <br />
-        <button id="unoButton" onclick="callUno()">Uno!</button>
-        <br>*Reminder, you must call Uno BEFORE playing your second-to-last card!
-        <div id="button">
-          <input type="button" value="Rules & Info" onclick="window.open('rules.html')">
-        </div>
-        </h3>
       </div>
     </div>
 

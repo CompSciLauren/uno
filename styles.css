@@ -1,3 +1,9 @@
+.form-size {
+  width: 50%;
+  margin: auto;
+  font-size: 2rem;
+}
+
 #drawCardPile {
   overflow: visible;
   width: 500px;
@@ -22,13 +28,8 @@
   height: 100vh;
 }
 
-.custom-border {
-  border-style: inset;
-  background-color: #87ceeb;
-}
-
 body {
-  background-color: #c9e9f6;
+  background: url(retina_wood.png);
 }
 
 .my-card {
@@ -48,7 +49,7 @@ body {
 .sideHand > .card {
   margin-right: 0;
   margin-left: 0;
-  margin-bottom: -60px;
+  margin-bottom: -110px;
   width: 140px;
   height: 100px;
 }
