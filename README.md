@@ -2,6 +2,10 @@
 
 Uno card game
 
+<p align="center">
+  <img src="uno_cover.png">
+</p>
+
 ## Usage
 
 ### How to Start the Game
