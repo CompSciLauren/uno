@@ -10,8 +10,7 @@ Uno card game
 
 ### How to Start the Game
 
-1. Clone or download the repo
-1. Open the index.html file in browser
+Visit https://compscilauren.github.io/uno/index.html
 
 ### Development
 
