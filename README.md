@@ -5,7 +5,7 @@
 
 # Uno
 
-This is the card game Uno. It is based on the original card game and implements the original rules. The game can be played against up to 3 computer players. It is a singleplayer game.
+This is the card game Uno. It is based on the original card game and implements most of the original rules. The game can be played against up to 3 computer players. It is a singleplayer game.
 
 ## Contents
 
